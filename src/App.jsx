@@ -437,7 +437,7 @@ function ProfilePlannerView({ onBack }) {
     <div className="profile-planner-view">
       <header className="planner-header">
         <button type="button" className="profile-back-button profile-back-button--ghost" onClick={onBack} aria-label="Back to profile">
-          <Icon d={ICONS.chev_l} size={20} stroke={2.75} />
+          <Icon d={ICONS.chev_l} size={24} stroke={2.5} />
         </button>
         <h1 className="planner-title">Planner</h1>
         <button type="button" className="planner-month-button">
@@ -663,7 +663,7 @@ function ProfileAiEnhancerView({ onBack, onComplete }) {
     <div className="profile-subscreen profile-enhancer-view hue-lime">
       <header className="enhancer-header">
         <button type="button" className="profile-back-button profile-back-button--dark" onClick={onBack} aria-label="Back to profile">
-          <Icon d={ICONS.chev_l} size={20} stroke={2.75} />
+          <Icon d={ICONS.chev_l} size={24} stroke={2.5} />
         </button>
         <button type="button" className="enhancer-skip" onClick={onBack}>Skip</button>
       </header>
@@ -700,7 +700,7 @@ function ProfileOutfitBreakdownView({ onBack, onSave }) {
     <div className="profile-subscreen profile-breakdown-view hue-lime">
       <header className="profile-breakdown-header">
         <button type="button" className="profile-back-button profile-back-button--ghost" onClick={onBack} aria-label="Back to profile">
-          <Icon d={ICONS.chev_l} size={20} stroke={2.75} />
+          <Icon d={ICONS.chev_l} size={24} stroke={2.5} />
         </button>
         <div className="profile-breakdown-spacer" />
       </header>
@@ -769,10 +769,10 @@ function ProfileMainView({
           </button>
           <div className="right-group">
             <button type="button" className="icon-action-btn shadow-sm" onClick={onCalendarOpen} aria-label="Open planner">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
             </button>
             <button type="button" className="icon-action-btn shadow-sm" onClick={onStatsOpen} aria-label="Open stats">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M18 20V10" /><path d="M12 20V4" /><path d="M6 20v-6" /></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M18 20V10" /><path d="M12 20V4" /><path d="M6 20v-6" /></svg>
             </button>
           </div>
         </header>
@@ -1115,7 +1115,7 @@ function DiscoverCard({ card, onOpen, dials }) {
               event.stopPropagation();
             }}
           >
-            <Icon d={ICONS.heart} size={28} stroke={2.5} />
+            <Icon d={ICONS.heart} size={32} stroke={2} />
             <span>{card.count}</span>
           </button>
         </div>
@@ -1192,7 +1192,7 @@ function DiscoverOutfitOverlay({ card, onClose }) {
           }}
         >
           <button type="button" className="discover-overlay-back" onClick={onClose} aria-label="Back">
-            <Icon d={ICONS.chev_l} size={20} stroke={2.75} />
+            <Icon d={ICONS.chev_l} size={24} stroke={2.5} />
           </button>
           <button type="button" className="discover-overlay-share" aria-label="Share outfit" style={{ position: 'absolute', bottom: 14, right: 14, background: 'none', zIndex: 10 }}>
             <ShareIcon />
@@ -1220,7 +1220,7 @@ function DiscoverOutfitOverlay({ card, onClose }) {
                   <div key={item.id} className="discover-overlay-item-card" style={{ gap: itemCardGap, width: itemCardWidth, minWidth: itemCardWidth }}>
                     <div className="discover-overlay-item-image" style={{ backgroundImage: `url(${item.imageUrl})`, borderRadius: itemRadius }}>
                       <button type="button" className="discover-overlay-item-plus" aria-label={`Save ${item.name}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', bottom: itemSaveIcon.bottom, right: itemSaveIcon.right }}>
-                        <div style={{ transform: 'scale(0.65)', display: 'flex' }}><Icon d={ICONS.heart} size={28} stroke={2.5} /></div>
+                        <div style={{ transform: 'scale(0.65)', display: 'flex' }}><Icon d={ICONS.heart} size={32} stroke={2} /></div>
                       </button>
                     </div>
                     <div className="discover-overlay-item-brand" style={{ fontSize: text.itemBrand, lineHeight: text.itemBrandLineHeight }}>{item.brand}</div>
@@ -1242,7 +1242,7 @@ function DiscoverOutfitOverlay({ card, onClose }) {
             )}
           </div>
           <button type="button" className="discover-overlay-cta" style={{ fontSize: ctaBtn.fontSize, borderRadius: ctaBtn.radius }}>
-            <Icon d={ICONS.heart} size={28} stroke={2.5} />
+            <Icon d={ICONS.heart} size={32} stroke={2} />
             {card.type === 'outfit' ? detail.ctaLabel : 'save item'}
           </button>
         </div>
