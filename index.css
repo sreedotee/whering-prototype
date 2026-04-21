@@ -408,12 +408,12 @@ body {
 
 .discover-tab {
     width: auto;
-    padding: 10px 20px;
+    padding: 8px 16px;
     border: 0;
     background: transparent;
     color: #999999;
     font-family: system-ui, sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 18px;
     font-weight: 400;
     border-radius: 999px;
@@ -424,9 +424,6 @@ body {
 .discover-tab.is-active {
     background: #1DB5FF;
     color: #FFFFFF;
-    padding: 12px 28px;
-    font-size: 14px;
-    font-weight: 500;
 }
 
 .discover-feed {
