@@ -282,7 +282,7 @@ function StudioScreen({ activeScreen }) {
   };
 
   return (
-    <main id="studio-screen" className={`screen${activeScreen === 'studio' ? ' active' : ''}`} data-tab="studio">
+    <main id="studio-screen" className={`screen hue-oat${activeScreen === 'studio' ? ' active' : ''}`} data-tab="studio">
         <div className="studio-container">
             <header className="studio-header">
                 <button className="icon-action-btn">
@@ -660,7 +660,7 @@ function ProfileAiEnhancerView({ onBack, onComplete }) {
   const enhancerProgressWidth = 84;
 
   return (
-    <div className="profile-subscreen profile-enhancer-view">
+    <div className="profile-subscreen profile-enhancer-view hue-lime">
       <header className="enhancer-header">
         <button type="button" className="profile-back-button profile-back-button--dark" onClick={onBack} aria-label="Back to profile">
           <Icon d={ICONS.chev_l} size={20} stroke={2.75} />
@@ -697,7 +697,7 @@ function ProfileAiEnhancerView({ onBack, onComplete }) {
 
 function ProfileOutfitBreakdownView({ onBack, onSave }) {
   return (
-    <div className="profile-subscreen profile-breakdown-view">
+    <div className="profile-subscreen profile-breakdown-view hue-lime">
       <header className="profile-breakdown-header">
         <button type="button" className="profile-back-button profile-back-button--ghost" onClick={onBack} aria-label="Back to profile">
           <Icon d={ICONS.chev_l} size={20} stroke={2.75} />
@@ -884,7 +884,7 @@ function ProfileScreen({ activeScreen, profileView, onProfileViewChange }) {
   }, [activeScreen, onProfileViewChange]);
 
   return (
-    <main id="profile-screen" className={`screen${activeScreen === 'profile' ? ' active' : ''}`} data-tab="profile">
+    <main id="profile-screen" className={`screen hue-lime${activeScreen === 'profile' ? ' active' : ''}`} data-tab="profile">
       {profileView === 'main' && (
         <>
           <ProfileMainView
@@ -966,10 +966,9 @@ function AppBottomNav({ activeScreen, onScreenChange }) {
           type="button"
           aria-label={label}
           onClick={() => onScreenChange(key)}
+          style={{ color: activeScreen === key ? '#0D0D0D' : '#828282' }}
         >
-          <div style={{ color: activeScreen === key ? '#0D0D0D' : '#C4C4C4' }}>
-            <Icon d={icon} size={48} stroke={2.5} />
-          </div>
+          <Icon d={icon} size={48} stroke={2.5} />
         </button>
       ))}
     </div>
@@ -1442,7 +1441,7 @@ function InboxScreen({ activeScreen }) {
   const visibleSections = inboxTabContent[activeTab] ?? inboxItems;
 
   return (
-    <main id="inbox-screen" className={`screen${activeScreen === 'inbox' ? ' active' : ''}`} data-tab="inbox">
+    <main id="inbox-screen" className={`screen hue-orange${activeScreen === 'inbox' ? ' active' : ''}`} data-tab="inbox">
       <div className="inbox-container">
         <header className="inbox-header">
           <h1 className="inbox-title">Updates</h1>
@@ -1520,7 +1519,7 @@ function ExploreScreen({ activeScreen }) {
   const filteredOutfits = filteredOutfitsBase.length > 0 ? filteredOutfitsBase : trendingOutfits;
 
   return (
-    <main id="explore-screen" className={`screen${activeScreen === 'explore' ? ' active' : ''}`} data-tab="explore">
+    <main id="explore-screen" className={`screen hue-oat${activeScreen === 'explore' ? ' active' : ''}`} data-tab="explore">
       <div className="explore-container">
         
         <div className="explore-top-search" style={{ paddingInline: search.padding }}>
