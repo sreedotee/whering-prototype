@@ -1184,6 +1184,15 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials }) {
 
   useEffect(() => {
     const cardElement = cardRef.current;
+    if (cardElement) {
+      cardElement.scrollTop = 0;
+    }
+    setShowFooter(true);
+    setLastScrollTop(0);
+  }, [card.id]);
+
+  useEffect(() => {
+    const cardElement = cardRef.current;
     if (!cardElement) return;
 
     const handleScroll = () => {
