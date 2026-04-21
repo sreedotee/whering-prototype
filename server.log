@@ -1,0 +1,242 @@
+
+> whering-redesign@1.0.0 dev
+> vite
+
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+Port 5173 is in use, trying another one...
+Port 5174 is in use, trying another one...
+Port 5175 is in use, trying another one...
+Port 5176 is in use, trying another one...
+Port 5177 is in use, trying another one...
+
+  [32m[1mVITE[22m v5.4.19[39m  [2mready in [0m[1m381[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5178[22m/[39m
+[2m  [32m➜[39m  [1mNetwork[22m[2m: use [22m[1m--host[22m[2m to expose[22m
+[2m11:57:41 am[22m [36m[1m[vite][22m[39m changed tsconfig file detected: C:\Users\sreen\whering-redesign\hyperframes\packages\cli\tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+[2m11:57:41 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/.github/workflows/fixtures/windows-canary.html[22m
+[2m11:57:42 am[22m [36m[1m[vite][22m[39m changed tsconfig file detected: C:\Users\sreen\whering-redesign\hyperframes\packages\core\tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+[2m11:57:42 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/core/docs/quickstart-template.html[22m
+[2m11:57:42 am[22m [36m[1m[vite][22m[39m changed tsconfig file detected: C:\Users\sreen\whering-redesign\hyperframes\packages\engine\tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+[2m11:57:42 am[22m [36m[1m[vite][22m[39m changed tsconfig file detected: C:\Users\sreen\whering-redesign\hyperframes\packages\player\tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+[2m11:57:43 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/cli/src/templates/blank/index.html[22m
+[2m11:57:44 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/chat/output/compiled.html[22m
+[2m11:57:44 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/chat/src/index.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m changed tsconfig file detected: C:\Users\sreen\whering-redesign\hyperframes\packages\producer\tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/css-spinner-render-compat/src/index.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/css-import-scoping/output/compiled.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/css-import-scoping/src/index.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/css-spinner-render-compat/output/compiled.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/font-variant-numeric/src/index.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/dogs-captions/output/compiled.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/font-variant-numeric/output/compiled.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/dogs-captions/src/index.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/hdr-image-only/src/index.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/heygen-promo-preview-assets/src/index.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/heygen-promo-preview-assets/output/compiled.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/hdr-image-only/output/compiled.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/gsap-letters-render-compat/output/compiled.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/gsap-letters-render-compat/src/index.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/hdr-pq/output/compiled.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/hdr-pq/src/index.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/chat/src/compositions/typography.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/iframe-render-compat/src/index.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/iframe-render-compat/src/target.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/missing-host-comp-id/src/index.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/many-cuts/output/compiled.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/missing-host-comp-id/output/compiled.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/many-cuts/src/index.html[22m
+[2m11:57:45 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/iframe-render-compat/output/compiled.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/parity/fixtures/minimal-wysiwyg.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/overlay-montage-prod/output/compiled.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/overlay-montage-prod/src/index.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/spanish-empire-cdn-inline/output/compiled.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-10-prod/output/compiled.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/raf-ball-render-compat/output/compiled.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-10-prod/src/index.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-1-prod/src/index.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/spanish-empire-cdn-inline/src/index.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-1-prod/output/compiled.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/raf-ball-render-compat/src/index.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m changed tsconfig file detected: C:\Users\sreen\whering-redesign\hyperframes\packages\shader-transitions\tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/studio/index.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m changed tsconfig file detected: C:\Users\sreen\whering-redesign\hyperframes\packages\studio\tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-11-prod/output/compiled.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-11-prod/src/index.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-12-prod/output/compiled.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-12-prod/src/index.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-13-prod/output/compiled.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-15-prod/src/index.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-13-prod/src/index.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-15-prod/output/compiled.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-16-prod/output/compiled.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-16-prod/src/index.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-17-prod/output/compiled.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-17-prod/src/index.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/css-import-scoping/src/compositions/overlay.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/dogs-captions/src/compositions/captions.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-18-prod/src/index.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-18-prod/output/compiled.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-2-prod/src/index.html[22m
+[2m11:57:46 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-2-prod/output/compiled.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/heygen-promo-preview-assets/src/compositions/scene1-heygen-hero.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/heygen-promo-preview-assets/src/compositions/scene2-heygen-showcase.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/heygen-promo-preview-assets/src/compositions/scene3-heygen-cta.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-3-prod/output/compiled.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-3-prod/src/index.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-4-prod/output/compiled.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-4-prod/src/index.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/missing-host-comp-id/src/compositions/scoped-text.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-6-prod/src/index.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-6-prod/output/compiled.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-5-prod/output/compiled.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-7-prod/src/index.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-7-prod/output/compiled.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-5-prod/src/index.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/overlay-montage-prod/src/compositions/intro_outro.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/overlay-montage-prod/src/compositions/persistent_overlays.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/overlay-montage-prod/src/compositions/reveal1.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/overlay-montage-prod/src/compositions/reveal2.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/overlay-montage-prod/src/compositions/reveal3.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-1-prod/src/compositions/captions.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-1-prod/src/compositions/graphics.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-10-prod/src/compositions/captions.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-10-prod/src/compositions/graphics.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-10-prod/src/compositions/main-orchestration.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-8-prod/output/compiled.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-8-prod/src/index.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-9-prod/output/compiled.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-9-prod/src/index.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-12-prod/src/compositions/mondrian-captions.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-12-prod/src/compositions/mondrian-colors.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-11-prod/src/compositions/bg-grid.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-11-prod/src/compositions/captions.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-11-prod/src/compositions/mg-overlays.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-12-prod/src/compositions/mondrian-bg.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-15-prod/src/compositions/aroll.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-15-prod/src/compositions/background.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-15-prod/src/compositions/captions.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-15-prod/src/compositions/mograph_overlays.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-15-prod/src/compositions/hero_moment.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-13-prod/src/compositions/background.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-13-prod/src/compositions/captions.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-13-prod/src/compositions/overlays.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-13-prod/src/compositions/transitions.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/webm-transparency/output/compiled.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/sub-composition-video/output/compiled.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/sub-composition-video/src/index.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/vignelli-stacking/output/compiled.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/webm-transparency/src/index.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/vignelli-stacking/src/index.html[22m
+[2m11:57:47 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-16-prod/src/compositions/captions.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-16-prod/src/compositions/motion-graphics.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-17-prod/src/compositions/bg-graphics.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-17-prod/src/compositions/captions.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-17-prod/src/compositions/data-viz.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-18-prod/src/compositions/background-grid.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-18-prod/src/compositions/captions.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-18-prod/src/compositions/stats-overlay.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-2-prod/src/compositions/intro.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-2-prod/src/compositions/stats.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-2-prod/src/compositions/captions.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/decision-tree/index.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/product-promo/index.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/warm-grain/index.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/kinetic-type/index.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/nyt-graph/index.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/play-mode/index.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/vignelli/index.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/swiss-grid/index.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/components/grid-pixelate-wipe/demo.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/components/grid-pixelate-wipe/grid-pixelate-wipe.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/components/shimmer-sweep/demo.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/components/shimmer-sweep/shimmer-sweep.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/components/grain-overlay/demo.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/components/grain-overlay/grain-overlay.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/chromatic-radial-split/chromatic-radial-split.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/data-chart/data-chart.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/flash-through-white/flash-through-white.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/domain-warp-dissolve/domain-warp-dissolve.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/flowchart/flowchart.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/light-leak/light-leak.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/ridged-burn/ridged-burn.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/instagram-follow/instagram-follow.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/cross-warp-morph/cross-warp-morph.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/macos-notification/macos-notification.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/gravitational-lens/gravitational-lens.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/sdf-iris/sdf-iris.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/spotify-card/spotify-card.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/glitch/glitch.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/swirl-vortex/swirl-vortex.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/reddit-post/reddit-post.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/transitions-destruction/transitions-destruction.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/thermal-distortion/thermal-distortion.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/ripple-waves/ripple-waves.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/transitions-distortion/transitions-distortion.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/transitions-blur/transitions-blur.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/transitions-3d/transitions-3d.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/tiktok-follow/tiktok-follow.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/transitions-cover/transitions-cover.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/transitions-mechanical/transitions-mechanical.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/transitions-push/transitions-push.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/transitions-grid/transitions-grid.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/ui-3d-reveal/ui-3d-reveal.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/whip-pan/whip-pan.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/transitions-dissolve/transitions-dissolve.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/transitions-other/transitions-other.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/transitions-scale/transitions-scale.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/cinematic-zoom/cinematic-zoom.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/transitions-light/transitions-light.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/x-post/x-post.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/yt-lower-third/yt-lower-third.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/logo-outro/logo-outro.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/app-showcase/app-showcase.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/blocks/transitions-radial/transitions-radial.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-3-prod/src/compositions/captions.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-3-prod/src/compositions/graphics.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-3-prod/src/compositions/intro.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-4-prod/src/compositions/captions.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-4-prod/src/compositions/graphics.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-4-prod/src/compositions/intro.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-6-prod/src/compositions/captions.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-6-prod/src/compositions/intro.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-6-prod/src/compositions/stats.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-7-prod/src/compositions/captions.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-7-prod/src/compositions/intro.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-7-prod/src/compositions/main.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-5-prod/src/compositions/background.html[22m
+[2m11:57:48 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-5-prod/src/compositions/captions.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-5-prod/src/compositions/data-graphics.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-5-prod/src/compositions/grid-bg.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-5-prod/src/compositions/intro-seq.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-5-prod/src/compositions/intro.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-5-prod/src/compositions/main.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-5-prod/src/compositions/stats.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-9-prod/src/compositions/captions.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-9-prod/src/compositions/intro.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-9-prod/src/compositions/stats.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-8-prod/src/compositions/captions.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-8-prod/src/compositions/main-video.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/style-8-prod/src/compositions/title-card.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/sub-composition-video/src/compositions/polaroid.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/vignelli-stacking/src/compositions/captions.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/packages/producer/tests/vignelli-stacking/src/compositions/overlays.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/warm-grain/compositions/graphics.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/warm-grain/compositions/intro.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/warm-grain/compositions/captions.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/product-promo/compositions/scene1-logo-intro.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/product-promo/compositions/scene2-4-canvas.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/product-promo/compositions/scene5-logo-outro.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/decision-tree/compositions/decision_tree.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/vignelli/compositions/captions.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/vignelli/compositions/overlays.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/kinetic-type/compositions/main-graphics.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/play-mode/compositions/captions.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/play-mode/compositions/intro.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/play-mode/compositions/stats.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/nyt-graph/compositions/nyt-chart.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/swiss-grid/compositions/graphics.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/swiss-grid/compositions/intro.html[22m
+[2m11:57:49 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mhyperframes/registry/examples/swiss-grid/compositions/captions.html[22m
+[2m1:29:07 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mwhering/Design system.html[22m
+[2m1:29:07 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mwhering/Wardrobe preview.html[22m

@@ -13,6 +13,7 @@ interface Section {
 const SECTIONS: Section[] = [
   { id: "overview",   label: "Overview",               number: "01" },
   { id: "research",   label: "Audit & Method",         number: "02" },
+  { id: "matrix",     label: "Promise Matrix",         number: "02.5", nested: true },
   { id: "solution",   label: "Redesign Direction",     number: "03" },
   { id: "designs",    label: "Prototype Screens",      number: "04" },
   { id: "reflection", label: "Reflection & Learnings", number: "05" },
@@ -23,6 +24,7 @@ const SECTIONS: Section[] = [
 const SCROLL_MAP: { id: string; visibleIndex: number }[] = [
   { id: "overview",   visibleIndex: 0 },
   { id: "research",   visibleIndex: 1 },
+  { id: "matrix",     visibleIndex: 1 },
   { id: "solution",   visibleIndex: 2 },
   { id: "designs",    visibleIndex: 3 },
   { id: "reflection", visibleIndex: 4 },

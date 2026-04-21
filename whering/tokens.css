@@ -1,0 +1,127 @@
+/* whering design tokens — v2
+   Model: tinted surfaces, not brand blocks.
+   Each hue is a full wash applied to whole sections of the app.
+   Type is always black. Components adapt to whatever hue they sit on.
+*/
+
+:root {
+  /* ─────────── Type ─────────── */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+
+  /* Scale: 12 / 14 / 16 / 20 / 24 / 32 */
+  --fs-12: 12px;  --lh-12: 16px;
+  --fs-14: 14px;  --lh-14: 20px;
+  --fs-16: 16px;  --lh-16: 22px;
+  --fs-20: 20px;  --lh-20: 26px;
+  --fs-24: 24px;  --lh-24: 30px;
+  --fs-32: 32px;  --lh-32: 38px;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* ─────────── Ink (text on any light wash) ─────────── */
+  --ink-0: #0A0A0A;
+  --ink-1: #2E2E2E;
+  --ink-2: #5C5C5C;
+  --ink-3: #9A9A9A;
+  --ink-4: #CFCBC3;
+  --ink-white: #FFFFFF;
+
+  /* ─────────── Hue washes ───────────
+     Each hue has 4 steps used consistently:
+       --h-*-bg      full-screen wash (the dominant surface)
+       --h-*-surface card / row / input on the wash (slightly lighter OR paper-white)
+       --h-*-edge    hairline inside the wash
+       --h-*-accent  the "true" brand tone, used sparingly as a filled pill / tag / chart
+  */
+
+  /* CYAN — main app (Discover, Search, Try On, Notifications). Most screens live here. */
+  --h-cyan-bg:      #F6FAFC;
+  --h-cyan-surface: #FCFDFE;
+  --h-cyan-edge:    #EAF0F4;
+  --h-cyan-accent:  #1DB5FF;
+
+  /* LIME — people & profiles (your profile, friend profile, followers) */
+  --h-lime-bg:      #F6F9EE;
+  --h-lime-surface: #FBFCF5;
+  --h-lime-edge:    #ECF0DD;
+  --h-lime-accent:  #9BC926;
+
+  /* VIOLET — stats, achievements, insights (the numbers section in profile) */
+  --h-violet-bg:      #F5F2FB;
+  --h-violet-surface: #FAF8FD;
+  --h-violet-edge:    #E8E2F3;
+  --h-violet-accent:  #8A6BE0;
+
+  /* ORANGE — rare, for warm moments (unworn alerts, sustainability rediscovery) */
+  --h-orange-bg:      #FBF3EC;
+  --h-orange-surface: #FDF8F3;
+  --h-orange-edge:    #F3E3D2;
+  --h-orange-accent:  #FF6B1A;
+
+  /* OAT — neutral, when no hue applies (settings, legal, calm editorial) */
+  --h-oat-bg:      #F6F4EE;
+  --h-oat-surface: #FBFAF5;
+  --h-oat-edge:    #E8E3D6;
+  --h-oat-accent:  #0A0A0A;
+
+  /* ─────────── Radii ─────────── */
+  --r-sm: 8px;     /* thumbs, small chips, badges */
+  --r-nav: 14px;   /* nav pill active indicator */
+  --r-card: 20px;  /* cards, rows, inputs */
+  --r-sheet: 28px; /* modal sheets, hero panels */
+  --r-pill: 999px; /* chips, buttons, avatars */
+
+  /* ─────────── Spacing (4pt grid) ─────────── */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+
+  /* ─────────── Elevation ─────────── */
+  --e1: 0 1px 2px rgba(10,10,10,0.04);
+  --e2: 0 6px 20px -6px rgba(10,10,10,0.10), 0 2px 6px rgba(10,10,10,0.04);
+  --e3: 0 24px 60px -20px rgba(10,10,10,0.25), 0 8px 24px rgba(10,10,10,0.08);
+
+  /* ─────────── Motion ─────────── */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast: 140ms;
+  --dur-base: 220ms;
+
+  /* ─────────── Defaults (most screens = cyan) ─────────── */
+  --bg:      var(--h-cyan-bg);
+  --surface: var(--h-cyan-surface);
+  --edge:    var(--h-cyan-edge);
+  --accent:  var(--h-cyan-accent);
+}
+
+/* ─────────── Hue scopes ───────────
+   Apply one of these classes to a container (a whole screen, a section,
+   a modal) to re-bind --bg / --surface / --edge / --accent to that hue.
+   Components below consume the variables, so everything inside retints.
+*/
+.hue-cyan   { --bg: var(--h-cyan-bg);   --surface: var(--h-cyan-surface);   --edge: var(--h-cyan-edge);   --accent: var(--h-cyan-accent); }
+.hue-lime   { --bg: var(--h-lime-bg);   --surface: var(--h-lime-surface);   --edge: var(--h-lime-edge);   --accent: var(--h-lime-accent); }
+.hue-violet { --bg: var(--h-violet-bg); --surface: var(--h-violet-surface); --edge: var(--h-violet-edge); --accent: var(--h-violet-accent); }
+.hue-orange { --bg: var(--h-orange-bg); --surface: var(--h-orange-surface); --edge: var(--h-orange-edge); --accent: var(--h-orange-accent); }
+.hue-oat    { --bg: var(--h-oat-bg);    --surface: var(--h-oat-surface);    --edge: var(--h-oat-edge);    --accent: var(--h-oat-accent); }
+
+/* Any .hue-* scope paints its own background automatically. */
+.hue-cyan, .hue-lime, .hue-violet, .hue-orange, .hue-oat { background: var(--bg); color: var(--ink-0); }
+
+/* ─────────── Base ─────────── */
+html, body {
+  font-family: var(--font-sans);
+  color: var(--ink-0);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+*, *::before, *::after { box-sizing: border-box; }

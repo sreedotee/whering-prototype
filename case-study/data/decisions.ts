@@ -131,10 +131,10 @@ export const decisions: Record<string, Decision> = {
 
   "symmetric-five-tabs": {
     id: "symmetric-five-tabs",
-    title: "Derive Five Clear Destinations",
+    title: "Derive Five Clear Purpose-Driven Destinations",
     category: "Navigation & IA",
     context:
-      "The current first screen had 9+ competing actions, which made the app feel louder than the promise.",
+      "The original IA felt fragmented and 'random.' The redesign clusters related jobs into five distinct, intent-based destinations.",
     mode: "mode2",
     options: [
       {
@@ -148,19 +148,19 @@ export const decisions: Record<string, Decision> = {
       {
         id: "b",
         letter: "B",
-        text: "Group related jobs into five destinations",
-        pros: "Clearer start points and cleaner navigation",
+        text: "Group jobs into intent-based hubs: Explore, Search, Try on, Notifs, Profile",
+        pros: "Clearer start points and cleaner 'Consumption-to-Creation' loop",
         chosen: true,
       },
     ],
     rationale:
-      "Passive inspiration, active discovery, creation, social feedback, and wardrobe management each need their own destination.",
+      "Each tab now has a singular purpose: Tab 1 for Passive Consumption, Tab 2 for Intent-based Discovery, Tab 3 for Active Creation (Utility Core), Tab 4 for Community Feedback, and Tab 5 for Identity/Management.",
     impact:
-      "Turned a crowded home experience into a navigable product system.",
-    summary: "Replaced action overload with job-based tabs",
-    problem: "Too many primary actions were asking for attention at once.",
-    decision: "Cluster related actions into Home, Explore, Studio, Inbox, and Wardrobe.",
-    outcome: "Users get fewer choices at the top level and more meaningful places to go.",
+      "Turned a crowded experience into a navigable product system following the 'Thumb Zone' reachability matrix.",
+    summary: "Replaced action overload with clear, intent-based hubs",
+    problem: "Too many primary actions were asking for attention at once without clear purpose.",
+    decision: "Cluster related actions into five intent-based hubs: Explore, Search, Studio, Inbox, and Wardrobe.",
+    outcome: "Users get fewer choices at the top level and more meaningful places to go based on 'Dressing Intent.'",
   },
 
   "collection-model": {
@@ -199,36 +199,36 @@ export const decisions: Record<string, Decision> = {
 
   "progressive-power-tools": {
     id: "progressive-power-tools",
-    title: "Move Power Tools Deeper",
+    title: "Relocate Power Tools to Reflection Zones",
     category: "Interaction Patterns",
     context:
-      "Stats, utilization, seasonal storage, donation flags, and advanced organization are valuable, but not always first-session needs.",
+      "Stats like cost-per-wear and wardrobe utilization are high-value but low-frequency—users don't need them during daily dressing.",
     mode: "mode2",
     options: [
       {
         id: "a",
         letter: "A",
-        text: "Show all power tools on primary screens",
+        text: "Show analytics on primary screens",
         pros: "Signals product depth",
-        cons: "Can intimidate casual users",
+        cons: "Can intimidate casual users and waste primary nav slots",
         chosen: false,
       },
       {
         id: "b",
         letter: "B",
-        text: "Keep power tools contextual inside Wardrobe and Profile",
-        pros: "Depth appears when relevant",
+        text: "Relocate stats to Profile and contextual item views",
+        pros: "Matches frequency of use to prominence",
         chosen: true,
       },
     ],
     rationale:
-      "Power features should feel earned by context. A casual user should not have to understand CPW-style stats before they can save an outfit.",
+      "Stats are for 'Reflection' and 'Closet Management,' not daily styling. Moving them to the Profile hub follows the 'Science of Navigation' by keeping primary tabs reserved for >70% frequency tasks.",
     impact:
-      "Preserved product ambition while making activation simpler.",
-    summary: "Depth stays available without crowding activation",
-    problem: "Advanced wardrobe logic risked overpowering the basic use case.",
-    decision: "Keep power-user features deeper and reveal them through wardrobe context.",
-    outcome: "The app can serve both quick inspiration and serious wardrobe management.",
+      "Cleansed the daily dressing experience while keeping deep insights available for power-users.",
+    summary: "Moved management tools out of the daily dressing loop",
+    problem: "Advanced wardrobe logic risked overpowering the basic daily use case.",
+    decision: "Relocate stats and deep management tools into the Profile 'Identity' hub.",
+    outcome: "The app serves daily utility first, with deep insights saved for weekly/monthly reflection.",
   },
 
   "creator-outfit-item-loop": {
@@ -468,6 +468,40 @@ export const decisions: Record<string, Decision> = {
     decision: "Preserve the brand's softness while reorganizing hierarchy and loops.",
     outcome: "The redesign reads as a product evolution, not a rejection of the brand.",
   },
+
+  "search-exploration-model": {
+    id: "search-exploration-model",
+    title: "Adopt an Exploratory Search Model",
+    category: "Product Strategy",
+    context:
+      "The Search tab has two paths: utility-based item finding and discovery-based 'Explore' behavior.",
+    mode: "mode3",
+    options: [
+      {
+        id: "a",
+        letter: "A",
+        text: "Search as a simple input field",
+        pros: "Lightweight and expected",
+        cons: "Creates a 'dead end' if results are empty",
+        chosen: false,
+      },
+      {
+        id: "b",
+        letter: "B",
+        text: "Instagram-style Explore hub",
+        pros: "Surface trending themes and social proof during active discovery",
+        chosen: true,
+      },
+    ],
+    rationale:
+      "By modeling Search after the Instagram 'Explore' tab, the interface becomes an intentional discovery hub rather than a database tool.",
+    impact:
+      "Increases time-in-app by turning a utility tool into a discovery engine.",
+    summary: "Turned search from a tool into a destination",
+    problem: "Search felt like a database utility rather than a fashion experience.",
+    decision: "Redesign Search as a rich Explore hub for trends, brands, and creators.",
+    outcome: "Users spend more time in active exploration, feeding back into the creation loop.",
+  },
 };
 
 export const decisionsByMode: Record<"mode1" | "mode2" | "mode3" | "system", string[]> = {
@@ -485,6 +519,7 @@ export const decisionsByMode: Record<"mode1" | "mode2" | "mode3" | "system", str
     "creator-outfit-item-loop",
     "masonry-discovery-grid",
     "actionable-outfit-detail",
+    "search-exploration-model",
   ],
   system: [
     "hierarchy-over-feature-count",

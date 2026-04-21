@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1200, initial-scale=1" />
+  <title>Whering · Visual Language v1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <style>
+    html, body { background: #f4f2ec; }
+    .page { max-width: 1100px; margin: 0 auto; padding: 64px 48px 120px; }
+
+    .doc-h1 {
+      font-size: 56px; line-height: 1.05; letter-spacing: -0.03em;
+      font-weight: 600; margin: 0 0 12px;
+    }
+    .doc-lede {
+      font-size: 20px; line-height: 1.45; color: var(--ink-2);
+      max-width: 620px; margin: 0 0 64px;
+    }
+    .doc-eyebrow {
+      font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-3); font-weight: 600; margin: 0 0 12px;
+    }
+    .doc-h2 {
+      font-size: 36px; line-height: 1.1; letter-spacing: -0.02em;
+      font-weight: 600; margin: 0 0 8px;
+    }
+    .doc-h3 {
+      font-size: 18px; font-weight: 600; letter-spacing: -0.005em;
+      margin: 0 0 6px;
+    }
+    .doc-p {
+      font-size: 15px; line-height: 1.6; color: var(--ink-1);
+      max-width: 680px; margin: 0 0 16px;
+    }
+    .doc-section { margin-top: 96px; padding-top: 40px; border-top: 1px solid #d9d4c8; }
+    .doc-grid { display: grid; gap: 24px; }
+    .doc-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    .doc-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .doc-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .doc-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
+
+    .rule {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 14px 16px; border-radius: 12px; background: #fff;
+      font-size: 14px; line-height: 1.5;
+    }
+    .rule .dot {
+      width: 8px; height: 8px; border-radius: 999px; margin-top: 7px; flex-shrink: 0;
+    }
+    .rule--do .dot { background: #2a7f3e; }
+    .rule--dont .dot { background: #c23a3a; }
+    .rule strong { font-weight: 600; }
+
+    .ruleset { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+
+    .code {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 12.5px; background: #1a1a1a; color: #e8e6e0;
+      padding: 14px 16px; border-radius: 10px; line-height: 1.6;
+      white-space: pre; overflow-x: auto;
+    }
+    .code .c { color: #8a887f; }
+    .code .k { color: #c9b8ff; }
+    .code .s { color: #d7f09c; }
+
+    /* swatch */
+    .swatch {
+      border-radius: 20px; padding: 20px; min-height: 180px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      position: relative; border: 1px solid rgba(0,0,0,0.04);
+    }
+    .swatch__name { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+    .swatch__hex { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-2); }
+    .swatch__ramp { display: flex; gap: 6px; margin-top: 12px; }
+    .swatch__ramp span { flex: 1; height: 32px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.04); }
+
+    .hue-card {
+      border-radius: 24px; overflow: hidden; border: 1px solid rgba(0,0,0,0.04);
+    }
+    .hue-card__body { padding: 28px 24px 24px; min-height: 280px; position: relative; }
+    .hue-card__name { font-size: 26px; font-weight: 600; letter-spacing: -0.015em; }
+    .hue-card__use { font-size: 14px; color: var(--ink-2); margin-top: 4px; line-height: 1.45; }
+    .hue-card__swatches {
+      display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px;
+      margin-top: 24px;
+    }
+    .hue-card__swatches > div {
+      height: 44px; border-radius: 10px; display: flex; align-items: flex-end;
+      padding: 6px 8px; font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      color: var(--ink-2);
+    }
+
+    /* type specimens */
+    .type-row {
+      display: grid; grid-template-columns: 120px 1fr 120px;
+      align-items: baseline; gap: 16px;
+      padding: 16px 0; border-bottom: 1px solid #d9d4c8;
+    }
+    .type-row:last-child { border-bottom: 0; }
+    .type-row__meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-2); }
+    .type-row__use { font-size: 13px; color: var(--ink-2); text-align: right; }
+
+    /* radius chart */
+    .radius-card {
+      background: var(--ink-white); padding: 20px;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      border: 1px solid #d9d4c8;
+    }
+    .radius-demo { width: 80px; height: 80px; background: #0A0A0A; }
+
+    /* spacing */
+    .space-row { display: flex; align-items: center; gap: 16px; padding: 10px 0; }
+    .space-row__bar { background: var(--ink-0); height: 12px; border-radius: 3px; }
+    .space-row__meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-2); min-width: 80px; }
+
+    /* component demo wrapper */
+    .demo {
+      padding: 28px 24px; border-radius: 20px;
+      display: flex; flex-direction: column; gap: 16px;
+      min-height: 180px;
+    }
+    .demo__caption {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase;
+    }
+
+    /* screen frame (mini mockups for hue application) */
+    .screen {
+      border-radius: 24px; overflow: hidden; border: 1px solid rgba(0,0,0,0.06);
+      aspect-ratio: 9/16; min-height: 480px;
+      display: flex; flex-direction: column;
+    }
+    .screen__top {
+      height: 44px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 20px; font-size: 13px; font-weight: 600;
+    }
+    .screen__content { flex: 1; padding: 0 16px 16px; display: flex; flex-direction: column; gap: 10px; }
+    .screen__title { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; padding: 12px 4px 8px; }
+
+    .ph {
+      background: var(--surface); border-radius: var(--r-card);
+      height: 80px;
+    }
+    .ph--tall { height: 140px; }
+    .ph--sm { height: 56px; }
+
+    /* icon grid */
+    .icon-cell {
+      background: var(--ink-white); border-radius: 14px;
+      padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px;
+      border: 1px solid #d9d4c8;
+    }
+    .icon-cell__name { font-size: 11px; color: var(--ink-2); font-family: 'JetBrains Mono', monospace; }
+
+    .toc {
+      position: sticky; top: 24px;
+      display: flex; gap: 6px; flex-wrap: wrap;
+      padding: 10px; background: #fff; border-radius: 999px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      margin-bottom: 48px;
+    }
+    .toc a {
+      padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 500;
+      color: var(--ink-2);
+    }
+    .toc a:hover { background: #f4f2ec; color: var(--ink-0); }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HEADER -->
+    <p class="doc-eyebrow">Whering · Visual Language v1</p>
+    <h1 class="doc-h1">The system.</h1>
+    <p class="doc-lede">
+      A tinted-surface design system for Whering. Each section of the app sits on one soft hue wash. Type is always black. Components are hue-agnostic — drop them anywhere, they retint themselves.
+    </p>
+
+    <nav class="toc">
+      <a href="#principles">Principles</a>
+      <a href="#hues">Hues</a>
+      <a href="#type">Type</a>
+      <a href="#radii">Radii</a>
+      <a href="#space">Spacing</a>
+      <a href="#icons">Icons</a>
+      <a href="#components">Components</a>
+      <a href="#screens">Hue in use</a>
+      <a href="#rules">Rules for agent</a>
+      <a href="#migration">Migration checklist</a>
+    </nav>
+
+    <!-- PRINCIPLES -->
+    <section class="doc-section" id="principles" style="margin-top:0;padding-top:0;border:0;">
+      <p class="doc-eyebrow">01 · Principles</p>
+      <h2 class="doc-h2">Five things that are always true.</h2>
+
+      <div class="doc-grid cols-2" style="margin-top:32px;">
+        <div class="rule rule--do"><span class="dot"></span><div><strong>One hue per section.</strong> Discover / Search / Try On / Notifications live on cyan. Profile lives on lime. Stats moments pop to violet. Never mix two hues in one screen.</div></div>
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Type is black.</strong> No colored text, ever. Hierarchy comes from size and weight, not color.</div></div>
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Surfaces are quiet.</strong> Cards are a half-step lighter than the wash, not pure white. White is reserved for modals and input fields.</div></div>
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Accent is an event.</strong> The saturated hue (cyan #1DB5FF, lime #9BC926 etc.) appears only as a filled tag, a tiny indicator, or a chart bar. Never as a button or a background.</div></div>
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Radii are one scale.</strong> 8 / 14 / 20 / 28 / pill. Nothing else. Ever.</div></div>
+      </div>
+    </section>
+
+    <!-- HUES -->
+    <section class="doc-section" id="hues">
+      <p class="doc-eyebrow">02 · Hues</p>
+      <h2 class="doc-h2">Five washes. Assigned by section.</h2>
+      <p class="doc-p">
+        Each hue has four roles. <strong>bg</strong> is the full-screen wash. <strong>surface</strong> is cards and rows on top of it. <strong>edge</strong> is hairlines. <strong>accent</strong> is the one true saturated tone — used sparingly as a filled tag or indicator, never as a button or surface.
+      </p>
+
+      <div class="doc-grid cols-2" style="margin-top:32px;gap:20px;">
+
+        <div class="hue-card hue-cyan">
+          <div class="hue-card__body" style="background: var(--bg);">
+            <div class="hue-card__name">Cyan</div>
+            <div class="hue-card__use">Main app · Discover, Search/Explore, Try On, Notifications. The default surface.</div>
+            <div class="hue-card__swatches">
+              <div style="background:var(--h-cyan-bg);">bg</div>
+              <div style="background:var(--h-cyan-surface);">surface</div>
+              <div style="background:var(--h-cyan-edge);">edge</div>
+              <div style="background:var(--h-cyan-accent);color:#fff;">accent</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hue-card hue-lime">
+          <div class="hue-card__body" style="background: var(--bg);">
+            <div class="hue-card__name">Lime</div>
+            <div class="hue-card__use">People · Your profile, friend profiles, followers, community feeds.</div>
+            <div class="hue-card__swatches">
+              <div style="background:var(--h-lime-bg);">bg</div>
+              <div style="background:var(--h-lime-surface);">surface</div>
+              <div style="background:var(--h-lime-edge);">edge</div>
+              <div style="background:var(--h-lime-accent);color:#fff;">accent</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hue-card hue-violet">
+          <div class="hue-card__body" style="background: var(--bg);">
+            <div class="hue-card__name">Violet</div>
+            <div class="hue-card__use">Numbers · Stats section in profile, achievements, insights, year-in-review.</div>
+            <div class="hue-card__swatches">
+              <div style="background:var(--h-violet-bg);">bg</div>
+              <div style="background:var(--h-violet-surface);">surface</div>
+              <div style="background:var(--h-violet-edge);">edge</div>
+              <div style="background:var(--h-violet-accent);color:#fff;">accent</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hue-card hue-orange">
+          <div class="hue-card__body" style="background: var(--bg);">
+            <div class="hue-card__name">Orange</div>
+            <div class="hue-card__use">Warm moments · Unworn alerts, sustainability nudges, rediscovery. Use sparingly.</div>
+            <div class="hue-card__swatches">
+              <div style="background:var(--h-orange-bg);">bg</div>
+              <div style="background:var(--h-orange-surface);">surface</div>
+              <div style="background:var(--h-orange-edge);">edge</div>
+              <div style="background:var(--h-orange-accent);color:#fff;">accent</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hue-card hue-oat" style="grid-column: span 2;">
+          <div class="hue-card__body" style="background: var(--bg);">
+            <div class="hue-card__name">Oat</div>
+            <div class="hue-card__use">Neutral · Settings, legal pages, editorial moments, empty states. When no hue applies.</div>
+            <div class="hue-card__swatches" style="grid-template-columns: repeat(4, 1fr); max-width: 520px;">
+              <div style="background:var(--h-oat-bg);">bg</div>
+              <div style="background:var(--h-oat-surface);">surface</div>
+              <div style="background:var(--h-oat-edge);">edge</div>
+              <div style="background:var(--h-oat-accent);color:#fff;">accent</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ruleset">
+        <div class="rule rule--do"><span class="dot"></span><div>Apply hue via a class on a screen/section container: <code>class="hue-lime"</code>. Components inside auto-retint.</div></div>
+        <div class="rule rule--dont"><span class="dot"></span><div>Do not mix hues in one screen. Do not use an accent color on a button. Do not tint text.</div></div>
+      </div>
+    </section>
+
+    <!-- TYPE -->
+    <section class="doc-section" id="type">
+      <p class="doc-eyebrow">03 · Type</p>
+      <h2 class="doc-h2">Inter. Six sizes. Three weights.</h2>
+      <p class="doc-p">
+        One font family. Size scale is locked: <strong>12 / 14 / 16 / 20 / 24 / 32</strong>. Weights are 400, 500, 700. Display type (the one big editorial moment per screen) uses 32/700 with tight tracking. No other sizes exist.
+      </p>
+
+      <div style="margin-top:32px;background:#fff;border-radius:20px;padding:24px 28px;">
+        <div class="type-row">
+          <div class="type-row__meta">32 · 600</div>
+          <div style="font-size:32px;line-height:38px;letter-spacing:-0.02em;font-weight:600;">Your wardrobe is quiet this week</div>
+          <div class="type-row__use">Display · hero titles</div>
+        </div>
+        <div class="type-row">
+          <div class="type-row__meta">24 · 600</div>
+          <div style="font-size:24px;line-height:30px;letter-spacing:-0.01em;font-weight:600;">Outfit of the day</div>
+          <div class="type-row__use">Modal titles · screen H1</div>
+        </div>
+        <div class="type-row">
+          <div class="type-row__meta">20 · 600</div>
+          <div style="font-size:20px;line-height:26px;letter-spacing:-0.005em;font-weight:600;">Recently worn</div>
+          <div class="type-row__use">Section headers</div>
+        </div>
+        <div class="type-row">
+          <div class="type-row__meta">16 · 500</div>
+          <div style="font-size:16px;line-height:22px;font-weight:500;">Wool trousers · Max Mara</div>
+          <div class="type-row__use">Row titles · buttons</div>
+        </div>
+        <div class="type-row">
+          <div class="type-row__meta">14 · 400</div>
+          <div style="font-size:14px;line-height:20px;">Last worn 12 days ago. Paired with the linen shirt 3 times.</div>
+          <div class="type-row__use">Body · metadata</div>
+        </div>
+        <div class="type-row">
+          <div class="type-row__meta">12 · 500</div>
+          <div style="font-size:12px;line-height:16px;font-weight:500;letter-spacing:0.02em;text-transform:uppercase;color:var(--ink-2);">Not worn · 47 items</div>
+          <div class="type-row__use">Eyebrows · labels · badges</div>
+        </div>
+      </div>
+
+      <div class="ruleset">
+        <div class="rule rule--do"><span class="dot"></span><div>Tracking tightens as size grows: 32/-0.02em → 16/0 → 12/+0.02em when uppercased.</div></div>
+        <div class="rule rule--dont"><span class="dot"></span><div>No sizes outside the scale. No italics. No underlines except on <code>&lt;a&gt;</code> in body prose.</div></div>
+      </div>
+    </section>
+
+    <!-- RADII -->
+    <section class="doc-section" id="radii">
+      <p class="doc-eyebrow">04 · Radii</p>
+      <h2 class="doc-h2">Four shapes. One meaning each.</h2>
+
+      <div class="doc-grid cols-5" style="margin-top:32px;">
+        <div class="radius-card">
+          <div class="radius-demo" style="border-radius:8px;"></div>
+          <div style="font-weight:600;font-size:14px;">8 · sm</div>
+          <div style="font-size:12px;color:var(--ink-2);text-align:center;">Thumbnails,<br/>small badges</div>
+        </div>
+        <div class="radius-card">
+          <div class="radius-demo" style="border-radius:14px;"></div>
+          <div style="font-weight:600;font-size:14px;">14 · nav</div>
+          <div style="font-size:12px;color:var(--ink-2);text-align:center;">Tab bar active<br/>indicator</div>
+        </div>
+        <div class="radius-card">
+          <div class="radius-demo" style="border-radius:20px;"></div>
+          <div style="font-weight:600;font-size:14px;">20 · card</div>
+          <div style="font-size:12px;color:var(--ink-2);text-align:center;">Cards, rows,<br/>inputs</div>
+        </div>
+        <div class="radius-card">
+          <div class="radius-demo" style="border-radius:28px;"></div>
+          <div style="font-weight:600;font-size:14px;">28 · sheet</div>
+          <div style="font-size:12px;color:var(--ink-2);text-align:center;">Modal sheets,<br/>hero panels</div>
+        </div>
+        <div class="radius-card">
+          <div class="radius-demo" style="border-radius:999px;"></div>
+          <div style="font-weight:600;font-size:14px;">pill</div>
+          <div style="font-size:12px;color:var(--ink-2);text-align:center;">Buttons, chips,<br/>avatars</div>
+        </div>
+      </div>
+
+      <div class="ruleset">
+        <div class="rule rule--dont"><span class="dot"></span><div>No 4, 5, 6, 10, 12, 16, 24 radii. They exist in the old code — strip them.</div></div>
+        <div class="rule rule--do"><span class="dot"></span><div>If it's tappable and text-only, it's a pill. If it has an icon well inside, it's 20.</div></div>
+      </div>
+    </section>
+
+    <!-- SPACE -->
+    <section class="doc-section" id="space">
+      <p class="doc-eyebrow">05 · Spacing</p>
+      <h2 class="doc-h2">4pt grid. Nine steps.</h2>
+
+      <div style="margin-top:32px;background:#fff;border-radius:20px;padding:24px 28px;">
+        <div class="space-row"><div class="space-row__meta">s-1 · 4px</div><div class="space-row__bar" style="width:4px;"></div></div>
+        <div class="space-row"><div class="space-row__meta">s-2 · 8px</div><div class="space-row__bar" style="width:8px;"></div></div>
+        <div class="space-row"><div class="space-row__meta">s-3 · 12px</div><div class="space-row__bar" style="width:12px;"></div></div>
+        <div class="space-row"><div class="space-row__meta">s-4 · 16px</div><div class="space-row__bar" style="width:16px;"></div></div>
+        <div class="space-row"><div class="space-row__meta">s-5 · 20px</div><div class="space-row__bar" style="width:20px;"></div></div>
+        <div class="space-row"><div class="space-row__meta">s-6 · 24px</div><div class="space-row__bar" style="width:24px;"></div></div>
+        <div class="space-row"><div class="space-row__meta">s-8 · 32px</div><div class="space-row__bar" style="width:32px;"></div></div>
+        <div class="space-row"><div class="space-row__meta">s-10 · 40px</div><div class="space-row__bar" style="width:40px;"></div></div>
+        <div class="space-row"><div class="space-row__meta">s-12 · 48px</div><div class="space-row__bar" style="width:48px;"></div></div>
+      </div>
+
+      <div class="ruleset">
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Screen padding:</strong> 20px horizontal (s-5). <strong>Card inner padding:</strong> 16px (s-4). <strong>Between sections:</strong> 32px (s-8).</div></div>
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Gap between cards in a grid:</strong> 12px (s-3). <strong>Gap between chips/buttons:</strong> 8px (s-2).</div></div>
+      </div>
+    </section>
+
+    <!-- ICONS -->
+    <section class="doc-section" id="icons">
+      <p class="doc-eyebrow">06 · Icons</p>
+      <h2 class="doc-h2">One icon family. 24px. Stroke 2. Round caps.</h2>
+      <p class="doc-p">
+        Every icon uses the same stroke weight and cap style. Inactive state is <code>--ink-3</code>, active is <code>--ink-0</code>. No filled icons. No two-tone. No color. Icons never carry information that isn't also in a label or aria.
+      </p>
+
+      <div class="doc-grid cols-5" id="icon-grid" style="margin-top:32px;"></div>
+
+      <div class="ruleset">
+        <div class="rule rule--do"><span class="dot"></span><div>Use <a href="https://lucide.dev" style="color:var(--ink-0);text-decoration:underline;">Lucide</a> as source. It already matches these rules.</div></div>
+        <div class="rule rule--dont"><span class="dot"></span><div>Strip all existing emoji / Phosphor / Heroicons usage. They mix stroke weights and break the line.</div></div>
+      </div>
+    </section>
+
+    <!-- COMPONENTS -->
+    <section class="doc-section" id="components">
+      <p class="doc-eyebrow">07 · Components</p>
+      <h2 class="doc-h2">Everything you need. Shown on two hues.</h2>
+      <p class="doc-p">
+        Left column sits on cyan (the default app hue). Right column sits on lime (the profile hue). Same components, different wash. The component never hard-codes a color.
+      </p>
+
+      <div class="doc-grid cols-2" style="margin-top:32px;gap:20px;">
+
+        <div class="hue-cyan demo">
+          <div class="demo__caption">Buttons · cyan</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn--primary">Save outfit</button>
+            <button class="btn btn--surface">Cancel</button>
+            <button class="btn btn--ghost">Skip</button>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="iconbtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm10 2-5-5"/></svg></button>
+            <button class="iconbtn iconbtn--primary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+
+        <div class="hue-lime demo">
+          <div class="demo__caption">Buttons · lime</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn--primary">Follow</button>
+            <button class="btn btn--surface">Message</button>
+            <button class="btn btn--ghost">Block</button>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="iconbtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm10 2-5-5"/></svg></button>
+            <button class="iconbtn iconbtn--primary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+
+        <div class="hue-cyan demo">
+          <div class="demo__caption">Chips · segmented</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="chip is-active">All</button>
+            <button class="chip">Tops</button>
+            <button class="chip">Bottoms</button>
+            <button class="chip">Shoes</button>
+          </div>
+          <div class="navpill" style="align-self:flex-start;">
+            <button class="navpill__tab is-active">Grid</button>
+            <button class="navpill__tab">List</button>
+            <button class="navpill__tab">Stats</button>
+          </div>
+        </div>
+
+        <div class="hue-lime demo">
+          <div class="demo__caption">Chips · segmented</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="chip is-active">Posts</button>
+            <button class="chip">Outfits</button>
+            <button class="chip">Saved</button>
+          </div>
+          <div class="navpill" style="align-self:flex-start;">
+            <button class="navpill__tab is-active">Following</button>
+            <button class="navpill__tab">Followers</button>
+          </div>
+        </div>
+
+        <div class="hue-cyan demo">
+          <div class="demo__caption">Rows · list</div>
+          <div class="row">
+            <div class="row__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6a2 2 0 1 0-2-2M12 6v3l9 7H3l9-7"/></svg></div>
+            <div class="row__body">
+              <div class="row__title">Wool trousers</div>
+              <div class="row__sub">Worn 3 times this month</div>
+            </div>
+            <svg class="row__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+          </div>
+          <div class="row">
+            <div class="row__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg></div>
+            <div class="row__body">
+              <div class="row__title">Build new outfit</div>
+              <div class="row__sub">3 pieces recommended</div>
+            </div>
+            <svg class="row__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+
+        <div class="hue-lime demo">
+          <div class="demo__caption">Rows · profile</div>
+          <div class="row">
+            <div class="row__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
+            <div class="row__body">
+              <div class="row__title">Eloise R.</div>
+              <div class="row__sub">247 items · 14 outfits</div>
+            </div>
+            <button class="btn btn--primary btn--sm">Follow</button>
+          </div>
+          <div class="row">
+            <div class="row__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
+            <div class="row__body">
+              <div class="row__title">Jamie L.</div>
+              <div class="row__sub">Following you</div>
+            </div>
+            <button class="btn btn--surface btn--sm">Following</button>
+          </div>
+        </div>
+
+        <div class="hue-cyan demo">
+          <div class="demo__caption">Input</div>
+          <div class="input">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-3);"><path d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm10 2-5-5"/></svg>
+            <input placeholder="Search your wardrobe" />
+          </div>
+          <div class="demo__caption" style="margin-top:8px;">Tag</div>
+          <div style="display:flex;gap:6px;">
+            <span class="tag">Not worn</span>
+            <span class="tag" style="background:var(--ink-0);color:#fff;">New</span>
+          </div>
+        </div>
+
+        <div class="hue-violet demo">
+          <div class="demo__caption">Stat card · violet</div>
+          <div class="card" style="padding:20px;">
+            <div class="t-12 t-muted" style="letter-spacing:0.08em;text-transform:uppercase;font-weight:600;">Cost per wear</div>
+            <div style="font-size:44px;line-height:1;font-weight:700;letter-spacing:-0.02em;margin-top:8px;">£1.24</div>
+            <div class="t-14 t-muted" style="margin-top:6px;">Across 247 items · last 90 days</div>
+            <div style="height:6px;background:var(--bg);border-radius:999px;margin-top:16px;overflow:hidden;">
+              <div style="width:62%;height:100%;background:var(--accent);"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hue-cyan demo" style="grid-column: span 2;">
+          <div class="demo__caption">Modal sheet (white paper, always)</div>
+          <div style="display:flex;justify-content:center;">
+            <div class="sheet" style="width:360px;border-radius:28px;">
+              <div class="sheet__grab"></div>
+              <div class="sheet__title">Add to wardrobe</div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <div class="row">
+                  <div class="row__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v12H4V8Z"/><circle cx="12" cy="13" r="4"/></svg></div>
+                  <div class="row__body"><div class="row__title">Scan with camera</div><div class="row__sub">Auto-detect brand + color</div></div>
+                  <svg class="row__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+                </div>
+                <div class="row">
+                  <div class="row__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 0 1-1-10 6 6 0 0 1 11 1 4 4 0 0 1 0 8"/></svg></div>
+                  <div class="row__body"><div class="row__title">Import from retailer</div><div class="row__sub">Paste a product link</div></div>
+                  <svg class="row__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+                </div>
+                <div class="row">
+                  <div class="row__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></div>
+                  <div class="row__body"><div class="row__title">Add manually</div><div class="row__sub">Type the details yourself</div></div>
+                  <svg class="row__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+                </div>
+              </div>
+              <button class="btn btn--primary btn--block btn--lg" style="margin-top:20px;">Done</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HUE IN USE -->
+    <section class="doc-section" id="screens">
+      <p class="doc-eyebrow">08 · Hue in use</p>
+      <h2 class="doc-h2">Assignment by section.</h2>
+
+      <div class="doc-grid cols-4" style="margin-top:32px;">
+
+        <div class="screen hue-cyan">
+          <div class="screen__top" style="background:var(--bg);">
+            <span>9:41</span><span>Discover</span>
+          </div>
+          <div class="screen__content" style="background:var(--bg);">
+            <div class="screen__title">Discover</div>
+            <div style="display:flex;gap:6px;padding:0 4px 4px;">
+              <span class="chip is-active">For you</span><span class="chip">Trending</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 4px;">
+              <div class="ph ph--tall"></div><div class="ph"></div>
+              <div class="ph"></div><div class="ph ph--tall"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen hue-cyan">
+          <div class="screen__top" style="background:var(--bg);">
+            <span>9:41</span><span>Try On</span>
+          </div>
+          <div class="screen__content" style="background:var(--bg);">
+            <div class="screen__title">Try On</div>
+            <div class="ph ph--tall"></div>
+            <div class="ph ph--tall"></div>
+          </div>
+        </div>
+
+        <div class="screen hue-lime">
+          <div class="screen__top" style="background:var(--bg);">
+            <span>9:41</span><span>Profile</span>
+          </div>
+          <div class="screen__content" style="background:var(--bg);">
+            <div class="screen__title">Eloise</div>
+            <div class="ph ph--sm" style="border-radius:999px;width:80px;height:80px;margin-bottom:8px;"></div>
+            <div class="ph ph--sm"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div class="ph"></div><div class="ph"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen hue-violet">
+          <div class="screen__top" style="background:var(--bg);">
+            <span>9:41</span><span>Stats</span>
+          </div>
+          <div class="screen__content" style="background:var(--bg);">
+            <div class="screen__title">Stats</div>
+            <div class="ph ph--tall"></div>
+            <div class="ph"></div>
+            <div class="ph"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="ruleset">
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Cyan:</strong> Discover, Search/Explore, Try On, Notifications, Add-item flow, Item detail.</div></div>
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Lime:</strong> Profile tab — your profile, friend profiles, followers, following.</div></div>
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Violet:</strong> Stats tab inside profile, Insights, Year-in-review, Cost-per-wear.</div></div>
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Orange:</strong> Unworn alert, Rediscover prompts, Sustainability moments. Rarely.</div></div>
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Oat:</strong> Settings, Legal, Help, Editorial / marketing pages, Empty states.</div></div>
+      </div>
+    </section>
+
+    <!-- RULES FOR AGENT -->
+    <section class="doc-section" id="rules">
+      <p class="doc-eyebrow">09 · Rules for the agent</p>
+      <h2 class="doc-h2">Implementation contract.</h2>
+      <p class="doc-p">
+        Hard constraints. An implementation that breaks any of these is failing the system.
+      </p>
+
+      <div class="ruleset">
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Import <code>tokens.css</code> + <code>components.css</code> first.</strong> Before any other stylesheet. They define the variables every component reads.</div></div>
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Apply hue at the screen root.</strong> Every top-level screen component gets <code>className="hue-cyan"</code> (or lime, violet, orange, oat). Not inline styles. Not per-element.</div></div>
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Read from variables.</strong> Any new component must use <code>var(--surface)</code>, <code>var(--bg)</code>, <code>var(--edge)</code>, <code>var(--accent)</code>, <code>var(--ink-0)</code> etc. Never hardcode hex.</div></div>
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Type sizes only from scale.</strong> <code>font-size</code> must be one of 12, 14, 16, 20, 24, 32. Nothing else.</div></div>
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Radii only from scale.</strong> 8, 14, 20, 28, 9999. Nothing else.</div></div>
+        <div class="rule rule--do"><span class="dot"></span><div><strong>Spacing from the 4pt grid.</strong> 4, 8, 12, 16, 20, 24, 32, 40, 48. No 5, 10, 14, 18, 22 etc.</div></div>
+        <div class="rule rule--dont"><span class="dot"></span><div><strong>No colored text.</strong> Text is <code>--ink-0</code>, <code>--ink-1</code>, <code>--ink-2</code>, <code>--ink-3</code>. Cyan/lime/violet never touch text.</div></div>
+        <div class="rule rule--dont"><span class="dot"></span><div><strong>No colored buttons.</strong> Primary button is always black. Surface button is <code>--surface</code>. Never fill a button with cyan/lime/violet.</div></div>
+        <div class="rule rule--dont"><span class="dot"></span><div><strong>No gradient surfaces.</strong> Flat fills only. Gradients are reserved for the subtle image-bottom shadow on garment thumbs.</div></div>
+        <div class="rule rule--dont"><span class="dot"></span><div><strong>No emoji in UI.</strong> Use Lucide icons. Emoji only ever appears in user-generated content.</div></div>
+        <div class="rule rule--dont"><span class="dot"></span><div><strong>No pure-white backgrounds on hue screens.</strong> Surfaces are <code>--surface</code> (a half-tint of the wash). White is reserved for modal sheets and input focus states.</div></div>
+        <div class="rule rule--dont"><span class="dot"></span><div><strong>No drop shadows on cards.</strong> Cards sit on a tinted wash — that's the depth. Shadows are only on modals (<code>--e3</code>) and floating action buttons (<code>--e2</code>).</div></div>
+      </div>
+    </section>
+
+    <!-- MIGRATION -->
+    <section class="doc-section" id="migration">
+      <p class="doc-eyebrow">10 · Migration checklist</p>
+      <h2 class="doc-h2">Things to rip out of the current codebase.</h2>
+      <p class="doc-p">
+        Specific issues the agent needs to fix, in priority order. Ship these in this sequence — do not start component work before tokens land.
+      </p>
+
+      <ol style="padding-left:20px;max-width:720px;color:var(--ink-1);font-size:15px;line-height:1.7;">
+        <li style="margin-bottom:14px;"><strong>Install tokens.</strong> Replace the existing <code>:root</code> in <code>index.css</code> with <code>tokens.css</code>. Audit all references to CSS variables — rename anything that conflicts.</li>
+
+        <li style="margin-bottom:14px;"><strong>Strip old radii.</strong> Grep <code>border-radius</code> across the project. Any value not in <strong>{8, 14, 20, 28, 9999}</strong> gets remapped. Common offenders: 4, 6, 10, 12, 16, 24.</li>
+
+        <li style="margin-bottom:14px;"><strong>Strip old type sizes.</strong> Grep <code>font-size</code>. Any value not in <strong>{12, 14, 16, 20, 24, 32}</strong> gets remapped. 11 → 12. 13 → 14. 15 → 16. 18 → 16 or 20 (pick by context). 22 → 20 or 24. 28 → 24 or 32.</li>
+
+        <li style="margin-bottom:14px;"><strong>Strip all gradients</strong> except the image-bottom shadow inside <code>.card--image</code>.</li>
+
+        <li style="margin-bottom:14px;"><strong>Strip all colored text.</strong> Grep <code>color:</code>. Replace any non-ink color with an ink token. Body <code>#333</code>-ish → <code>--ink-1</code>. Muted → <code>--ink-2</code>. Faint → <code>--ink-3</code>.</li>
+
+        <li style="margin-bottom:14px;"><strong>Strip all colored fills from buttons.</strong> Grep <code>.btn, button, [class*="button"]</code>. Fills must be <code>--ink-0</code> (primary), <code>--surface</code> (secondary), or transparent (ghost).</li>
+
+        <li style="margin-bottom:14px;"><strong>Wrap each screen in a hue scope.</strong> Add <code>className="hue-cyan"</code> to Discover / Search / Try On / Notifications / Add-flow root. <code>hue-lime</code> to Profile root and any friend/follower screen. <code>hue-violet</code> to the Stats section inside Profile. <code>hue-oat</code> to Settings.</li>
+
+        <li style="margin-bottom:14px;"><strong>Replace emoji with Lucide.</strong> <code>npm i lucide-react</code>. Grep the codebase for emoji characters and swap each to a Lucide icon at 24px stroke 2.</li>
+
+        <li style="margin-bottom:14px;"><strong>Remove card shadows.</strong> Grep <code>box-shadow</code>. Remove from everything except <code>.sheet</code>, <code>.modal</code>, and any floating action button.</li>
+
+        <li style="margin-bottom:14px;"><strong>Tab bar.</strong> Single pattern — 5 icons, active state is black-filled pill at 14px radius. No labels. No badges. No color.</li>
+
+        <li style="margin-bottom:14px;"><strong>Modals.</strong> All modals use <code>.sheet</code> — white paper, 28px top radius, grab handle, 24/700 centered title. Rows inside modals sit on the parent hue wash, not on white.</li>
+
+        <li><strong>Empty states.</strong> Switch to <code>hue-oat</code> scope. One editorial line at 32/700. One action button. No illustrations (for now).</li>
+      </ol>
+    </section>
+
+    <div style="margin-top:96px;padding-top:32px;border-top:1px solid #d9d4c8;color:var(--ink-2);font-size:13px;">
+      Whering Visual Language v1 · tokens.css + components.css are the source of truth. This document is a rendering of them.
+    </div>
+
+  </div>
+
+  <script type="module">
+    // Render icon grid from a small set
+    const icons = {
+      search: 'M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm10 2-5-5',
+      plus: 'M12 5v14M5 12h14',
+      heart: 'M12 20s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9Z',
+      hanger: 'M12 6a2 2 0 1 0-2-2M12 6v3l9 7H3l9-7',
+      sparkle: null,
+      user: null,
+      bell: 'M6 16V11a6 6 0 1 1 12 0v5l2 2H4l2-2ZM10 20a2 2 0 0 0 4 0',
+      calendar: null,
+      camera: null,
+      tag: null,
+      filter: 'M4 6h16M7 12h10M10 18h4',
+      settings: null,
+      chev_r: 'M9 6l6 6-6 6',
+      arrow_r: 'M5 12h14M13 6l6 6-6 6',
+      close: 'M6 6l12 12M18 6 6 18',
+    };
+    const grid = document.getElementById('icon-grid');
+    const compound = {
+      sparkle: '<path d="M12 3l1.8 5.4a3 3 0 0 0 1.8 1.8L21 12l-5.4 1.8a3 3 0 0 0-1.8 1.8L12 21l-1.8-5.4a3 3 0 0 0-1.8-1.8L3 12l5.4-1.8a3 3 0 0 0 1.8-1.8L12 3z"/><path d="M19 3l.6 1.8a1.2 1.2 0 0 0 .6.6L22 6l-1.8.6a1.2 1.2 0 0 0-.6.6L19 9l-.6-1.8a1.2 1.2 0 0 0-.6-.6L16 6l1.8-.6a1.2 1.2 0 0 0 .6-.6L19 3z"/>',
+      user: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+      calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/>',
+      camera: '<path d="M4 8h3l2-3h6l2 3h3v12H4V8Z"/><circle cx="12" cy="13" r="4"/>',
+      tag: '<path d="M3 12V4h8l10 10-8 8L3 12Z"/><circle cx="8" cy="8" r="1.5"/>',
+      settings: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8 2 2 0 1 1-2.8 2.8 1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5 2 2 0 1 1-4 0 1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3 2 2 0 1 1-2.8-2.8 1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1 2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8 2 2 0 1 1 2.8-2.8 1.7 1.7 0 0 0 1.8.3 1.7 1.7 0 0 0 1-1.5 2 2 0 1 1 4 0 1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3 2 2 0 1 1 2.8 2.8 1.7 1.7 0 0 0-.3 1.8 1.7 1.7 0 0 0 1.5 1 2 2 0 1 1 0 4 1.7 1.7 0 0 0-1.5 1Z"/>',
+    };
+    Object.entries(icons).forEach(([name, d]) => {
+      const body = compound[name] || (d ? `<path d="${d}"/>` : '');
+      const cell = document.createElement('div');
+      cell.className = 'icon-cell';
+      cell.innerHTML = `
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${body}</svg>
+        <div class="icon-cell__name">${name}</div>
+      `;
+      grid.appendChild(cell);
+    });
+  </script>
+</body>
+</html>

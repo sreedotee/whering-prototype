@@ -51,10 +51,9 @@ export default function Overview() {
           <motion.div {...fadeInUp}>
             <h3 className="narrative-para-heading">Where I Focused</h3>
             <p className="narrative-body max-w-3xl">
-              I did not redesign Whering because the idea was weak. I redesigned the moments where
-              a strong promise becomes harder to act on: crowded information architecture,
-              competing calls to action, conceptual duplication across saved objects, and a creation
-              loop that does not always turn inspiration into wardrobe action.
+              The idea is strong. The focus was on the moments where that promise gets lost:
+              crowded information architecture, competing calls to action, conceptual duplication across saved objects,
+              and a creation loop that doesn't always turn inspiration into wardrobe action.
             </p>
           </motion.div>
 

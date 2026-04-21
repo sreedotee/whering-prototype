@@ -3,6 +3,7 @@ import { loadAnnotations } from 'agentation';
 import { DialRoot, useDialKit } from 'dialkit';
 import 'dialkit/styles.css';
 import { initSwipeBack } from '../ux-foundation/mechanics.js';
+import { IOSDevice } from './design-system/ios-frame.jsx';
 
 const Agentation = lazy(() =>
   import('agentation').then((module) => ({ default: module.Agentation })),
@@ -1005,31 +1006,6 @@ function ProfileIcon({ active = false }) {
   );
 }
 
-function AppStatusBar() {
-  return (
-    <div className="app-status-bar" aria-hidden="true">
-      <div className="app-status-time">9:41</div>
-      <div className="app-status-icons">
-        <svg width="48" height="32" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="0" y="20" width="8" height="12" rx="2" fill="#000000" />
-          <rect x="12" y="14" width="8" height="18" rx="2" fill="#000000" />
-          <rect x="24" y="8" width="8" height="24" rx="2" fill="#000000" />
-          <rect x="36" y="0" width="8" height="32" rx="2" fill="#0000004D" />
-        </svg>
-        <svg width="48" height="32" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 30C26.209 30 28 28.209 28 26C28 23.791 26.209 22 24 22C21.791 22 20 23.791 20 26C20 28.209 21.791 30 24 30Z" fill="#000000" />
-          <path d="M36 20C32.024 16.024 27.976 14 24 14C20.024 14 15.976 16.024 12 20" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
-          <path d="M44 12C38.036 6.036 30.964 3 24 3C17.036 3 9.964 6.036 4 12" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
-        </svg>
-        <div className="app-battery">
-          <div className="app-battery-level" />
-          <div className="app-battery-cap" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function AppBottomNav({ activeScreen, onScreenChange }) {
   return (
     <div className="app-bottom-nav" aria-label="Primary">
@@ -1723,40 +1699,25 @@ function App() {
 
   return (
     <>
-      <div className="device-presentation">
-        <div className="iphone-frame" aria-hidden="true">
-          <div className="iphone-frame-camera" />
-          <div className="iphone-frame-buttons iphone-frame-buttons--left">
-            <span />
-            <span />
-            <span />
-          </div>
-          <div className="iphone-frame-buttons iphone-frame-buttons--right">
-            <span />
-          </div>
-          <div className="iphone-frame-bezel">
-            <div id="app-container" data-active-screen={activeScreenMeta.id}>
-              <DiscoverScreen
-                activeDiscoverTab={activeDiscoverTab}
-                onDiscoverTabChange={setActiveDiscoverTab}
-                activeScreen={activeScreen}
-              />
+      <IOSDevice width={402} height={874}>
+        <div id="app-container" data-active-screen={activeScreenMeta.id}>
+          <DiscoverScreen
+            activeDiscoverTab={activeDiscoverTab}
+            onDiscoverTabChange={setActiveDiscoverTab}
+            activeScreen={activeScreen}
+          />
 
-              <ExploreScreen activeScreen={activeScreen} />
+          <ExploreScreen activeScreen={activeScreen} />
 
-              <StudioScreen activeScreen={activeScreen} />
+          <StudioScreen activeScreen={activeScreen} />
 
-              <InboxScreen activeScreen={activeScreen} />
+          <InboxScreen activeScreen={activeScreen} />
 
-              <ProfileScreen activeScreen={activeScreen} profileView={profileView} onProfileViewChange={setProfileView} />
+          <ProfileScreen activeScreen={activeScreen} profileView={profileView} onProfileViewChange={setProfileView} />
 
-              {!(activeScreen === 'profile' && profileView === 'ai-enhancer') ? <AppStatusBar /> : null}
-              {!(activeScreen === 'profile' && profileView === 'ai-enhancer') ? <AppBottomNav activeScreen={activeScreen} onScreenChange={handleScreenChange} /> : null}
-            </div>
-            <div className="iphone-home-indicator" />
-          </div>
+          {!(activeScreen === 'profile' && profileView === 'ai-enhancer') ? <AppBottomNav activeScreen={activeScreen} onScreenChange={handleScreenChange} /> : null}
         </div>
-      </div>
+      </IOSDevice>
 
       <div id="agentation-root">
         <Suspense fallback={null}>

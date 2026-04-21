@@ -6,9 +6,9 @@ import { fadeInUp } from "@/styles/animations";
 
 const directions = [
   {
-    title: "Cleaner Navigation",
+    title: "Intent-Based Hubs",
     label: "Navigation model",
-    body: "Cluster repeated actions into durable destinations: Discover, Explore, Studio, Calendar, and Wardrobe.",
+    body: "Replaced fragmented feature clusters with five durable, intent-based destinations: Explore, Search, Try On, Notifs, and Profile.",
   },
   {
     title: "Collection Taxonomy",
@@ -25,13 +25,13 @@ const directions = [
 const journeys = [
   {
     title: "Discover to outfit journey",
-    before: ["open Discover", "tap creator", "see style them", "open item", "unclear next step"],
-    after: ["open Discover", "tap outfit", "inspect items", "remix in Canvas", "save to Collection"],
+    before: ["open home", "search for item", "see style guide", "open creator", "unclear next step"],
+    after: ["open Explore hub", "tap trending outfit", "inspect items", "remix in Try On", "save to Collection"],
   },
   {
     title: "Canvas creation journey",
     before: ["style outfit", "enter canvas", "hunt for add items", "switch among 3 sources", "save then send"],
-    after: ["open Try On", "add from saved context", "simplify item filters", "save outfit", "plan or share"],
+    after: ["open Try On hub", "add from saved context", "simplify item filters", "save outfit", "plan or share"],
   },
   {
     title: "Calendar planning journey",
@@ -68,15 +68,13 @@ export default function RedesignDirection() {
   return (
     <section id="solution" className="py-10 bg-white">
       <div className="container-standard">
-        <SectionHeader number="03" title="Redesign Direction" subtitle="What changed and why" />
+        <SectionHeader number="07" title="Redesign Direction" subtitle="What changed and why" />
 
         <motion.p {...fadeInUp} className="narrative-body mb-10 max-w-2xl">
-          The redesign does not try to make Whering smaller. It reduces cognitive load at the
-          surface while preserving depth through progressive disclosure. The result is a clearer
-          path to value for casual users and a stronger system model for power users.
-          The main shift is not removing depth. It is making each destination declare its job:
-          Discover inspires, Studio creates, Calendar stores planned wear, and Wardrobe manages
-          items, outfits, and collection types.
+          The redesign preserves Whering's full depth while clarifying what each surface does.
+          It reduces cognitive load through clear intent: each hub has one primary job. Casual users see what matters first.
+          Power users access full depth without clutter. The shift is architectural, not subtractive.
+          Each hub owns a <strong>singular intent</strong>: Explore for passive discovery, Search for active trends, Try On for creation, and Profile for inventory and reflection.
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12">

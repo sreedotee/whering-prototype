@@ -1,6 +1,10 @@
 import Hero from "@/components/Hero";
 import Overview from "@/components/sections/Overview";
 import AuditAndMethod from "@/components/sections/AuditAndMethod";
+import CurrentStateProblems from "@/components/sections/CurrentStateProblems";
+import CompetitiveInspiration from "@/components/sections/CompetitiveInspiration";
+import InteractionClarityTerminology from "@/components/sections/InteractionClarityTerminology";
+import PromiseBehaviorMatrix from "@/components/sections/PromiseBehaviorMatrix";
 import RedesignDirection from "@/components/sections/RedesignDirection";
 import ProductPrinciples from "@/components/sections/ProductPrinciples";
 import ModeScreens from "@/components/sections/ModeScreens";
@@ -18,8 +22,8 @@ export default function Home() {
       imageSrc: "/images/Recently Added.svg",
     },
     {
-      title: "Explore",
-      caption: "Active search across people, outfits, and items",
+      title: "Search",
+      caption: "Instagram-style Explore hub for active style discovery",
       bg: "linear-gradient(135deg, #2a1e36 0%, #3D2B4C 100%)",
       icon: "link",
       imageSrc: "/images/Pasted Link (1).svg",
@@ -116,6 +120,10 @@ export default function Home() {
       <div className="flex flex-col">
         <Overview />
         <AuditAndMethod />
+        <CurrentStateProblems />
+        <CompetitiveInspiration />
+        <InteractionClarityTerminology />
+        <PromiseBehaviorMatrix />
         <RedesignDirection />
         <ProductPrinciples />
 
@@ -123,11 +131,11 @@ export default function Home() {
         <ModeScreens
           mode1Data={{
             modeTitle: "Layer 1: NAVIGATION",
-            subtitle: "Action Hierarchy",
+            subtitle: "Purpose-Driven Hubs",
             microlabel: "Action Hierarchy",
-            intro: "The navigation layer reduces overload by separating passive inspiration, active discovery, try-on creation, calendar planning, and wardrobe management.",
+            intro: "The navigation layer replaces 'random' feature clusters with five intent-based hubs. By mapping Dressing Intent to specific tabs (Explore, Search, Studio, Inbox, Profile), we reduce cognitive load and simplify the 'Consumption-to-Creation' loop.",
             screens: mode1Screens,
-            flowSteps: ["Audit CTAs", "Clarify screen jobs", "Cluster object types", "Derive tabs"],
+            flowSteps: ["Audit CTAs", "Clarify tab purpose", "Cluster hub jobs", "Derive destinations"],
           }}
           mode2Data={{
             modeTitle: "Layer 2: DISCOVERY LOOP",
@@ -143,9 +151,9 @@ export default function Home() {
           }}
           mode3Data={{
             modeTitle: "Layer 3: DECISION MODEL",
-            subtitle: "Matrix to Structure",
+            subtitle: "Logic-Based Redesign",
             microlabel: "Matrix to Structure",
-            intro: "The decision model turns the product promise into a practical IA tool. Recurrence across casual and power-user matrices reveals what deserves primary navigation.",
+            intro: "The decision model validates product depth by segregating daily Dressing Intent from long-term Management. By relocating low-frequency stats and tools to the Profile 'Identity' hub, the surface remains clean without losing product power.",
             screens: mode3Screens,
           }}
         />

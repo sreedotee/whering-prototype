@@ -36,7 +36,7 @@ export default function ProductPrinciples() {
   return (
     <section id="principles" className="py-10 bg-white">
       <div className="container-standard">
-        <SectionHeader number="04" title="Product Principles" subtitle="Decisions that shaped the redesign" />
+        <SectionHeader number="08" title="Product Principles" subtitle="Decisions that shaped the redesign" />
 
         <motion.p {...fadeInUp} className="narrative-body mb-10 max-w-2xl">
           These principles translate the audit into design direction. They keep the redesign

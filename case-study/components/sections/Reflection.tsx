@@ -21,7 +21,7 @@ export default function Reflection() {
   return (
     <section id="reflection" className="py-20 bg-white">
       <div className="container-standard">
-        <SectionHeader number="06" title="Reflection & Learnings" tight />
+        <SectionHeader number="09" title="Reflection & Learnings" tight />
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
