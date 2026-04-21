@@ -41,6 +41,7 @@ export const ICONS = {
   edit:     'M4 20h4l10-10-4-4L4 16v4Z',
   bookmark: (<><path d="M6 4h12v16l-6-4-6 4V4Z"/></>),
   share:    (<><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><path d="M8.59 13.51l6.83 3.98M15.41 10.49l-6.83 3.98" /></>),
+  globe:    (<><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></>),
 };
 
 // Swatches for placeholder garment thumbs — mimic real catalog colour range
