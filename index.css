@@ -461,6 +461,11 @@ body {
     padding-top: 24px;
 }
 
+.discover-overlay-more-section .discover-grid {
+    margin-top: 0;
+    padding-top: 0;
+}
+
 .discover-card {
     width: 100%;
     height: auto;
@@ -704,10 +709,16 @@ body {
     box-shadow: none;
     display: flex;
     flex-direction: column;
+    scrollbar-width: none;
+}
+
+.discover-overlay-card::-webkit-scrollbar {
+    display: none;
 }
 
 .discover-overlay-hero {
     position: relative;
+    width: 100%;
     height: 274px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -744,7 +755,11 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    flex: 1;
+    scrollbar-width: none;
+}
+
+.discover-overlay-body::-webkit-scrollbar {
+    display: none;
 }
 
 .discover-overlay-author-row {
@@ -774,7 +789,7 @@ body {
 
 .discover-overlay-back {
     position: absolute;
-    top: calc(var(--app-status-bar-height) + 6px);
+    top: calc(var(--app-status-bar-height) - 2px);
     left: 16px;
     width: 32px;
     height: 32px;
@@ -850,6 +865,16 @@ body {
     background-position: center;
     background-color: #F8F8F8;
     border: 1.5px solid #EAEAEA;
+    overflow: hidden;
+}
+
+.discover-overlay-item-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.12) 100%);
+    border-radius: inherit;
+    pointer-events: none;
 }
 
 .discover-overlay-item-plus {

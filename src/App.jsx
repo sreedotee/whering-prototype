@@ -1088,8 +1088,8 @@ function DiscoverCard({ card, onOpen, dials }) {
         <div
           className="discover-card-image"
           style={{
-            backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0) 42%), url(${card.imageUrl})`,
-            backgroundPosition: `0% 0%, ${card.imagePosition}`,
+            backgroundImage: `linear-gradient(to bottom, transparent 55%, rgba(0,0,0,0.15) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0) 42%), url(${card.imageUrl})`,
+            backgroundPosition: `center, 0% 0%, ${card.imagePosition}`,
           }}
         />
         {!isBottom && (
@@ -1127,7 +1127,10 @@ function DiscoverCard({ card, onOpen, dials }) {
   );
 }
 
-function DiscoverOutfitOverlay({ card, onClose }) {
+function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials }) {
+  const [showFooter, setShowFooter] = useState(true);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+  const cardRef = useRef(null);
   const detail = discoverOutfitDetails[card.id] ?? discoverOutfitDetails.default;
   const { overlayRadius, authorGap, authorPad, itemsGap, itemRadius, authorAvatarSize, itemsTitleGap, itemCardGap, itemCardWidth, heroHeight, bodyPad, footerPadTop, footerPadBottom, followBtn, ctaBtn, itemSaveIcon, text, moreItemsGap, shareIconSize } = useDialKit('Discover Overlay', {
     overlayRadius: [0, 0, 48],
@@ -1178,14 +1181,30 @@ function DiscoverOutfitOverlay({ card, onClose }) {
     },
   });
 
+  useEffect(() => {
+    const cardElement = cardRef.current;
+    if (!cardElement) return;
+
+    const handleScroll = () => {
+      const scrollTop = cardElement.scrollTop;
+      const isScrollingUp = scrollTop < lastScrollTop;
+
+      setShowFooter(!isScrollingUp);
+      setLastScrollTop(scrollTop);
+    };
+
+    cardElement.addEventListener('scroll', handleScroll);
+    return () => cardElement.removeEventListener('scroll', handleScroll);
+  }, [lastScrollTop]);
+
   return (
     <div className="discover-overlay">
-      <div className="discover-overlay-card">
+      <div className="discover-overlay-card" ref={cardRef}>
         <div
           className="discover-overlay-hero"
           style={{
-            backgroundImage: `url(${card.imageUrl})`,
-            backgroundPosition: card.imagePosition,
+            backgroundImage: `linear-gradient(to bottom, transparent 55%, rgba(0,0,0,0.15) 100%), url(${card.imageUrl})`,
+            backgroundPosition: `center, ${card.imagePosition}`,
             height: heroHeight,
             position: 'relative',
             flexShrink: 0,
@@ -1219,7 +1238,7 @@ function DiscoverOutfitOverlay({ card, onClose }) {
                 <div className="discover-overlay-items" style={{ gap: itemsGap }}>
                   {detail.items.map((item) => (
                     <div key={item.id} className="discover-overlay-item-card" style={{ gap: itemCardGap, width: itemCardWidth, minWidth: itemCardWidth }}>
-                      <div className="discover-overlay-item-image" style={{ backgroundImage: `url(${item.imageUrl})`, borderRadius: itemRadius }}>
+                      <div className="discover-overlay-item-image" style={{ backgroundImage: `linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.12) 100%), url(${item.imageUrl})`, borderRadius: itemRadius }}>
                         <button type="button" className="discover-overlay-item-plus" aria-label={`Save ${item.name}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', bottom: itemSaveIcon.bottom, right: itemSaveIcon.right }}>
                           <Icon d={ICONS.bookmark} size={20} stroke={2} />
                         </button>
@@ -1233,25 +1252,40 @@ function DiscoverOutfitOverlay({ card, onClose }) {
 
               <div className="discover-overlay-more-section" style={{ display: 'flex', flexDirection: 'column', gap: moreItemsGap }}>
                 <div className="discover-overlay-items-header" style={{ fontSize: text.moreItemsHeader }}>More like this</div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
-                  {discoverCards.filter(c => c.id !== card.id).slice(0, 4).map((recCard) => (
-                    <div key={`rec-${recCard.id}`} style={{ display: 'flex', flexDirection: 'column', gap: 6, cursor: 'pointer' }} onClick={() => {/* Navigate to card */}}>
-                      <div style={{ backgroundImage: `url(${recCard.imageUrl})`, backgroundPosition: recCard.imagePosition, backgroundSize: 'cover', borderRadius: 'var(--r-card)', aspectRatio: '3/4', position: 'relative', border: '1px solid var(--edge)' }}>
-                        <button type="button" style={{ position: 'absolute', bottom: 8, right: 8, background: 'rgba(255, 255, 255, 0.9)', border: 'none', borderRadius: 'var(--r-pill)', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', padding: 0 }}>
-                          <Icon d={ICONS.tag} size={16} stroke={2} />
-                        </button>
-                      </div>
-                      <div style={{ fontSize: 'var(--fs-12)', color: 'var(--ink-2)' }}>{recCard.context}</div>
-                      <div style={{ fontSize: 'var(--fs-14)', fontWeight: 'var(--fw-medium)' }}>{recCard.author}</div>
-                    </div>
-                  ))}
+                <div className="discover-grid">
+                  <div className="discover-column">
+                    {(() => {
+                      const outfitCards = discoverCards.filter(c => c.id !== card.id && c.type === 'outfit');
+                      return outfitCards.filter((_, i) => i % 2 === 0).map((recCard) => (
+                        <DiscoverCard
+                          key={recCard.id}
+                          card={recCard}
+                          onOpen={() => onSetActiveCard(recCard)}
+                          dials={feedDials}
+                        />
+                      ));
+                    })()}
+                  </div>
+                  <div className="discover-column discover-column-offset">
+                    {(() => {
+                      const outfitCards = discoverCards.filter(c => c.id !== card.id && c.type === 'outfit');
+                      return outfitCards.filter((_, i) => i % 2 === 1).map((recCard) => (
+                        <DiscoverCard
+                          key={recCard.id}
+                          card={recCard}
+                          onOpen={() => onSetActiveCard(recCard)}
+                          dials={feedDials}
+                        />
+                      ));
+                    })()}
+                  </div>
                 </div>
               </div>
             </>
           )}
         </div>
 
-        <div className="discover-overlay-footer" style={{ paddingTop: footerPadTop, paddingBottom: footerPadBottom, position: 'sticky', bottom: 0, zIndex: 100 }}>
+        <div className="discover-overlay-footer" style={{ paddingTop: footerPadTop, paddingBottom: footerPadBottom, position: 'sticky', bottom: 0, zIndex: 100, transform: showFooter ? 'translateY(0)' : 'translateY(100%)', transition: 'transform 0.3s ease-out', opacity: showFooter ? 1 : 0 }}>
           <div className="discover-overlay-footer-copy">
             {card.type === 'outfit' && (
               <div className="discover-overlay-footer-copy-stack">
@@ -1333,7 +1367,7 @@ function DiscoverScreen({ activeDiscoverTab, onDiscoverTabChange, activeScreen }
       </div>
       </div>
 
-      {activeOutfitCard ? <DiscoverOutfitOverlay card={activeOutfitCard} onClose={() => setActiveOutfitCard(null)} /> : null}
+      {activeOutfitCard ? <DiscoverOutfitOverlay card={activeOutfitCard} onClose={() => setActiveOutfitCard(null)} onSetActiveCard={setActiveOutfitCard} feedDials={feedDials} /> : null}
     </main>
   );
 }
