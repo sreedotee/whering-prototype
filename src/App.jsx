@@ -3,7 +3,7 @@ import { loadAnnotations } from 'agentation';
 import { DialRoot, useDialKit } from 'dialkit';
 import 'dialkit/styles.css';
 import { initSwipeBack } from '../ux-foundation/mechanics.js';
-import { IOSDevice } from './design-system/ios-frame.jsx';
+import { IOSDevice, IOSNavBar, IOSGlassPill } from './design-system/ios-frame.jsx';
 import { Icon, ICONS } from './design-system/icons.jsx';
 
 const Agentation = lazy(() =>
@@ -513,13 +513,7 @@ function ProfileStatsView({ onBack }) {
 
   return (
     <div className="profile-subscreen profile-stats-view hue-violet">
-      <header className="profile-stats-header">
-        <button type="button" className="profile-back-button" onClick={onBack} aria-label="Back">
-          <Icon d={ICONS.chev_l} size={20} stroke={2.75} />
-        </button>
-        <h1 className="profile-stats-title">My Stats</h1>
-        <div className="profile-stats-spacer" />
-      </header>
+      <IOSNavBar title="My Stats" onBack={onBack} />
 
       <div className="stats-tabs">
         {['overview', 'unpacked'].map((tab) => (

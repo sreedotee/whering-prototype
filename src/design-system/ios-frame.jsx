@@ -82,15 +82,24 @@ export function IOSGlassPill({ children, dark = false, style = {} }) {
 // ─────────────────────────────────────────────────────────────
 // Navigation bar — glass pills + large title
 // ─────────────────────────────────────────────────────────────
-export function IOSNavBar({ title = 'Title', dark = false, trailingIcon = true }) {
+export function IOSNavBar({ title = 'Title', dark = false, trailingIcon = true, onBack }) {
   const muted = dark ? 'rgba(255,255,255,0.6)' : '#404040';
   const text = dark ? '#fff' : '#000';
-  const pillIcon = (content) => (
-    <IOSGlassPill dark={dark}>
-      <div style={{ width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {content}
-      </div>
-    </IOSGlassPill>
+  const pillIcon = (content, onClick) => (
+    <button
+      type="button"
+      onClick={onClick}
+      style={{
+        background: 'none', border: 'none', padding: 0, cursor: onClick ? 'pointer' : 'default',
+      }}
+      aria-label={onClick ? 'Go back' : undefined}
+    >
+      <IOSGlassPill dark={dark}>
+        <div style={{ width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {content}
+        </div>
+      </IOSGlassPill>
+    </button>
   );
   return (
     <div style={{
@@ -105,7 +114,8 @@ export function IOSNavBar({ title = 'Title', dark = false, trailingIcon = true }
         {pillIcon(
           <svg width="12" height="20" viewBox="0 0 12 20" fill="none" style={{ marginLeft: -1 }}>
             <path d="M10 2L2 10l8 8" stroke={muted} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          </svg>,
+          onBack
         )}
         {/* trailing ellipsis */}
         {trailingIcon && pillIcon(

@@ -1,16 +1,21 @@
+'use client';
+
+import dynamic from 'next/dynamic';
 import Hero from "@/components/Hero";
-import Overview from "@/components/sections/Overview";
-import AuditAndMethod from "@/components/sections/AuditAndMethod";
-import CurrentStateProblems from "@/components/sections/CurrentStateProblems";
-import CompetitiveInspiration from "@/components/sections/CompetitiveInspiration";
-import InteractionClarityTerminology from "@/components/sections/InteractionClarityTerminology";
-import PromiseBehaviorMatrix from "@/components/sections/PromiseBehaviorMatrix";
-import RedesignDirection from "@/components/sections/RedesignDirection";
-import ProductPrinciples from "@/components/sections/ProductPrinciples";
-import ModeScreens from "@/components/sections/ModeScreens";
-import Reflection from "@/components/sections/Reflection";
-import Footer from "@/components/Footer";
 import SectionTimeline from "@/components/SectionTimeline";
+import Footer from "@/components/Footer";
+
+// Lazy load heavy sections
+const Overview = dynamic(() => import("@/components/sections/Overview"), { loading: () => null });
+const AuditAndMethod = dynamic(() => import("@/components/sections/AuditAndMethod"), { loading: () => null });
+const CurrentStateProblems = dynamic(() => import("@/components/sections/CurrentStateProblems"), { loading: () => null });
+const CompetitiveInspiration = dynamic(() => import("@/components/sections/CompetitiveInspiration"), { loading: () => null });
+const InteractionClarityTerminology = dynamic(() => import("@/components/sections/InteractionClarityTerminology"), { loading: () => null });
+const PromiseBehaviorMatrix = dynamic(() => import("@/components/sections/PromiseBehaviorMatrix"), { loading: () => null });
+const RedesignDirection = dynamic(() => import("@/components/sections/RedesignDirection"), { loading: () => null });
+const ProductPrinciples = dynamic(() => import("@/components/sections/ProductPrinciples"), { loading: () => null });
+const ModeScreens = dynamic(() => import("@/components/sections/ModeScreens"), { loading: () => null });
+const Reflection = dynamic(() => import("@/components/sections/Reflection"), { loading: () => null });
 
 export default function Home() {
   const mode1Screens = [
