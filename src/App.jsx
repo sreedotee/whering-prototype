@@ -518,7 +518,7 @@ function ProfileStatsView({ onBack }) {
   };
 
   return (
-    <div className="profile-subscreen profile-stats-view">
+    <div className="profile-subscreen profile-stats-view hue-violet">
       <header className="profile-stats-header">
         <button type="button" className="profile-back-button" onClick={onBack} aria-label="Back">
           <BackChevronIcon />
@@ -774,7 +774,7 @@ function ProfileMainView({
 
   return (
     <>
-      <div className={`profile-scroll-container${isFabOpen ? ' is-dimmed' : ''}`}>
+      <div className={`profile-scroll-container hue-lime${isFabOpen ? ' is-dimmed' : ''}`}>
         <header className="profile-top-actions">
           <button type="button" className="icon-action-btn shadow-sm" aria-label="Share profile">
             <ShareIcon dark />
@@ -1371,7 +1371,7 @@ function DiscoverScreen({ activeDiscoverTab, onDiscoverTabChange, activeScreen }
   }, [activeScreen]);
 
   return (
-    <main id="home-screen" className={`screen${activeScreen === 'home' ? ' active' : ''}`} data-tab="home" aria-label="Discover feed">
+    <main id="home-screen" className={`screen hue-cyan${activeScreen === 'home' ? ' active' : ''}`} data-tab="home" aria-label="Discover feed">
       <div className="discover-top-nav">
         <div className="discover-tabs" role="tablist" aria-label="Discover tabs">
           <button className={`discover-tab${activeDiscoverTab === 'featured' ? ' is-active' : ''}`} type="button" onClick={() => onDiscoverTabChange('featured')}>
