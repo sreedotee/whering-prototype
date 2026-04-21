@@ -1187,9 +1187,9 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials }) {
 
     const handleScroll = () => {
       const scrollTop = cardElement.scrollTop;
-      const isScrollingUp = scrollTop < lastScrollTop;
+      const isScrollingDown = scrollTop > lastScrollTop;
 
-      setShowFooter(!isScrollingUp);
+      setShowFooter(!isScrollingDown);
       setLastScrollTop(scrollTop);
     };
 
