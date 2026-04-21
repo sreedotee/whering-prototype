@@ -1132,7 +1132,7 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials }) {
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const cardRef = useRef(null);
   const detail = discoverOutfitDetails[card.id] ?? discoverOutfitDetails.default;
-  const { overlayRadius, authorGap, authorPad, itemsGap, itemRadius, authorAvatarSize, itemsTitleGap, itemCardGap, itemCardWidth, heroHeight, bodyPad, footerPadTop, footerPadBottom, followBtn, ctaBtn, itemSaveIcon, text, moreItemsGap, shareIconSize } = useDialKit('Discover Overlay', {
+  const { overlayRadius, authorGap, authorPad, itemsGap, itemRadius, authorAvatarSize, itemsTitleGap, itemCardGap, itemCardWidth, heroHeight, bodyPad, footerPadTop, footerPadBottom, sectionsGap, followBtn, ctaBtn, itemSaveIcon, text, moreItemsGap, shareIconSize } = useDialKit('Discover Overlay', {
     overlayRadius: [0, 0, 48],
     authorGap:     [8,  0, 32],
     authorPad:     [8,  0, 24],
@@ -1146,6 +1146,7 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials }) {
     bodyPad:       [8, 0, 32],
     footerPadTop:  [16, 0, 32],
     footerPadBottom: [16, 0, 48],
+    sectionsGap:   [12, 0, 32],
     moreItemsGap:  [12, 0, 32],
     shareIconSize: [24, 16, 32],
     followBtn: {
@@ -1218,7 +1219,7 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials }) {
           </button>
         </div>
 
-        <div className="discover-overlay-body" style={{ paddingTop: 16, paddingLeft: 16, paddingRight: 16 }}>
+        <div className="discover-overlay-body" style={{ paddingTop: 16, paddingLeft: 16, paddingRight: 16, gap: sectionsGap }}>
           <div className="discover-overlay-author-row" style={{ gap: authorGap, marginBottom: authorPad, alignItems: 'flex-start' }}>
             <div className="discover-author">
               <div className="discover-author-avatar" style={{ width: authorAvatarSize, height: authorAvatarSize, flexShrink: 0, ...(card.authorAvatar ? { backgroundImage: `url(${card.authorAvatar})` } : {}) }} />
@@ -1285,7 +1286,7 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials }) {
           )}
         </div>
 
-        <div className="discover-overlay-footer" style={{ paddingTop: footerPadTop, paddingBottom: footerPadBottom, position: 'sticky', bottom: 0, zIndex: 100, transform: showFooter ? 'translateY(0)' : 'translateY(100%)', transition: 'transform 0.3s ease-out', opacity: showFooter ? 1 : 0 }}>
+        <div className="discover-overlay-footer" style={{ paddingTop: footerPadTop, paddingBottom: footerPadBottom, position: 'sticky', bottom: 0, zIndex: 100, transform: showFooter ? 'translateY(0)' : 'translateY(100%)', transition: 'transform 220ms cubic-bezier(0.32, 0.72, 0, 1), opacity 220ms cubic-bezier(0.32, 0.72, 0, 1)', opacity: showFooter ? 1 : 0 }}>
           <div className="discover-overlay-footer-copy">
             {card.type === 'outfit' && (
               <div className="discover-overlay-footer-copy-stack">
