@@ -4,6 +4,7 @@ import { DialRoot, useDialKit } from 'dialkit';
 import 'dialkit/styles.css';
 import { initSwipeBack } from '../ux-foundation/mechanics.js';
 import { IOSDevice } from './design-system/ios-frame.jsx';
+import { Icon, ICONS } from './design-system/icons.jsx';
 
 const Agentation = lazy(() =>
   import('agentation').then((module) => ({ default: module.Agentation })),
@@ -386,14 +387,6 @@ const detectedOutfitItems = [
   },
 ];
 
-function BackChevronIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <polyline points="15 18 9 12 15 6" />
-    </svg>
-  );
-}
-
 function ProfileFabMenuOverlay({ open, onClose, onUpload }) {
   return (
     <div
@@ -444,7 +437,7 @@ function ProfilePlannerView({ onBack }) {
     <div className="profile-planner-view">
       <header className="planner-header">
         <button type="button" className="profile-back-button profile-back-button--ghost" onClick={onBack} aria-label="Back to profile">
-          <BackChevronIcon />
+          <Icon d={ICONS.chev_l} size={20} stroke={2.75} />
         </button>
         <h1 className="planner-title">Planner</h1>
         <button type="button" className="planner-month-button">
@@ -522,7 +515,7 @@ function ProfileStatsView({ onBack }) {
     <div className="profile-subscreen profile-stats-view hue-violet">
       <header className="profile-stats-header">
         <button type="button" className="profile-back-button" onClick={onBack} aria-label="Back">
-          <BackChevronIcon />
+          <Icon d={ICONS.chev_l} size={20} stroke={2.75} />
         </button>
         <h1 className="profile-stats-title">My Stats</h1>
         <div className="profile-stats-spacer" />
@@ -676,7 +669,7 @@ function ProfileAiEnhancerView({ onBack, onComplete }) {
     <div className="profile-subscreen profile-enhancer-view">
       <header className="enhancer-header">
         <button type="button" className="profile-back-button profile-back-button--dark" onClick={onBack} aria-label="Back to profile">
-          <BackChevronIcon />
+          <Icon d={ICONS.chev_l} size={20} stroke={2.75} />
         </button>
         <button type="button" className="enhancer-skip" onClick={onBack}>Skip</button>
       </header>
@@ -713,7 +706,7 @@ function ProfileOutfitBreakdownView({ onBack, onSave }) {
     <div className="profile-subscreen profile-breakdown-view">
       <header className="profile-breakdown-header">
         <button type="button" className="profile-back-button profile-back-button--ghost" onClick={onBack} aria-label="Back to profile">
-          <BackChevronIcon />
+          <Icon d={ICONS.chev_l} size={20} stroke={2.75} />
         </button>
         <div className="profile-breakdown-spacer" />
       </header>
@@ -960,70 +953,31 @@ const screens = [
   { id: 'profile', label: 'Profile' },
 ];
 
-function GlobeIcon({ active = false }) {
-  return (
-    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke={active ? '#0D0D0D' : '#C4C4C4'} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" />
-      <line x1="2" y1="12" x2="22" y2="12" />
-      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-    </svg>
-  );
-}
-
-function SearchIcon({ active = false }) {
-  return (
-    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke={active ? '#0D0D0D' : '#C4C4C4'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="11" cy="11" r="8" />
-      <line x1="21" y1="21" x2="16.65" y2="16.65" />
-    </svg>
-  );
-}
-
-function PlusIcon() {
-  return (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" strokeWidth="2.6" strokeLinecap="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <line x1="12" y1="5" x2="12" y2="19" />
-      <line x1="5" y1="12" x2="19" y2="12" />
-    </svg>
-  );
-}
-
-function BellIcon({ active = false }) {
-  return (
-    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke={active ? '#0D0D0D' : '#C4C4C4'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-    </svg>
-  );
-}
-
-function ProfileIcon({ active = false }) {
-  return (
-    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke={active ? '#0D0D0D' : '#C4C4C4'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-      <circle cx="12" cy="7" r="4" />
-    </svg>
-  );
-}
 
 function AppBottomNav({ activeScreen, onScreenChange }) {
+  const navIcons = [
+    { key: 'home', label: 'Discover', icon: ICONS.pin },
+    { key: 'explore', label: 'Search', icon: ICONS.search },
+    { key: 'studio', label: 'Create', icon: ICONS.sparkle },
+    { key: 'inbox', label: 'Notifications', icon: ICONS.bell },
+    { key: 'profile', label: 'Profile', icon: ICONS.user },
+  ];
+
   return (
     <div className="app-bottom-nav" aria-label="Primary">
-      <button className={`discover-nav-button${activeScreen === 'home' ? ' discover-nav-active' : ''}`} type="button" aria-label="Discover" onClick={() => onScreenChange('home')}>
-        <GlobeIcon active={activeScreen === 'home'} />
-      </button>
-      <button className={`discover-nav-button${activeScreen === 'explore' ? ' discover-nav-active' : ''}`} type="button" aria-label="Search" onClick={() => onScreenChange('explore')}>
-        <SearchIcon active={activeScreen === 'explore'} />
-      </button>
-      <button className={`discover-nav-button${activeScreen === 'studio' ? ' discover-nav-active' : ''}`} type="button" aria-label="Create" onClick={() => onScreenChange('studio')}>
-        <SparklesIcon active={activeScreen === 'studio'} />
-      </button>
-      <button className={`discover-nav-button${activeScreen === 'inbox' ? ' discover-nav-active' : ''}`} type="button" aria-label="Notifications" onClick={() => onScreenChange('inbox')}>
-        <BellIcon active={activeScreen === 'inbox'} />
-      </button>
-      <button className={`discover-nav-button${activeScreen === 'profile' ? ' discover-nav-active' : ''}`} type="button" aria-label="Profile" onClick={() => onScreenChange('profile')}>
-        <ProfileIcon active={activeScreen === 'profile'} />
-      </button>
+      {navIcons.map(({ key, label, icon }) => (
+        <button
+          key={key}
+          className={`discover-nav-button${activeScreen === key ? ' discover-nav-active' : ''}`}
+          type="button"
+          aria-label={label}
+          onClick={() => onScreenChange(key)}
+        >
+          <div style={{ color: activeScreen === key ? '#0D0D0D' : '#C4C4C4' }}>
+            <Icon d={icon} size={48} stroke={2.5} />
+          </div>
+        </button>
+      ))}
     </div>
   );
 }
@@ -1098,24 +1052,6 @@ function DialKitDragFix() {
   return null;
 }
 
-function SparklesIcon({ active = false }) {
-  return (
-    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke={active ? '#0D0D0D' : '#C4C4C4'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2z" />
-      <path d="M19 3l.8 2.2L22 6l-2.2.8L19 9l-.8-2.2L16 6l2.2-.8L19 3z" />
-      <path d="M5 15l.8 2.2L8 18l-2.2.8L5 21l-.8-2.2L2 18l2.2-.8L5 15z" />
-    </svg>
-  );
-}
-
-function BookmarkIcon({ dark = false }) {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={dark ? '#0D0D0D' : '#FAFAFA'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-    </svg>
-  );
-}
-
 function ShareIcon({ dark = false }) {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={dark ? '#0D0D0D' : '#FAFAFA'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -1186,7 +1122,7 @@ function DiscoverCard({ card, onOpen, dials }) {
               event.stopPropagation();
             }}
           >
-            <BookmarkIcon />
+            <Icon d={ICONS.heart} size={28} stroke={2.5} />
             <span>{card.count}</span>
           </button>
         </div>
@@ -1263,7 +1199,7 @@ function DiscoverOutfitOverlay({ card, onClose }) {
           }}
         >
           <button type="button" className="discover-overlay-back" onClick={onClose} aria-label="Back">
-            <BackChevronIcon />
+            <Icon d={ICONS.chev_l} size={20} stroke={2.75} />
           </button>
           <button type="button" className="discover-overlay-share" aria-label="Share outfit" style={{ position: 'absolute', bottom: 14, right: 14, background: 'none', zIndex: 10 }}>
             <ShareIcon />
@@ -1291,7 +1227,7 @@ function DiscoverOutfitOverlay({ card, onClose }) {
                   <div key={item.id} className="discover-overlay-item-card" style={{ gap: itemCardGap, width: itemCardWidth, minWidth: itemCardWidth }}>
                     <div className="discover-overlay-item-image" style={{ backgroundImage: `url(${item.imageUrl})`, borderRadius: itemRadius }}>
                       <button type="button" className="discover-overlay-item-plus" aria-label={`Save ${item.name}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', bottom: itemSaveIcon.bottom, right: itemSaveIcon.right }}>
-                        <div style={{ transform: 'scale(0.65)', display: 'flex' }}><BookmarkIcon /></div>
+                        <div style={{ transform: 'scale(0.65)', display: 'flex' }}><Icon d={ICONS.heart} size={28} stroke={2.5} /></div>
                       </button>
                     </div>
                     <div className="discover-overlay-item-brand" style={{ fontSize: text.itemBrand, lineHeight: text.itemBrandLineHeight }}>{item.brand}</div>
@@ -1313,7 +1249,7 @@ function DiscoverOutfitOverlay({ card, onClose }) {
             )}
           </div>
           <button type="button" className="discover-overlay-cta" style={{ fontSize: ctaBtn.fontSize, borderRadius: ctaBtn.radius }}>
-            <BookmarkIcon />
+            <Icon d={ICONS.heart} size={28} stroke={2.5} />
             {card.type === 'outfit' ? detail.ctaLabel : 'save item'}
           </button>
         </div>
