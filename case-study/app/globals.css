@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Disable animations for performance */
-* {
-  animation: none !important;
-  transition: none !important;
-}
-
 :root {
   --background: #FFFFFF;
   --foreground: #1F1F1F;
