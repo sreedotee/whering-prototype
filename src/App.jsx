@@ -665,7 +665,7 @@ function ProfileAiEnhancerView({ onBack, onComplete }) {
         <button type="button" className="profile-back-button profile-back-button--dark" onClick={onBack} aria-label="Back to profile">
           <Icon d={ICONS.chev_l} size={24} stroke={2.5} />
         </button>
-        <button type="button" className="enhancer-skip" onClick={onBack}>Skip</button>
+        <button type="button" className="btn btn--ghost" onClick={onBack}>Skip</button>
       </header>
 
       <div className="enhancer-stage">
@@ -687,7 +687,7 @@ function ProfileAiEnhancerView({ onBack, onComplete }) {
         <div className="enhancer-progress-track" style={{ width: `${enhancerProgressWidth}%` }}>
           <div className="enhancer-progress-fill" style={{ width: '84%' }} />
         </div>
-        <button type="button" className="enhancer-complete-button" onClick={onComplete}>
+        <button type="button" className="btn btn--primary btn--lg btn--block" onClick={onComplete}>
           Complete Processing
         </button>
       </footer>
@@ -726,7 +726,7 @@ function ProfileOutfitBreakdownView({ onBack, onSave }) {
       </section>
 
       <footer className="profile-breakdown-footer">
-        <button type="button" className="profile-breakdown-save" onClick={onSave}>
+        <button type="button" className="btn btn--primary btn--lg btn--block" onClick={onSave}>
           Save to wardrobe
         </button>
       </footer>
@@ -992,7 +992,7 @@ function DialKitCopyButton() {
   };
 
   return (
-    <button type="button" className="dialkit-copy-button" onClick={copyDialKitSnapshot}>
+    <button type="button" className="btn btn--surface btn--sm" onClick={copyDialKitSnapshot}>
       Copy Dial
     </button>
   );
@@ -1100,7 +1100,7 @@ function DiscoverCard({ card, onOpen, dials }) {
           <div className="discover-card-top" style={{ top, left, right }}>
             {authorSection}
             {SHOW_DISCOVER_FOLLOW_CHIP ? (
-              <button className="discover-follow-chip" type="button">Follow</button>
+              <button className="btn btn--surface btn--sm" type="button">Follow</button>
             ) : null}
           </div>
         )}
@@ -1208,7 +1208,7 @@ function DiscoverOutfitOverlay({ card, onClose }) {
                 <div className="discover-author-context" style={{ fontSize: text.authorContext, lineHeight: text.authorContextLineHeight }}>{card.context}</div>
               </div>
             </div>
-            <button type="button" className="discover-overlay-follow" style={{ borderRadius: followBtn.radius, fontSize: followBtn.fontSize }}>Follow</button>
+            <button type="button" className="btn btn--surface btn--sm">Follow</button>
           </div>
 
 

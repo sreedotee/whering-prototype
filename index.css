@@ -565,20 +565,6 @@ body {
     text-overflow: ellipsis;
 }
 
-.discover-follow-chip {
-    position: static;
-    padding: 3px 12px;
-    border: 1px solid #3B3B3B;
-    border-radius: 5px;
-    background-color: transparent;
-    color: #3B3B3B;
-    font-size: 9px;
-    line-height: 11px;
-    font-weight: 400;
-    font-family: var(--font-body);
-    flex-shrink: 0;
-}
-
 .discover-item-meta {
     position: absolute;
     left: 8px;
@@ -768,19 +754,6 @@ body {
     justify-content: space-between;
     gap: 10px;
     padding: 0;
-}
-
-.discover-overlay-follow {
-    flex-shrink: 0;
-    height: 30px;
-    padding: 0 15px;
-    border: none;
-    border-radius: 999px;
-    background: #C9FF00;
-    color: #0D0D0D;
-    font-size: 8px;
-    font-weight: 500;
-    cursor: pointer;
 }
 
 .discover-overlay-title {
@@ -3435,15 +3408,6 @@ p, body {
     color: #0D0D0D;
 }
 
-.enhancer-skip {
-    border: none;
-    background: transparent;
-    color: #828282;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-}
-
 .enhancer-stage {
     display: flex;
     align-items: center;
@@ -3591,18 +3555,6 @@ p, body {
     height: 100%;
     border-radius: inherit;
     background: #0D0D0D;
-}
-
-.enhancer-complete-button {
-    height: 48px;
-    border: none;
-    border-radius: 999px;
-    background: #0D0D0D;
-    color: #FFFFFF;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0;
-    cursor: pointer;
 }
 
 .profile-breakdown-view {
@@ -3757,21 +3709,6 @@ p, body {
     padding: 10px 8px 0;
     border-top: 1px solid #F0F0F0;
     margin-top: auto;
-}
-
-.profile-breakdown-save {
-    width: 100%;
-    height: 50px;
-    border: none;
-    border-radius: 999px;
-    background: #0D0D0D;
-    color: #FFFFFF;
-    font-size: 14px;
-    line-height: 1;
-    font-weight: 400;
-    text-transform: uppercase;
-    cursor: pointer;
-    letter-spacing: -0.02em;
 }
 
 @keyframes enhancer-scan {
