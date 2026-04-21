@@ -282,16 +282,12 @@ function StudioScreen({ activeScreen }) {
   };
 
   return (
-    <main id="studio-screen" className={`screen hue-oat${activeScreen === 'studio' ? ' active' : ''}`} data-tab="studio">
+    <main id="studio-screen" className={`screen hue-cyan${activeScreen === 'studio' ? ' active' : ''}`} data-tab="studio">
         <div className="studio-container">
             <header className="studio-header">
-                <button className="icon-action-btn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 8v4l3 3M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" /></svg>
+                <button className="studio-credits" style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', padding: 4, cursor: 'pointer' }}>
+                    <Icon d={ICONS.list} size={20} stroke={2} />
                 </button>
-                <div className="studio-credits">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#FF9A00" stroke="#FF9A00" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 8v8M8 12h8" stroke="#FFFFFF" strokeWidth="2" /></svg>
-                    <span>3 credits</span>
-                </div>
             </header>
 
             <div className="studio-canvas">
@@ -968,7 +964,7 @@ function AppBottomNav({ activeScreen, onScreenChange }) {
           onClick={() => onScreenChange(key)}
           style={{ color: activeScreen === key ? '#0D0D0D' : '#828282' }}
         >
-          <Icon d={icon} size={48} stroke={2.5} />
+          <Icon d={icon} size={28} stroke={2.5} />
         </button>
       ))}
     </div>
@@ -1133,7 +1129,7 @@ function DiscoverCard({ card, onOpen, dials }) {
 
 function DiscoverOutfitOverlay({ card, onClose }) {
   const detail = discoverOutfitDetails[card.id] ?? discoverOutfitDetails.default;
-  const { overlayRadius, authorGap, authorPad, itemsGap, itemRadius, authorAvatarSize, itemsTitleGap, itemCardGap, itemCardWidth, heroHeight, bodyPad, footerPadTop, footerPadBottom, followBtn, ctaBtn, itemSaveIcon, text } = useDialKit('Discover Overlay', {
+  const { overlayRadius, authorGap, authorPad, itemsGap, itemRadius, authorAvatarSize, itemsTitleGap, itemCardGap, itemCardWidth, heroHeight, bodyPad, footerPadTop, footerPadBottom, followBtn, ctaBtn, itemSaveIcon, text, moreItemsGap, shareIconSize } = useDialKit('Discover Overlay', {
     overlayRadius: [0, 0, 48],
     authorGap:     [8,  0, 32],
     authorPad:     [8,  0, 24],
@@ -1147,6 +1143,8 @@ function DiscoverOutfitOverlay({ card, onClose }) {
     bodyPad:       [8, 0, 32],
     footerPadTop:  [16, 0, 32],
     footerPadBottom: [16, 0, 48],
+    moreItemsGap:  [12, 0, 32],
+    shareIconSize: [24, 16, 32],
     followBtn: {
       _collapsed: true,
       radius: [4, 0, 32],
@@ -1176,6 +1174,7 @@ function DiscoverOutfitOverlay({ card, onClose }) {
       itemNameLineHeight: [1.1, 0.8, 2],
       footerCount:   [12, 8, 18],
       footerCta:     [14, 8, 24],
+      moreItemsHeader: [14, 8, 24],
     },
   });
 
@@ -1194,13 +1193,13 @@ function DiscoverOutfitOverlay({ card, onClose }) {
           <button type="button" className="discover-overlay-back" onClick={onClose} aria-label="Back">
             <Icon d={ICONS.chev_l} size={24} stroke={2.5} />
           </button>
-          <button type="button" className="discover-overlay-share" aria-label="Share outfit" style={{ position: 'absolute', bottom: 14, right: 14, background: 'none', zIndex: 10 }}>
-            <ShareIcon />
+          <button type="button" className="discover-overlay-share" aria-label="Share outfit" style={{ position: 'absolute', bottom: 14, right: 14, background: 'none', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0 }}>
+            <Icon d={ICONS.share} size={shareIconSize} stroke={2} />
           </button>
         </div>
 
         <div className="discover-overlay-body" style={{ paddingTop: 16, paddingLeft: 16, paddingRight: 16 }}>
-          <div className="discover-overlay-author-row" style={{ gap: authorGap, padding: authorPad, marginBottom: 8 }}>
+          <div className="discover-overlay-author-row" style={{ gap: authorGap, marginBottom: authorPad }}>
             <div className="discover-author">
               <div className="discover-author-avatar" style={{ width: authorAvatarSize, height: authorAvatarSize, flexShrink: 0, ...(card.authorAvatar ? { backgroundImage: `url(${card.authorAvatar})` } : {}) }} />
               <div className="discover-author-text" style={{ gap: text.authorTextGap }}>
@@ -1208,42 +1207,63 @@ function DiscoverOutfitOverlay({ card, onClose }) {
                 <div className="discover-author-context" style={{ fontSize: text.authorContext, lineHeight: text.authorContextLineHeight }}>{card.context}</div>
               </div>
             </div>
-            <button type="button" className="btn btn--surface btn--sm">Follow</button>
           </div>
 
 
           {card.type === 'outfit' && (
-            <div className="discover-overlay-items-section" style={{ display: 'flex', flexDirection: 'column', gap: itemsTitleGap }}>
-              <div className="discover-overlay-items-header" style={{ fontSize: text.itemsHeader }}>Items used</div>
-              <div className="discover-overlay-items" style={{ gap: itemsGap }}>
-                {detail.items.map((item) => (
-                  <div key={item.id} className="discover-overlay-item-card" style={{ gap: itemCardGap, width: itemCardWidth, minWidth: itemCardWidth }}>
-                    <div className="discover-overlay-item-image" style={{ backgroundImage: `url(${item.imageUrl})`, borderRadius: itemRadius }}>
-                      <button type="button" className="discover-overlay-item-plus" aria-label={`Save ${item.name}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', bottom: itemSaveIcon.bottom, right: itemSaveIcon.right }}>
-                        <div style={{ transform: 'scale(0.65)', display: 'flex' }}><Icon d={ICONS.heart} size={32} stroke={2} /></div>
-                      </button>
+            <>
+              <div className="discover-overlay-items-section" style={{ display: 'flex', flexDirection: 'column', gap: itemsTitleGap }}>
+                <div className="discover-overlay-items-header" style={{ fontSize: text.itemsHeader }}>Items used</div>
+                <div className="discover-overlay-items" style={{ gap: itemsGap }}>
+                  {detail.items.map((item) => (
+                    <div key={item.id} className="discover-overlay-item-card" style={{ gap: itemCardGap, width: itemCardWidth, minWidth: itemCardWidth }}>
+                      <div className="discover-overlay-item-image" style={{ backgroundImage: `url(${item.imageUrl})`, borderRadius: itemRadius }}>
+                        <button type="button" className="discover-overlay-item-plus" aria-label={`Save ${item.name}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', bottom: itemSaveIcon.bottom, right: itemSaveIcon.right }}>
+                          <Icon d={ICONS.bookmark} size={20} stroke={2} />
+                        </button>
+                      </div>
+                      <div className="discover-overlay-item-brand" style={{ fontSize: text.itemBrand, lineHeight: text.itemBrandLineHeight }}>{item.brand}</div>
+                      <div className="discover-overlay-item-name" style={{ fontSize: text.itemName, lineHeight: text.itemNameLineHeight }}>{item.name}</div>
                     </div>
-                    <div className="discover-overlay-item-brand" style={{ fontSize: text.itemBrand, lineHeight: text.itemBrandLineHeight }}>{item.brand}</div>
-                    <div className="discover-overlay-item-name" style={{ fontSize: text.itemName, lineHeight: text.itemNameLineHeight }}>{item.name}</div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+
+              <div className="discover-overlay-more-section" style={{ display: 'flex', flexDirection: 'column', gap: moreItemsGap }}>
+                <div className="discover-overlay-items-header" style={{ fontSize: text.moreItemsHeader }}>More like this</div>
+                <div className="discover-overlay-items" style={{ gap: itemsGap }}>
+                  {detail.items.slice(0, 3).map((item, idx) => (
+                    <div key={`more-${item.id}`} className="discover-overlay-item-card" style={{ gap: itemCardGap, width: itemCardWidth, minWidth: itemCardWidth }}>
+                      <div className="discover-overlay-item-image" style={{ backgroundImage: `url(${item.imageUrl})`, borderRadius: itemRadius, opacity: 0.8 }}>
+                        <button type="button" className="discover-overlay-item-plus" aria-label={`Save ${item.name}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', bottom: itemSaveIcon.bottom, right: itemSaveIcon.right }}>
+                          <Icon d={ICONS.bookmark} size={20} stroke={2} />
+                        </button>
+                      </div>
+                      <div className="discover-overlay-item-brand" style={{ fontSize: text.itemBrand, lineHeight: text.itemBrandLineHeight }}>{item.brand}</div>
+                      <div className="discover-overlay-item-name" style={{ fontSize: text.itemName, lineHeight: text.itemNameLineHeight }}>{item.name}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
           )}
         </div>
 
         <div className="discover-overlay-footer" style={{ paddingTop: footerPadTop, paddingBottom: footerPadBottom }}>
-          <div className="discover-overlay-footer-copy">
-            {card.type === 'outfit' && (
-              <div className="discover-overlay-footer-copy-stack">
-                <span style={{ fontSize: text.footerCount }}>{detail.includedCount} Items</span>
-                <strong style={{ fontSize: text.footerCta }}>Included</strong>
-              </div>
-            )}
+          <div className="discover-overlay-footer-left" style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
+            <div className="discover-overlay-footer-copy">
+              {card.type === 'outfit' && (
+                <div className="discover-overlay-footer-copy-stack">
+                  <span style={{ fontSize: text.footerCount }}>{detail.includedCount} Items</span>
+                  <strong style={{ fontSize: text.footerCta }}>Included</strong>
+                </div>
+              )}
+            </div>
+            <button type="button" className="btn btn--sm" style={{ background: '#1DB5FF', color: '#fff', alignSelf: 'flex-start' }}>Follow</button>
           </div>
           <button type="button" className="discover-overlay-cta" style={{ fontSize: ctaBtn.fontSize, borderRadius: ctaBtn.radius }}>
-            <Icon d={ICONS.heart} size={32} stroke={2} />
-            {card.type === 'outfit' ? detail.ctaLabel : 'save item'}
+            <Icon d={ICONS.bookmark} size={24} stroke={2} />
+            {card.type === 'outfit' ? 'Save outfit' : 'save item'}
           </button>
         </div>
       </div>
@@ -1441,7 +1461,7 @@ function InboxScreen({ activeScreen }) {
   const visibleSections = inboxTabContent[activeTab] ?? inboxItems;
 
   return (
-    <main id="inbox-screen" className={`screen hue-orange${activeScreen === 'inbox' ? ' active' : ''}`} data-tab="inbox">
+    <main id="inbox-screen" className={`screen hue-cyan${activeScreen === 'inbox' ? ' active' : ''}`} data-tab="inbox">
       <div className="inbox-container">
         <header className="inbox-header">
           <h1 className="inbox-title">Updates</h1>
@@ -1519,7 +1539,7 @@ function ExploreScreen({ activeScreen }) {
   const filteredOutfits = filteredOutfitsBase.length > 0 ? filteredOutfitsBase : trendingOutfits;
 
   return (
-    <main id="explore-screen" className={`screen hue-oat${activeScreen === 'explore' ? ' active' : ''}`} data-tab="explore">
+    <main id="explore-screen" className={`screen hue-cyan${activeScreen === 'explore' ? ' active' : ''}`} data-tab="explore">
       <div className="explore-container">
         
         <div className="explore-top-search" style={{ paddingInline: search.padding }}>

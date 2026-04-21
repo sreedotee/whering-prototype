@@ -394,7 +394,7 @@ body {
     align-items: center;
     justify-content: center;
     padding-inline: var(--discover-page-margin);
-    background: #FFFFFF;
+    background: transparent;
     z-index: 4;
 }
 
@@ -977,8 +977,8 @@ body {
 }
 
 .discover-nav-button {
-    width: 38px;
-    height: 28px;
+    width: 44px;
+    height: 44px;
     border: 0;
     padding: 0;
     background: transparent;
@@ -996,8 +996,8 @@ body {
 }
 
 .discover-nav-button svg {
-    width: 17px;
-    height: 17px;
+    width: 28px;
+    height: 28px;
 }
 
 
@@ -1013,7 +1013,7 @@ body {
     align-items: center;
     justify-content: space-between;
     border: 1px solid rgba(255, 255, 255, 0.72);
-    border-radius: 27px;
+    border-radius: 40px;
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.86) 0%, rgba(247, 247, 247, 0.78) 100%);
     backdrop-filter: blur(22px) saturate(1.08);
