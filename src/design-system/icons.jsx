@@ -23,7 +23,7 @@ export const ICONS = {
   grid:     (<><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></>),
   heart:    'M12 20s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9Z',
   bag:      (<><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></>),
-  sparkle:  'M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6',
+  sparkle:  (<><path d="M12 2l3 7h7l-5.5 4 2 7-5.5-4-5.5 4 2-7-5.5-4h7z"/></>),
   camera:   (<><path d="M4 8h3l2-3h6l2 3h3v12H4V8Z"/><circle cx="12" cy="13" r="4"/></>),
   hanger:   'M12 6a2 2 0 1 0-2-2M12 6v3l9 7H3l9-7',
   calendar: (<><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></>),
