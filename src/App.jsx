@@ -527,16 +527,14 @@ function ProfileFabMenuOverlay({ open, onClose, onUpload }) {
 const OCCASION_OPTIONS = ['Casual', 'Work', 'Date Night', 'Party', 'Wedding', 'Sport', 'Travel', 'Formal'];
 
 const SELECTABLE_OUTFITS = [
-  { id: 'so-1', label: 'White Denim + Silk Top', image: profileGridImages[0].url },
-  { id: 'so-2', label: 'Gallery Look', image: profileGridImages[1].url },
-  { id: 'so-3', label: 'Street Edit', image: profileGridImages[2].url },
-  { id: 'so-4', label: 'Monochrome Set', image: profileGridImages[3].url },
-  { id: 'so-5', label: 'Linen Summer Edit', image: profileGridImages[0].url },
-  { id: 'so-6', label: 'Evening Out', image: profileGridImages[1].url },
-  { id: 'so-7', label: 'Airport Look', image: profileGridImages[2].url },
-  { id: 'so-8', label: 'Casual Friday', image: profileGridImages[3].url },
-  { id: 'so-9', label: 'Weekend Brunch', image: profileGridImages[0].url },
-  { id: 'so-10', label: 'Studio Day', image: profileGridImages[1].url },
+  { id: 'so-1', label: 'Tech Wear', image: '/assets/images/discover-18.png' },
+  { id: 'so-2', label: 'Monochrome Edit', image: '/assets/images/discover-7.png' },
+  { id: 'so-3', label: 'Weekend Vibe', image: '/assets/images/discover-14.png' },
+  { id: 'so-4', label: 'Casual Friday', image: '/assets/images/discover-13.png' },
+  { id: 'so-5', label: 'Airport Look', image: '/assets/images/discover-6.png' },
+  { id: 'so-6', label: 'City Layers', image: '/assets/images/discover-11.png' },
+  { id: 'so-7', label: 'Denim Core', image: '/assets/images/discover-8.png' },
+  { id: 'so-8', label: 'Maximalist', image: '/assets/images/discover-17.png' },
 ];
 
 function OutfitPickerSheet({ onClose, onSelect }) {
@@ -827,7 +825,7 @@ function ProfilePlannerView({ onBack }) {
             {isToday && (
               <section className="planner-section">
                 <div className="planner-look-card">
-                  <div className="planner-look-image" style={{ backgroundImage: `url(${profileGridImages[0].url})` }} />
+                  <div className="planner-look-image" style={{ backgroundImage: `url(/assets/images/discover-16.png)` }} />
                   <div className="planner-look-overlay" />
                   <button type="button" className="planner-look-edit-btn">
                     <Icon d={ICONS.edit} size={16} stroke={2} />
@@ -1116,6 +1114,7 @@ function ProfileMainView({
       return { ...card, isVisible };
     }),
   );
+  const masonryTopPad = activeTab === 'Collections' ? 20 : 0;
 
   return (
     <>
@@ -1182,7 +1181,7 @@ function ProfileMainView({
           </div>
         )}
 
-        <div className="profile-masonry-grid">
+        <div className="profile-masonry-grid" style={{ paddingTop: masonryTopPad }}>
           {visibleColumns.map((column, columnIndex) => (
             <div key={`profile-column-${columnIndex}`} className="masonry-col">
               {column.map((card) => (
@@ -1453,6 +1452,9 @@ function DiscoverCard({ card, onOpen, dials }) {
                 src={card.imageUrl}
                 alt=""
                 aria-hidden="true"
+                onError={(event) => {
+                  event.currentTarget.style.display = 'none';
+                }}
                 style={{
                   objectFit: 'cover',
                   objectPosition: card.imagePosition,
@@ -1945,17 +1947,17 @@ const inboxItems = [
     id: 1,
     title: 'New today',
     items: [
-      { id: 'n1', type: 'follow', name: 'Emma Rose', action: 'started following you.', time: '2h', avatar: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/464X8926HVCK2WWBTR75HE6K0D.jpg', hasButton: true },
-      { id: 'n2', type: 'save', name: 'Liam_O and 4 others', action: 'saved your Utility Jacket to their Wardrobe.', time: '5h', avatar: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/6AFQP7ZDH931DK59DMCZFB3033.jpg', image: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/665YP1TGMBQ3MGX5VMRNN1785H.jpg' },
-      { id: 'n3', type: 'stat', name: 'System', action: 'Your curated cluster "Autumn Core" reached 1k saves!', time: '1d', avatar: 'star', image: null }
+      { id: 'n1', type: 'follow', name: 'Sophie', action: 'started following you.', time: '2h', avatar: '/assets/images/avatar-Sophie.png', hasButton: true },
+      { id: 'n2', type: 'save', name: 'Mia and 4 others', action: 'saved your Utility Jacket to their Wardrobe.', time: '5h', avatar: '/assets/images/avatar-Mia.png', image: '/assets/images/discover-16.png' },
+      { id: 'n3', type: 'stat', name: 'System', action: 'Your curated collection "Autumn Core" reached 1k saves!', time: '1d', avatar: 'star', image: null }
     ]
   },
   {
     id: 2,
     title: 'This week',
     items: [
-      { id: 'n4', type: 'cluster', name: 'Sarah Chen', action: 'curated a new cluster "Minimalist Essentials" matching your style profile.', time: '5d', avatar: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0TK6E061QN92FS4WCMBFZ6T84Q.jpg', image: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/63AKWZN3SG6NK7PV7HABKPGKBY.jpg' },
-      { id: 'n5', type: 'wishlist', name: 'David Mills', action: 'added your item to his cluster Wishlist 2026.', time: '1w', avatar: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/28AFFD2V1Q4A2G0TXPD524ZYHX.jpg', image: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/3EM6C87RG55K3MCP8G3CD9V95Z.jpg' }
+      { id: 'n4', type: 'collection', name: 'Jules', action: 'curated a new collection "Minimalist Essentials" matching your style profile.', time: '5d', avatar: '/assets/images/avatar-Jules.png', image: '/assets/images/discover-4.png' },
+      { id: 'n5', type: 'wishlist', name: 'Noor', action: 'added your item to her collection Wishlist 2026.', time: '1w', avatar: '/assets/images/avatar-Noor.png', image: '/assets/images/discover-7.png' }
     ]
   }
 ];
@@ -1967,8 +1969,8 @@ const inboxTabContent = {
       id: 'saves-1',
       title: 'New today',
       items: [
-        { id: 'save-1', type: 'save', name: 'Liam_O and 4 others', action: 'saved your Utility Jacket to their Wardrobe.', time: '5h', avatar: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/6AFQP7ZDH931DK59DMCZFB3033.jpg', image: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/665YP1TGMBQ3MGX5VMRNN1785H.jpg' },
-        { id: 'save-2', type: 'save', name: 'Avery Chen', action: 'saved your Linen Shirt to their Wardrobe.', time: '7h', avatar: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0TK6E061QN92FS4WCMBFZ6T84Q.jpg', image: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/63AKWZN3SG6NK7PV7HABKPGKBY.jpg' },
+        { id: 'save-1', type: 'save', name: 'Leah and 4 others', action: 'saved your Utility Jacket to their Wardrobe.', time: '5h', avatar: '/assets/images/avatar-Leah.png', image: '/assets/images/discover-8.png' },
+        { id: 'save-2', type: 'save', name: 'Aya', action: 'saved your Linen Shirt to their Wardrobe.', time: '7h', avatar: '/assets/images/avatar-Aya.png', image: '/assets/images/discover-11.png' },
         { id: 'save-3', type: 'stat', name: 'System', action: 'Your Summer Edit reached 2.4k saves this week.', time: '1d', avatar: 'star', image: null }
       ]
     },
@@ -1985,9 +1987,9 @@ const inboxTabContent = {
       id: 'follows-1',
       title: 'New today',
       items: [
-        { id: 'follow-1', type: 'follow', name: 'Emma Rose', action: 'started following you.', time: '2h', avatar: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/464X8926HVCK2WWBTR75HE6K0D.jpg', hasButton: true },
-        { id: 'follow-2', type: 'follow', name: 'Noah Kim', action: 'started following you.', time: '4h', avatar: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0TK6E061QN92FS4WCMBFZ6T84Q.jpg', hasButton: true },
-        { id: 'follow-3', type: 'follow', name: 'Julia Stone', action: 'followed your profile.', time: '1d', avatar: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/3JW400Y7PDBHDZMA98TXK3BH13.jpg', hasButton: true }
+        { id: 'follow-1', type: 'follow', name: 'Marcus', action: 'started following you.', time: '2h', avatar: '/assets/images/avatar-Marcus.png', hasButton: true },
+        { id: 'follow-2', type: 'follow', name: 'Riley', action: 'started following you.', time: '4h', avatar: '/assets/images/avatar-Riley.png', hasButton: true },
+        { id: 'follow-3', type: 'follow', name: 'Casey', action: 'followed your profile.', time: '1d', avatar: '/assets/images/avatar-Casey.png', hasButton: true }
       ]
     }
   ]
@@ -2010,7 +2012,7 @@ function InboxScreen({ activeScreen }) {
     <main id="inbox-screen" className={`screen hue-cyan${activeScreen === 'inbox' ? ' active' : ''}`} data-tab="inbox">
       <div className="inbox-container">
         <header className="inbox-header">
-          <h1 className="inbox-title">Updates</h1>
+          <h1 className="inbox-title">Activity</h1>
           <div className="inbox-tabs">
             {['All', 'Saves', 'Follows'].map(tab => (
               <button key={tab} className={`inbox-tab-chip ${activeTab === tab ? 'active' : ''}`} onClick={() => setActiveTab(tab)}>
