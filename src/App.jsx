@@ -1159,7 +1159,7 @@ function ProfileMainView({
 
         <div className="profile-identity-section">
           <div className="profile-large-avatar shadow-lg">
-            <img src="https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/7E4YC2J4MVNKPTCFTG47ND6175.jpg" alt="Profile" />
+            <img src="/assets/images/avatar-Sophie.png" alt="Profile" />
           </div>
           <div className="profile-info-stack">
             <h1 className="profile-name">sree</h1>
@@ -1168,7 +1168,7 @@ function ProfileMainView({
         </div>
 
         <section className="profile-bio-section" aria-label="Profile summary">
-          <p className="profile-bio">attention is the interface</p>
+          <p className="profile-bio">curating looks, layers, and everyday style</p>
           <div className="profile-social-proof">
             <div className="profile-follower-stack" aria-hidden="true">
               <span />
