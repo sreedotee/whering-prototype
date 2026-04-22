@@ -64,7 +64,7 @@ export default function SessionSignal() {
       window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(nextEntry));
       setEntry(nextEntry);
 
-      if (countryCode && countryCode !== "IN" && token) {
+      if (token) {
         await fetch(`/api/session-log?key=${encodeURIComponent(token)}`, {
           method: "POST",
           headers: {
@@ -72,7 +72,7 @@ export default function SessionSignal() {
           },
           body: JSON.stringify({
             openedAt: nextEntry.openedAt,
-            countryCode,
+            countryCode: countryCode ?? "unknown",
             path: window.location.pathname,
           }),
         });
