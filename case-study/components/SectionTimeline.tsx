@@ -11,23 +11,49 @@ interface Section {
 }
 
 const SECTIONS: Section[] = [
-  { id: "overview",   label: "Overview",               number: "01" },
-  { id: "research",   label: "Audit & Method",         number: "02" },
-  { id: "matrix",     label: "Promise Matrix",         number: "02.5", nested: true },
-  { id: "solution",   label: "Redesign Direction",     number: "03" },
-  { id: "designs",    label: "Prototype Screens",      number: "04" },
-  { id: "reflection", label: "Reflection & Learnings", number: "05" },
+  { id: "overview",              label: "Overview",          number: "01" },
+  { id: "brief",                 label: "Brief",             number: "02", nested: true },
+  { id: "research",              label: "Research",          number: "03" },
+  { id: "current-state",         label: "Problems",          number: "04", nested: true },
+  { id: "user-insights",         label: "Synthesis",         number: "05" },
+  { id: "matrix",                label: "Framework",         number: "06" },
+  { id: "solution",              label: "Design",            number: "07" },
+  { id: "designs",               label: "Screens",           number: "08" },
+  { id: "iterations",            label: "System",            number: "09", nested: true },
+  { id: "reflection",            label: "Reflection",        number: "10" },
 ];
 
-// All DOM section IDs in page order, mapped to their visible SECTIONS index.
-// Hidden sections map back to the nearest visible parent so its dot stays active.
 const SCROLL_MAP: { id: string; visibleIndex: number }[] = [
-  { id: "overview",   visibleIndex: 0 },
-  { id: "research",   visibleIndex: 1 },
-  { id: "matrix",     visibleIndex: 1 },
-  { id: "solution",   visibleIndex: 2 },
-  { id: "designs",    visibleIndex: 3 },
-  { id: "reflection", visibleIndex: 4 },
+  { id: "overview",              visibleIndex: 0 },
+  { id: "brief",                 visibleIndex: 1 },
+  { id: "market-context",        visibleIndex: 1 },
+  { id: "user-personas",         visibleIndex: 1 },
+  { id: "research",              visibleIndex: 2 },
+  { id: "user-research",         visibleIndex: 2 },
+  { id: "current-state",         visibleIndex: 3 },
+  { id: "competitive-landscape", visibleIndex: 3 },
+  { id: "inspiration",           visibleIndex: 3 },
+  { id: "user-insights",         visibleIndex: 4 },
+  { id: "jobs",                  visibleIndex: 4 },
+  { id: "opportunity",           visibleIndex: 4 },
+  { id: "card-sorting",          visibleIndex: 4 },
+  { id: "clarity",               visibleIndex: 4 },
+  { id: "matrix",                visibleIndex: 5 },
+  { id: "framework",             visibleIndex: 5 },
+  { id: "solution",              visibleIndex: 6 },
+  { id: "language",              visibleIndex: 6 },
+  { id: "information-architecture", visibleIndex: 6 },
+  { id: "principles",            visibleIndex: 6 },
+  { id: "designs",               visibleIndex: 7 },
+  { id: "iterations",            visibleIndex: 8 },
+  { id: "design-system",         visibleIndex: 8 },
+  { id: "brand-charm",           visibleIndex: 8 },
+  { id: "problem-evolution",     visibleIndex: 8 },
+  { id: "validation",            visibleIndex: 8 },
+  { id: "impact",                visibleIndex: 8 },
+  { id: "monetization",          visibleIndex: 8 },
+  { id: "constraints",           visibleIndex: 8 },
+  { id: "reflection",            visibleIndex: 9 },
 ];
 
 // Dot sizes: main 13px, nested 9px

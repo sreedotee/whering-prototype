@@ -52,13 +52,13 @@ function SegmentedControl({
             onClick={() => onSelect(item.key)}
             className="relative w-28 py-2.5 text-sm font-medium rounded-xl transition-colors duration-200 text-center"
             style={{
-              color: isActive ? "#FFFFFF" : "#6B6B6B",
+              color: isActive ? "#FFFFFF" : "#5C5C5C",
             }}
           >
             {isActive && (
               <motion.div
                 layoutId="mode-screens-pill"
-                className="absolute inset-0 bg-[#1F1F1F] rounded-xl z-0"
+                className="absolute inset-0 bg-primary rounded-xl z-0"
                 transition={{ type: "spring", stiffness: 380, damping: 30 }}
               />
             )}

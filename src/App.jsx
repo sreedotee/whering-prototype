@@ -1,4 +1,5 @@
 import { Suspense, lazy, useEffect, useMemo, useRef, useState } from 'react';
+import { CalendarPlus, Calendar } from 'lucide-react';
 import { loadAnnotations } from 'agentation';
 import { DialRoot, useDialKit } from 'dialkit';
 import 'dialkit/styles.css';
@@ -16,9 +17,10 @@ const discoverCards = [
     column: 0,
     type: 'outfit',
     height: 286,
-    imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0MQFX9J40QEVTKRGZ2G6WBYFMX.jpg',
+    imageUrl: '/assets/images/discover-1.png',
     imagePosition: 'center top',
     author: 'Sophie',
+    authorAvatar: '/assets/images/avatar-Sophie.png',
     context: "in Summer '26",
     count: '1.2k',
   },
@@ -27,9 +29,10 @@ const discoverCards = [
     column: 1,
     type: 'item',
     height: 196,
-    imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0MQFX9J40QEVTKRGZ2G6WBYFMX.jpg',
+    imageUrl: '/assets/images/discover-2.png',
     imagePosition: '50% 22%',
     author: 'Lina',
+    authorAvatar: '/assets/images/avatar-Lina.png',
     context: 'item inspo',
     title: 'Butter Set',
     subtitle: '2 pieces',
@@ -40,9 +43,10 @@ const discoverCards = [
     column: 0,
     type: 'item',
     height: 172,
-    imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0MQFX9J40QEVTKRGZ2G6WBYFMX.jpg',
+    imageUrl: '/assets/images/discover-3.png',
     imagePosition: '55% 14%',
     author: 'Mia',
+    authorAvatar: '/assets/images/avatar-Mia.png',
     context: 'item inspo',
     title: 'Airport Knit',
     subtitle: 'saved by 986',
@@ -53,9 +57,10 @@ const discoverCards = [
     column: 1,
     type: 'outfit',
     height: 258,
-    imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0MQFX9J40QEVTKRGZ2G6WBYFMX.jpg',
+    imageUrl: '/assets/images/discover-4.png',
     imagePosition: '56% 10%',
     author: 'Jules',
+    authorAvatar: '/assets/images/avatar-Jules.png',
     context: 'weekend edit',
     count: '1.4k',
   },
@@ -64,9 +69,10 @@ const discoverCards = [
     column: 1,
     type: 'item',
     height: 164,
-    imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0MQFX9J40QEVTKRGZ2G6WBYFMX.jpg',
+    imageUrl: '/assets/images/discover-5.png',
     imagePosition: '60% 8%',
     author: 'Noor',
+    authorAvatar: '/assets/images/avatar-Noor.png',
     context: 'item inspo',
     title: 'Cloud Hoodie',
     subtitle: 'saved by 1.1k',
@@ -77,9 +83,10 @@ const discoverCards = [
     column: 0,
     type: 'outfit',
     height: 326,
-    imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0MQFX9J40QEVTKRGZ2G6WBYFMX.jpg',
+    imageUrl: '/assets/images/discover-6.png',
     imagePosition: '52% center',
     author: 'Mia',
+    authorAvatar: '/assets/images/avatar-Mia.png',
     context: 'airport look',
     count: '713',
   },
@@ -88,9 +95,10 @@ const discoverCards = [
     column: 1,
     type: 'outfit',
     height: 314,
-    imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0MQFX9J40QEVTKRGZ2G6WBYFMX.jpg',
+    imageUrl: '/assets/images/discover-7.png',
     imagePosition: '58% center',
     author: 'Noor',
+    authorAvatar: '/assets/images/avatar-Noor.png',
     context: 'monochrome edit',
     count: '904',
   },
@@ -99,9 +107,10 @@ const discoverCards = [
     column: 0,
     type: 'outfit',
     height: 238,
-    imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0MQFX9J40QEVTKRGZ2G6WBYFMX.jpg',
+    imageUrl: '/assets/images/discover-8.png',
     imagePosition: '57% 6%',
     author: 'Leah',
+    authorAvatar: '/assets/images/avatar-Leah.png',
     context: 'denim core',
     count: '1.6k',
   },
@@ -110,9 +119,10 @@ const discoverCards = [
     column: 1,
     type: 'item',
     height: 188,
-    imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0MQFX9J40QEVTKRGZ2G6WBYFMX.jpg',
+    imageUrl: '/assets/images/discover-9.png',
     imagePosition: '50% 12%',
     author: 'Aya',
+    authorAvatar: '/assets/images/avatar-Aya.png',
     context: 'item inspo',
     title: 'White Boots',
     subtitle: 'saved by 2.1k',
@@ -123,9 +133,10 @@ const discoverCards = [
     column: 0,
     type: 'item',
     height: 206,
-    imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0MQFX9J40QEVTKRGZ2G6WBYFMX.jpg',
+    imageUrl: '/assets/images/discover-10.png',
     imagePosition: '50% 12%',
     author: 'Leah',
+    authorAvatar: '/assets/images/avatar-Leah.png',
     context: 'item inspo',
     title: 'Soft Knit',
     subtitle: 'saved by 632',
@@ -136,9 +147,10 @@ const discoverCards = [
     column: 1,
     type: 'outfit',
     height: 248,
-    imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0MQFX9J40QEVTKRGZ2G6WBYFMX.jpg',
+    imageUrl: '/assets/images/discover-11.png',
     imagePosition: '54% 8%',
     author: 'Aya',
+    authorAvatar: '/assets/images/avatar-Aya.png',
     context: 'city layers',
     count: '488',
   },
@@ -147,13 +159,86 @@ const discoverCards = [
     column: 0,
     type: 'item',
     height: 182,
-    imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0MQFX9J40QEVTKRGZ2G6WBYFMX.jpg',
+    imageUrl: '/assets/images/discover-12.png',
     imagePosition: '52% 14%',
     author: 'Jules',
+    authorAvatar: '/assets/images/avatar-Jules.png',
     context: 'item inspo',
     title: 'Street Tote',
     subtitle: 'saved by 1.3k',
     count: '1.3k',
+  },
+  {
+    id: 'discover-13',
+    column: 1,
+    type: 'outfit',
+    height: 272,
+    imageUrl: '/assets/images/discover-13.png',
+    imagePosition: '50% center',
+    author: 'Marcus',
+    authorAvatar: '/assets/images/avatar-Marcus.png',
+    context: 'casual friday',
+    count: '956',
+  },
+  {
+    id: 'discover-14',
+    column: 0,
+    type: 'outfit',
+    height: 298,
+    imageUrl: '/assets/images/discover-14.png',
+    imagePosition: '55% 12%',
+    author: 'Riley',
+    authorAvatar: '/assets/images/avatar-Riley.png',
+    context: 'weekend vibe',
+    count: '1.1k',
+  },
+  {
+    id: 'discover-15',
+    column: 1,
+    type: 'outfit',
+    height: 264,
+    imageUrl: '/assets/images/discover-15.png',
+    imagePosition: '52% 8%',
+    author: 'Jordan',
+    authorAvatar: '/assets/images/avatar-Jordan.png',
+    context: 'minimalist',
+    count: '842',
+  },
+  {
+    id: 'discover-16',
+    column: 0,
+    type: 'outfit',
+    height: 310,
+    imageUrl: '/assets/images/discover-16.png',
+    imagePosition: '54% center',
+    author: 'Casey',
+    authorAvatar: '/assets/images/avatar-Casey.png',
+    context: 'vintage mix',
+    count: '1.3k',
+  },
+  {
+    id: 'discover-17',
+    column: 1,
+    type: 'outfit',
+    height: 286,
+    imageUrl: '/assets/images/discover-17.png',
+    imagePosition: '56% 10%',
+    author: 'Sam',
+    authorAvatar: '/assets/images/avatar-Sam.png',
+    context: 'maximalist',
+    count: '1.5k',
+  },
+  {
+    id: 'discover-18',
+    column: 0,
+    type: 'outfit',
+    height: 294,
+    imageUrl: '/assets/images/discover-18.png',
+    imagePosition: '51% 6%',
+    author: 'Alex',
+    authorAvatar: '/assets/images/avatar-Alex.png',
+    context: 'tech wear',
+    count: '1.8k',
   },
 ];
 
@@ -285,8 +370,8 @@ function StudioScreen({ activeScreen }) {
     <main id="studio-screen" className={`screen hue-cyan${activeScreen === 'studio' ? ' active' : ''}`} data-tab="studio">
         <div className="studio-container">
             <header className="studio-header">
-                <button className="studio-credits" style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', padding: 4, cursor: 'pointer' }}>
-                    <Icon d={ICONS.list} size={20} stroke={2} />
+                <button className="studio-history-btn" style={{ display: 'flex', alignItems: 'center', background: 'none', border: 'none', padding: 4, cursor: 'pointer' }}>
+                    <Icon d={ICONS.history} size={24} stroke={1.8} />
                 </button>
             </header>
 
@@ -366,6 +451,19 @@ const plannerDays = [
   { day: 'THU', date: 15 },
   { day: 'FRI', date: 16 },
   { day: 'SAT', date: 17 },
+  { day: 'SUN', date: 18 },
+  { day: 'MON', date: 19 },
+  { day: 'TUE', date: 20 },
+  { day: 'WED', date: 21 },
+  { day: 'THU', date: 22 },
+  { day: 'FRI', date: 23 },
+  { day: 'SAT', date: 24 },
+  { day: 'SUN', date: 25 },
+  { day: 'MON', date: 26 },
+  { day: 'TUE', date: 27 },
+  { day: 'WED', date: 28 },
+  { day: 'THU', date: 29 },
+  { day: 'FRI', date: 30 },
 ];
 
 const detectedOutfitItems = [
@@ -426,72 +524,330 @@ function ProfileFabMenuOverlay({ open, onClose, onUpload }) {
   );
 }
 
+const OCCASION_OPTIONS = ['Casual', 'Work', 'Date Night', 'Party', 'Wedding', 'Sport', 'Travel', 'Formal'];
+
+const SELECTABLE_OUTFITS = [
+  { id: 'so-1', label: 'White Denim + Silk Top', image: profileGridImages[0].url },
+  { id: 'so-2', label: 'Gallery Look', image: profileGridImages[1].url },
+  { id: 'so-3', label: 'Street Edit', image: profileGridImages[2].url },
+  { id: 'so-4', label: 'Monochrome Set', image: profileGridImages[3].url },
+  { id: 'so-5', label: 'Linen Summer Edit', image: profileGridImages[0].url },
+  { id: 'so-6', label: 'Evening Out', image: profileGridImages[1].url },
+  { id: 'so-7', label: 'Airport Look', image: profileGridImages[2].url },
+  { id: 'so-8', label: 'Casual Friday', image: profileGridImages[3].url },
+  { id: 'so-9', label: 'Weekend Brunch', image: profileGridImages[0].url },
+  { id: 'so-10', label: 'Studio Day', image: profileGridImages[1].url },
+];
+
+function OutfitPickerSheet({ onClose, onSelect }) {
+  return (
+    <div className="planner-modal-backdrop" onClick={onClose}>
+      <div className="planner-modal" onClick={e => e.stopPropagation()}>
+        <div className="planner-modal-header">
+          <span className="planner-modal-title">Choose Outfit</span>
+          <button type="button" className="planner-modal-close" onClick={onClose}>
+            <Icon d={ICONS.close} size={20} stroke={2} />
+          </button>
+        </div>
+        <div className="planner-outfit-grid">
+          {SELECTABLE_OUTFITS.map(o => (
+            <button key={o.id} type="button" className="planner-outfit-option" onClick={() => { onSelect(o); onClose(); }}>
+              <div className="planner-outfit-option-img" style={{ backgroundImage: `url(${o.image})` }} />
+              <span className="planner-outfit-option-label">{o.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EventCreateScreen({ onClose, onSave }) {
+  const { emptyTopPush } = useDialKit('Event Create', { emptyTopPush: 120 }); // locked
+  const [name, setName] = useState('');
+  const [occasion, setOccasion] = useState('');
+  const [time, setTime] = useState('');
+  const [outfits, setOutfits] = useState([]);
+  const [showPicker, setShowPicker] = useState(false);
+
+  function handleSave() {
+    if (!name.trim()) return;
+    onSave({ id: Date.now(), name: name.trim(), occasion, time, outfits });
+    onClose();
+  }
+
+  return (
+    <div className="event-create-panel">
+      {showPicker && (
+        <OutfitPickerSheet
+          onClose={() => setShowPicker(false)}
+          onSelect={o => setOutfits(prev => [...prev, { ...o, id: Date.now() }])}
+        />
+      )}
+
+      {/* Mini toolbar */}
+      <div className="event-create-toolbar">
+        <button type="button" className="event-create-close" onClick={onClose}>
+          <Icon d={ICONS.close} size={20} stroke={2} />
+        </button>
+        <button
+          type="button"
+          className="event-create-save-btn"
+          disabled={!name.trim()}
+          onClick={handleSave}
+        >Save</button>
+      </div>
+
+      {/* Scrollable content */}
+      <div className="event-create-scroll">
+        <input
+          className="event-create-name-input"
+          placeholder="Event name"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          autoFocus
+        />
+
+        <div className="planner-field">
+          <label className="planner-field-label">Occasion</label>
+          <div className="planner-occasion-grid">
+            {OCCASION_OPTIONS.map(o => (
+              <button
+                key={o}
+                type="button"
+                className={`planner-occasion-chip ${occasion === o ? 'active' : ''}`}
+                onClick={() => setOccasion(occasion === o ? '' : o)}
+              >{o}</button>
+            ))}
+          </div>
+        </div>
+
+        <div className="planner-field">
+          <label className="planner-field-label">Time</label>
+          <input className="planner-field-input" type="time" value={time} onChange={e => setTime(e.target.value)} />
+        </div>
+
+        {outfits.length > 0 && (
+          <div className="planner-field">
+            <label className="planner-field-label">Outfits</label>
+            <div className="event-create-outfit-row">
+              {outfits.map(o => (
+                <div key={o.id} className="planner-event-outfit-thumb" style={{ backgroundImage: `url(${o.image})` }}>
+                  <span className="planner-event-outfit-label">{o.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {outfits.length === 0 && (
+          <p className="event-create-empty" style={{ marginTop: emptyTopPush }}>Tap + to add outfits to this event.</p>
+        )}
+      </div>
+
+      {/* Contextual FAB */}
+      <button type="button" className="event-create-fab" onClick={() => setShowPicker(true)}>
+        <Icon d={ICONS.plus} size={24} stroke={2} />
+      </button>
+    </div>
+  );
+}
+
+function EventCard({ event, onAddOutfit }) {
+  return (
+    <div className="planner-event-card">
+      <div className="planner-event-meta">
+        <span className="planner-event-name">{event.name}</span>
+        <div className="planner-event-tags">
+          {event.occasion && <span className="planner-event-tag">{event.occasion}</span>}
+          {event.time && <span className="planner-event-tag">{event.time}</span>}
+        </div>
+      </div>
+
+      <div className="planner-event-outfits">
+        {event.outfits.map(o => (
+          <div key={o.id} className="planner-event-outfit-thumb" style={{ backgroundImage: `url(${o.image})` }}>
+            <span className="planner-event-outfit-label">{o.label}</span>
+          </div>
+        ))}
+        <button type="button" className="planner-event-add-outfit" onClick={() => onAddOutfit(event.id)}>
+          <Icon d={ICONS.plus} size={20} stroke={2} />
+          <span>{event.outfits.length === 0 ? 'Add Outfit' : ''}</span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+const APRIL_2026 = {
+  month: 'April 2026',
+  startDay: 3, // Wednesday
+  days: 30,
+};
+
+function MonthGridOverlay({ selectedDay, onSelectDay, onClose }) {
+  const blanks = Array(APRIL_2026.startDay).fill(null);
+  const days = Array.from({ length: APRIL_2026.days }, (_, i) => i + 1);
+  const todayDate = plannerDays[1]?.date; // TUE 13 = "today"
+
+  return (
+    <div className="month-grid-overlay" onClick={onClose}>
+      <div className="month-grid-card" onClick={e => e.stopPropagation()}>
+        <div className="month-grid-title">{APRIL_2026.month}</div>
+        <div className="month-grid-weekdays">
+          {['S','M','T','W','T','F','S'].map((d,i) => <span key={i}>{d}</span>)}
+        </div>
+        <div className="month-grid-days">
+          {blanks.map((_, i) => <span key={`b${i}`} />)}
+          {days.map(d => {
+            const dayIdx = plannerDays.findIndex(p => p.date === d);
+            const isSelected = plannerDays[selectedDay]?.date === d;
+            const isToday = d === todayDate;
+            return (
+              <button
+                key={d}
+                type="button"
+                className={`month-grid-day ${isSelected ? 'selected' : ''} ${isToday && !isSelected ? 'today' : ''} ${dayIdx === -1 ? 'disabled' : ''}`}
+                onClick={() => { if (dayIdx !== -1) { onSelectDay(dayIdx); onClose(); } }}
+              >{d}</button>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ProfilePlannerView({ onBack }) {
+  const { fabRight, fabBottom } = useDialKit('Planner FAB', { fabRight: 24, fabBottom: 40 });
   const [selectedDay, setSelectedDay] = useState(1);
+  const [eventsByDay, setEventsByDay] = useState({});
+  const [showEventCreate, setShowEventCreate] = useState(false);
+  const [showMonthGrid, setShowMonthGrid] = useState(false);
+  const [outfitTargetId, setOutfitTargetId] = useState(null);
+  const [showStandalonePicker, setShowStandalonePicker] = useState(false);
+  const [standaloneByDay, setStandaloneByDay] = useState({});
+  const touchStartX = useRef(null);
+
+  const dayEvents = eventsByDay[selectedDay] || [];
+  const isToday = selectedDay === 1;
+  const currentDay = plannerDays[selectedDay];
+  const dayLabel = isToday ? 'Today' : `${currentDay?.day}`;
+  const dateLabel = `Apr ${currentDay?.date}, 2026`;
+
+  function handleSaveEvent(evt) {
+    setEventsByDay(prev => ({ ...prev, [selectedDay]: [...(prev[selectedDay] || []), evt] }));
+  }
+
+  function handleAddOutfit(eventId) { setOutfitTargetId(eventId); }
+
+  function handleSelectOutfit(outfit) {
+    setEventsByDay(prev => ({
+      ...prev,
+      [selectedDay]: (prev[selectedDay] || []).map(e =>
+        e.id === outfitTargetId ? { ...e, outfits: [...e.outfits, { ...outfit, id: Date.now() }] } : e
+      ),
+    }));
+    setOutfitTargetId(null);
+  }
+
+  function handleTouchStart(e) { touchStartX.current = e.touches[0].clientX; }
+  function handleTouchEnd(e) {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) setSelectedDay(d => Math.min(d + 1, plannerDays.length - 1));
+      else setSelectedDay(d => Math.max(d - 1, 0));
+    }
+    touchStartX.current = null;
+  }
 
   return (
     <div className="profile-planner-view">
+      {outfitTargetId && <OutfitPickerSheet onClose={() => setOutfitTargetId(null)} onSelect={o => handleSelectOutfit(o)} />}
+      {showMonthGrid && <MonthGridOverlay selectedDay={selectedDay} onSelectDay={setSelectedDay} onClose={() => setShowMonthGrid(false)} />}
+
+      {/* Compact header */}
       <header className="planner-header">
-        <button type="button" className="profile-back-button profile-back-button--ghost" onClick={onBack} aria-label="Back to profile">
+        <button type="button" className="profile-back-button profile-back-button--ghost" onClick={onBack}>
           <Icon d={ICONS.chev_l} size={24} stroke={2.5} />
         </button>
-        <h1 className="planner-title">Planner</h1>
-        <button type="button" className="planner-month-button">
-          <span>April '26</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
+        <div className="planner-day-center">
+          <span className="planner-day-name">{dayLabel}</span>
+          <span className="planner-day-full-date">{dateLabel} · 65°F Sunny</span>
+        </div>
+        <button type="button" className="planner-cal-icon-btn" onClick={() => setShowMonthGrid(true)}>
+          <span className="planner-cal-icon-wrap">
+            <Calendar size={24} strokeWidth={1.8} />
+            <span className="planner-cal-icon-num">{currentDay?.date}</span>
+          </span>
         </button>
       </header>
 
-      <div className="planner-days-row">
-        {plannerDays.map((entry, index) => (
-          <button
-            key={entry.day}
-            type="button"
-            className={`planner-day-chip${selectedDay === index ? ' active' : ''}`}
-            onClick={() => setSelectedDay(index)}
-          >
-            <span className="planner-day-label">{entry.day}</span>
-            <span className="planner-day-date">{entry.date}</span>
-          </button>
-        ))}
-      </div>
+      <div className="planner-divider" />
 
-      <section className="planner-section">
-        <div className="planner-section-header">
-          <h2>Today's Outfit</h2>
-          <span className="planner-weather">65°F • Sunny</span>
-        </div>
-
-        <div className="planner-look-card">
-          <div className="planner-look-image" style={{ backgroundImage: `url(${profileGridImages[0].url})` }} />
-          <div className="planner-look-overlay">
-            <div className="planner-look-title">Spring Gallery Opening</div>
-            <div className="planner-look-subtitle">White Denim + Silk Top</div>
-            <div className="planner-look-actions">
-              <button type="button" className="planner-action planner-action--filled">Edit</button>
-              <button type="button" className="planner-action">Log as Worn</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="planner-section planner-section--items">
-        <div className="planner-section-header">
-          <h2>Items</h2>
-        </div>
-
-        <div className="planner-items-rail">
-          {Array.from({ length: 5 }).map((_, index) => (
-            <div
-              key={`planner-item-${index}`}
-              className="planner-item-thumb"
-              style={{ backgroundImage: `url(${profileGridImages[2].url})` }}
+      {showEventCreate ? (
+        <EventCreateScreen onClose={() => setShowEventCreate(false)} onSave={handleSaveEvent} />
+      ) : (
+        <>
+          {showStandalonePicker && (
+            <OutfitPickerSheet
+              onClose={() => setShowStandalonePicker(false)}
+              onSelect={o => {
+                setStandaloneByDay(prev => ({ ...prev, [selectedDay]: [...(prev[selectedDay] || []), { ...o, id: Date.now() }] }));
+                setShowStandalonePicker(false);
+              }}
             />
-          ))}
-        </div>
-      </section>
+          )}
+          <div className="planner-content-header">
+            <button type="button" className="planner-add-event-btn" onClick={() => setShowEventCreate(true)} aria-label="Add event">
+              <CalendarPlus size={20} strokeWidth={2} />
+              <span className="planner-add-event-label">Add event</span>
+            </button>
+          </div>
+          <div className="planner-day-content" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+            {dayEvents.length > 0 && (
+              <div className="planner-events-list">
+                {dayEvents.map(evt => (
+                  <EventCard key={evt.id} event={evt} onAddOutfit={handleAddOutfit} />
+                ))}
+              </div>
+            )}
+
+            {(standaloneByDay[selectedDay] || []).length > 0 && (
+              <div className="planner-standalone-outfits">
+                {(standaloneByDay[selectedDay] || []).map(o => (
+                  <div key={o.id} className="planner-event-outfit-thumb" style={{ backgroundImage: `url(${o.image})` }}>
+                    <span className="planner-event-outfit-label">{o.label}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {isToday && (
+              <section className="planner-section">
+                <div className="planner-look-card">
+                  <div className="planner-look-image" style={{ backgroundImage: `url(${profileGridImages[0].url})` }} />
+                  <div className="planner-look-overlay" />
+                  <button type="button" className="planner-look-edit-btn">
+                    <Icon d={ICONS.edit} size={16} stroke={2} />
+                  </button>
+                </div>
+              </section>
+            )}
+
+            {!isToday && dayEvents.length === 0 && (standaloneByDay[selectedDay] || []).length === 0 && (
+              <div className="planner-empty-day">
+                <span>Nothing planned. Tap + to add outfits or create an event.</span>
+              </div>
+            )}
+
+            <button type="button" className="planner-fab" style={{ right: fabRight, bottom: fabBottom }} onClick={() => setShowStandalonePicker(true)}>
+              <Icon d={ICONS.plus} size={24} stroke={2} />
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -499,6 +855,9 @@ function ProfilePlannerView({ onBack }) {
 function ProfileStatsView({ onBack }) {
   const [activeTab, setActiveTab] = useState('overview');
   const [expandedSections, setExpandedSections] = useState({});
+  const { navTitleSize } = useDialKit('Profile Stats', {
+    navTitleSize: [24, 20, 40],
+  });
 
   const toggleSection = (section) => {
     setExpandedSections((prev) => ({
@@ -509,7 +868,7 @@ function ProfileStatsView({ onBack }) {
 
   return (
     <div className="profile-subscreen profile-stats-view hue-violet">
-      <IOSNavBar title="My Stats" onBack={onBack} />
+      <IOSNavBar title="My Stats" onBack={onBack} titleSize={navTitleSize} />
 
       <div className="stats-tabs">
         {['overview', 'unpacked'].map((tab) => (
@@ -734,6 +1093,7 @@ function ProfileMainView({
   activeTab,
   activeFilter,
   isFabOpen,
+  profileHue,
   onTabChange,
   onFilterChange,
   onCalendarOpen,
@@ -741,7 +1101,8 @@ function ProfileMainView({
   onFabToggle,
   fabPosition,
 }) {
-  const showDetailFilters = activeTab === 'All';
+  const allProfileCards = profileMasonryCards.flat();
+  const boardProfileCards = allProfileCards.filter(c => c.type === 'outfit');
   const visibleColumns = profileMasonryCards.map((column) =>
     column.map((card) => {
       const isVisible = activeTab === 'Boards'
@@ -758,7 +1119,7 @@ function ProfileMainView({
 
   return (
     <>
-      <div className={`profile-scroll-container hue-lime${isFabOpen ? ' is-dimmed' : ''}`}>
+      <div className={`profile-scroll-container hue-${profileHue}${isFabOpen ? ' is-dimmed' : ''}`}>
         <header className="profile-top-actions">
           <button type="button" className="icon-action-btn shadow-sm" aria-label="Share profile">
             <ShareIcon dark />
@@ -805,27 +1166,19 @@ function ProfileMainView({
           </button>
         </div>
 
-        <div className="profile-tabs-section">
-          <div className="profile-tabs">
-            <button type="button" className={`profile-tab ${activeTab === 'All' ? 'active' : ''}`} onClick={() => onTabChange('All')}>All</button>
-            <button type="button" className={`profile-tab ${activeTab === 'Boards' ? 'active' : ''}`} onClick={() => onTabChange('Boards')}>Boards</button>
-          </div>
+        <div className="creator-subfilter-bar">
+          {[['All', allProfileCards.length], ['Boards', boardProfileCards.length]].map(([label, count]) => (
+            <button key={label} type="button" className={`creator-subfilter-btn ${activeTab === label ? 'active' : ''}`} onClick={() => { onTabChange(label); onFilterChange(null); }}>
+              {label} <span className="profile-tab-count">{count}</span>
+            </button>
+          ))}
         </div>
 
-        {showDetailFilters && (
-          <div className="profile-filters-scroll" role="tablist" aria-label="Profile content filters">
-            <div className="profile-filter-segmented">
-              {['Items', 'Outfits'].map((filter) => (
-                <button
-                  key={filter}
-                  type="button"
-                  className={`pill-filter ${activeFilter === filter ? 'active' : ''}`}
-                  onClick={() => onFilterChange(filter)}
-                >
-                  {filter}
-                </button>
-              ))}
-            </div>
+        {activeTab === 'All' && (
+          <div className="creator-pill-filters">
+            {['Outfits', 'Items'].map(f => (
+              <button key={f} type="button" className={`category-pill ${activeFilter === f ? 'active' : ''}`} style={{ padding: '8px 24px', minHeight: 0 }} onClick={() => onFilterChange(activeFilter === f ? null : f)}>{f}</button>
+            ))}
           </div>
         )}
 
@@ -842,9 +1195,6 @@ function ProfileMainView({
                   }}
                   aria-hidden={card.isVisible ? 'false' : 'true'}
                 >
-                  <span className={`profile-card-badge profile-card-badge--${card.badgeTone}`}>
-                    {card.type.toUpperCase()}
-                  </span>
                 </article>
               ))}
             </div>
@@ -868,8 +1218,25 @@ function ProfileMainView({
 
 function ProfileScreen({ activeScreen, profileView, onProfileViewChange }) {
   const [activeTab, setActiveTab] = useState('All');
-  const [activeFilter, setActiveFilter] = useState('Items');
+  const [activeFilter, setActiveFilter] = useState(null);
   const [isFabOpen, setIsFabOpen] = useState(false);
+
+  const dialValues = useDialKit('Profile', {
+    profileColor: '#1DB5FF',
+  });
+
+  console.log('DialKit profileColor:', dialValues.profileColor);
+
+  const colorMap = {
+    '#1db5ff': 'cyan',
+    '#9bc926': 'lime',
+    '#8a6be0': 'violet',
+    '#ff6b1a': 'orange',
+    '#0a0a0a': 'oat',
+  };
+  const profileHue = colorMap[dialValues.profileColor?.toLowerCase()] || 'cyan';
+
+  console.log('Mapped profileHue:', profileHue);
   const fabPosition = { right: 24, bottom: 120 };
 
   useEffect(() => {
@@ -880,20 +1247,17 @@ function ProfileScreen({ activeScreen, profileView, onProfileViewChange }) {
   }, [activeScreen, onProfileViewChange]);
 
   return (
-    <main id="profile-screen" className={`screen hue-lime${activeScreen === 'profile' ? ' active' : ''}`} data-tab="profile">
+    <main id="profile-screen" className={`screen hue-${profileHue}${activeScreen === 'profile' ? ' active' : ''}`} data-tab="profile">
       {profileView === 'main' && (
         <>
           <ProfileMainView
             activeTab={activeTab}
             activeFilter={activeFilter}
             isFabOpen={isFabOpen}
+            profileHue={profileHue}
             onTabChange={(tab) => {
               setActiveTab(tab);
-              if (tab === 'Boards') {
-                setActiveFilter('Outfits');
-              } else if (activeFilter !== 'Items' && activeFilter !== 'Outfits') {
-                setActiveFilter('Items');
-              }
+              setActiveFilter(null);
             }}
             onFilterChange={setActiveFilter}
             onCalendarOpen={() => onProfileViewChange('planner')}
@@ -904,10 +1268,7 @@ function ProfileScreen({ activeScreen, profileView, onProfileViewChange }) {
           <ProfileFabMenuOverlay
             open={isFabOpen}
             onClose={() => setIsFabOpen(false)}
-            onUpload={() => {
-              setIsFabOpen(false);
-              onProfileViewChange('ai-enhancer');
-            }}
+            onUpload={() => setIsFabOpen(false)}
           />
         </>
       )}
@@ -1079,24 +1440,32 @@ function DiscoverCard({ card, onOpen, dials }) {
       aria-label={`${card.type} inspiration card`}
       onClick={onOpen}
     >
-      <div
-        className="discover-card-media"
-        style={{
-          '--discover-card-height': `${card.height}px`,
-        }}
-      >
         <div
-          className="discover-card-image"
+          className="discover-card-media"
           style={{
-            backgroundImage: `linear-gradient(to bottom, transparent 55%, rgba(0,0,0,0.15) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0) 42%), url(${card.imageUrl})`,
-            backgroundPosition: `center, 0% 0%, ${card.imagePosition}`,
+            '--discover-card-height': `${card.height}px`,
           }}
-        />
-        {!isBottom && (
-          <div className="discover-card-top" style={{ top, left, right }}>
-            {authorSection}
-            {SHOW_DISCOVER_FOLLOW_CHIP ? (
-              <button className="btn btn--surface btn--sm" type="button">Follow</button>
+        >
+          {card.type === 'outfit' ? (
+            <>
+              <img
+                className="discover-card-image"
+                src={card.imageUrl}
+                alt=""
+                aria-hidden="true"
+                style={{
+                  objectFit: 'cover',
+                  objectPosition: card.imagePosition,
+                }}
+              />
+              <div className="discover-card-image-tint" aria-hidden="true" />
+            </>
+          ) : null}
+          {!isBottom && (
+            <div className="discover-card-top" style={{ top, left, right }}>
+              {authorSection}
+              {SHOW_DISCOVER_FOLLOW_CHIP ? (
+                <button className="btn btn--surface btn--sm" type="button">Follow</button>
             ) : null}
           </div>
         )}
@@ -1127,8 +1496,8 @@ function DiscoverCard({ card, onOpen, dials }) {
   );
 }
 
-function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials }) {
-  const [showFooter, setShowFooter] = useState(true);
+function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials, onCreatorOpen }) {
+  const [footerOpacity, setFooterOpacity] = useState(1);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const cardRef = useRef(null);
   const detail = discoverOutfitDetails[card.id] ?? discoverOutfitDetails.default;
@@ -1187,7 +1556,7 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials }) {
     if (cardElement) {
       cardElement.scrollTop = 0;
     }
-    setShowFooter(true);
+    setFooterOpacity(1);
     setLastScrollTop(0);
   }, [card.id]);
 
@@ -1197,9 +1566,19 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials }) {
 
     const handleScroll = () => {
       const scrollTop = cardElement.scrollTop;
-      const isScrollingDown = scrollTop > lastScrollTop;
+      const itemsSection = cardElement.querySelector('.discover-overlay-items-section');
+      const itemsSectionBottom = itemsSection ? itemsSection.offsetTop + itemsSection.offsetHeight : 0;
+      const hideStartPoint = itemsSectionBottom - 100;
 
-      setShowFooter(!isScrollingDown);
+      if (scrollTop < hideStartPoint) {
+        setFooterOpacity(1);
+      } else {
+        const hideDistance = scrollTop - hideStartPoint;
+        const maxHideDistance = 200;
+        const opacity = Math.max(0, 1 - hideDistance / maxHideDistance);
+        setFooterOpacity(opacity);
+      }
+
       setLastScrollTop(scrollTop);
     };
 
@@ -1211,15 +1590,16 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials }) {
     <div className="discover-overlay">
       <div className="discover-overlay-card" ref={cardRef}>
         <div
-          className="discover-overlay-hero"
-          style={{
-            backgroundImage: `linear-gradient(to bottom, transparent 55%, rgba(0,0,0,0.15) 100%), url(${card.imageUrl})`,
-            backgroundPosition: `center, ${card.imagePosition}`,
-            height: heroHeight,
-            position: 'relative',
-            flexShrink: 0,
-          }}
-        >
+            className="discover-overlay-hero"
+            style={{
+              backgroundImage: `linear-gradient(to bottom, transparent 55%, rgba(0,0,0,0.15) 100%), url(${card.imageUrl})`,
+              backgroundPosition: `center, ${card.imagePosition}`,
+              backgroundSize: 'auto, cover',
+              height: heroHeight,
+              position: 'relative',
+              flexShrink: 0,
+            }}
+          >
           <button type="button" className="discover-overlay-back" onClick={onClose} aria-label="Back">
             <Icon d={ICONS.chev_l} size={24} stroke={2.5} />
           </button>
@@ -1230,7 +1610,7 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials }) {
 
         <div className="discover-overlay-body" style={{ paddingTop: 16, paddingLeft: 16, paddingRight: 16, gap: sectionsGap }}>
           <div className="discover-overlay-author-row" style={{ gap: authorGap, marginBottom: authorPad, alignItems: 'flex-start' }}>
-            <div className="discover-author">
+            <div className="discover-author" style={{ cursor: 'pointer' }} onClick={() => onCreatorOpen && onCreatorOpen(card)}>
               <div className="discover-author-avatar" style={{ width: authorAvatarSize, height: authorAvatarSize, flexShrink: 0, ...(card.authorAvatar ? { backgroundImage: `url(${card.authorAvatar})` } : {}) }} />
               <div className="discover-author-text" style={{ gap: text.authorTextGap }}>
                 <div className="discover-author-name" style={{ fontSize: text.authorName, lineHeight: text.authorNameLineHeight }}>{card.author}</div>
@@ -1248,7 +1628,7 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials }) {
                 <div className="discover-overlay-items" style={{ gap: itemsGap }}>
                   {detail.items.map((item) => (
                     <div key={item.id} className="discover-overlay-item-card" style={{ gap: itemCardGap, width: itemCardWidth, minWidth: itemCardWidth }}>
-                      <div className="discover-overlay-item-image" style={{ backgroundImage: `linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.12) 100%), url(${item.imageUrl})`, borderRadius: itemRadius }}>
+                        <div className="discover-overlay-item-image" style={{ backgroundImage: `linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.12) 100%), url(${item.imageUrl})`, backgroundSize: 'auto, cover', borderRadius: itemRadius }}>
                         <button type="button" className="discover-overlay-item-plus" aria-label={`Save ${item.name}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', bottom: itemSaveIcon.bottom, right: itemSaveIcon.right }}>
                           <Icon d={ICONS.bookmark} size={20} stroke={2} />
                         </button>
@@ -1295,7 +1675,7 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials }) {
           )}
         </div>
 
-        <div className="discover-overlay-footer" style={{ paddingTop: footerPadTop, paddingBottom: footerPadBottom, position: 'sticky', bottom: 0, zIndex: 100, transform: showFooter ? 'translateY(0)' : 'translateY(100%)', transition: 'transform 220ms cubic-bezier(0.32, 0.72, 0, 1), opacity 220ms cubic-bezier(0.32, 0.72, 0, 1)', opacity: showFooter ? 1 : 0 }}>
+        <div className="discover-overlay-footer" style={{ paddingTop: footerPadTop, paddingBottom: footerPadBottom, position: 'sticky', bottom: 0, zIndex: 100, opacity: footerOpacity, transform: `translateY(${(1 - footerOpacity) * 12}px)`, transition: 'opacity 0ms, transform 0ms' }}>
           <div className="discover-overlay-footer-copy">
             {card.type === 'outfit' && (
               <div className="discover-overlay-footer-copy-stack">
@@ -1314,10 +1694,133 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials }) {
   );
 }
 
+function CreatorProfileOverlay({ card, onClose }) {
+  const [activeTab, setActiveTab] = useState('All');
+  const [activeFilter, setActiveFilter] = useState(null);
+  const allCards = discoverCards.filter(c => c.author === card.author);
+  const boardCards = allCards.filter(c => c.type === 'outfit');
+  const baseCards = activeTab === 'Boards' ? boardCards : allCards;
+  const visibleCards = activeFilter === 'Outfits' ? baseCards.filter(c => c.type === 'outfit')
+    : activeFilter === 'Items' ? baseCards.filter(c => c.type === 'item')
+    : baseCards; // null = no filter
+  const leftCol = visibleCards.filter((_, i) => i % 2 === 0);
+  const rightCol = visibleCards.filter((_, i) => i % 2 === 1);
+  const handle = '@' + card.author.toLowerCase().replace(/\s/g, '');
+
+  return (
+    <div className="discover-overlay" style={{ zIndex: 200 }}>
+      <div className="discover-overlay-card" style={{ borderRadius: 0 }}>
+        <div className="profile-scroll-container hue-cyan" style={{ overflow: 'auto', height: '100%' }}>
+
+          {/* Top actions — mirrors own profile */}
+          <header className="profile-top-actions">
+            <button type="button" className="icon-action-btn shadow-sm" onClick={onClose} aria-label="Back">
+              <Icon d={ICONS.chev_l} size={24} stroke={2.5} />
+            </button>
+            <div className="right-group">
+              <button type="button" className="icon-action-btn shadow-sm" aria-label="Search">
+                <Icon d={ICONS.search} size={24} stroke={2.5} />
+              </button>
+              <button type="button" className="icon-action-btn shadow-sm" aria-label="More">
+                <Icon d={ICONS.dots} size={24} stroke={2.5} />
+              </button>
+            </div>
+          </header>
+
+          {/* Identity */}
+          <div className="profile-identity-section">
+            <div className="profile-large-avatar shadow-lg">
+              {card.authorAvatar
+                ? <img src={card.authorAvatar} alt={card.author} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                : <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg,#EAF0F4,#1DB5FF33)' }} />
+              }
+            </div>
+            <div className="profile-info-stack">
+              <h1 className="profile-name">{card.author}</h1>
+              <span className="profile-handle">{handle}</span>
+            </div>
+          </div>
+
+          {/* Bio */}
+          <section className="profile-bio-section">
+            <p className="profile-bio">{card.context}</p>
+            <div className="profile-social-proof">
+              <div className="profile-follower-stack" aria-hidden="true">
+                <span /><span /><span />
+              </div>
+              <span className="profile-follower-copy">{card.count} followers</span>
+            </div>
+          </section>
+
+          {/* Action row — Follow only, no settings/X */}
+          <div className="profile-action-row">
+            <button type="button" className="profile-edit-btn" style={{ background: '#1DB5FF', color: '#fff', border: 'none' }}>Follow</button>
+          </div>
+
+          {/* Global tabs: All / Boards — half-width each */}
+          <div className="creator-subfilter-bar">
+            {[['All', allCards.length], ['Boards', boardCards.length]].map(([label, count]) => (
+              <button key={label} type="button" className={`creator-subfilter-btn ${activeTab === label ? 'active' : ''}`} onClick={() => { setActiveTab(label); setActiveFilter(null); }}>
+                {label} <span className="profile-tab-count">{count}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Outfits / Items pills — only inside All */}
+          {activeTab === 'All' && (
+            <div className="creator-pill-filters">
+              {['Outfits', 'Items'].map(f => (
+                <button key={f} type="button" className={`category-pill ${activeFilter === f ? 'active' : ''}`} style={{ padding: '8px 24px', minHeight: 0 }} onClick={() => setActiveFilter(activeFilter === f ? null : f)}>{f}</button>
+              ))}
+            </div>
+          )}
+
+          {/* Grid */}
+          <div className="profile-masonry-grid">
+            <div className="masonry-col">
+              {leftCol.map(c => (
+                <article key={c.id} className="masonry-item profile-paper-card" style={{ height: c.height, backgroundImage: `url(${c.imageUrl})`, backgroundSize: 'cover', backgroundPosition: c.imagePosition }} />
+              ))}
+            </div>
+            <div className="masonry-col">
+              {rightCol.map(c => (
+                <article key={c.id} className="masonry-item profile-paper-card" style={{ height: c.height, backgroundImage: `url(${c.imageUrl})`, backgroundSize: 'cover', backgroundPosition: c.imagePosition }} />
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function DiscoverScreen({ activeDiscoverTab, onDiscoverTabChange, activeScreen }) {
   const [activeOutfitCard, setActiveOutfitCard] = useState(null);
+  const [activeCreator, setActiveCreator] = useState(null);
+  const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
+  const tabsRef = useRef(null);
   const leftColumnCards = discoverCards.filter((card) => card.column === 0);
   const rightColumnCards = discoverCards.filter((card) => card.column === 1);
+  const { tabsTopOffset } = useDialKit('Discover Tabs', {
+    tabsTopOffset: [-6, -24, 24],
+  });
+
+  useEffect(() => {
+    const measureTab = () => {
+      const tabsContainer = tabsRef.current;
+      if (!tabsContainer) return;
+      const activeButton = tabsContainer.querySelector('.discover-tab.is-active');
+      if (activeButton) {
+        const { offsetWidth, offsetLeft } = activeButton;
+        setSliderStyle({ width: offsetWidth, left: offsetLeft });
+      }
+    };
+
+    measureTab();
+    const timer = setTimeout(measureTab, 50);
+    return () => clearTimeout(timer);
+  }, [activeDiscoverTab]);
   const feedDials = {
     avatarSize: 22,
     nameFontSize: 10,
@@ -1340,8 +1843,9 @@ function DiscoverScreen({ activeDiscoverTab, onDiscoverTabChange, activeScreen }
 
   return (
     <main id="home-screen" className={`screen hue-cyan${activeScreen === 'home' ? ' active' : ''}`} data-tab="home" aria-label="Discover feed">
-      <div className="discover-top-nav">
-        <div className="discover-tabs" role="tablist" aria-label="Discover tabs">
+      <div className="discover-top-nav" style={{ top: `calc(var(--app-status-bar-height) + ${tabsTopOffset}px)` }}>
+        <div className="discover-tabs" ref={tabsRef} role="tablist" aria-label="Discover tabs">
+          <div className="discover-tabs-slider" style={{ width: `${sliderStyle.width}px`, left: `${sliderStyle.left}px` }} />
           <button className={`discover-tab${activeDiscoverTab === 'featured' ? ' is-active' : ''}`} type="button" onClick={() => onDiscoverTabChange('featured')}>
             For You
           </button>
@@ -1351,8 +1855,8 @@ function DiscoverScreen({ activeDiscoverTab, onDiscoverTabChange, activeScreen }
         </div>
       </div>
 
-      <div className="discover-feed">
-      <div className="discover-grid">
+      <div className="discover-feed" style={{ top: `calc(var(--app-status-bar-height) + 48px + ${tabsTopOffset}px)` }}>
+      <div className="discover-grid" key={activeDiscoverTab} data-direction={activeDiscoverTab === 'following' ? 'right' : 'left'}>
         <div className="discover-column">
           {leftColumnCards.map((card) => (
             <DiscoverCard
@@ -1377,7 +1881,8 @@ function DiscoverScreen({ activeDiscoverTab, onDiscoverTabChange, activeScreen }
       </div>
       </div>
 
-      {activeOutfitCard ? <DiscoverOutfitOverlay card={activeOutfitCard} onClose={() => setActiveOutfitCard(null)} onSetActiveCard={setActiveOutfitCard} feedDials={feedDials} /> : null}
+      {activeOutfitCard ? <DiscoverOutfitOverlay card={activeOutfitCard} onClose={() => setActiveOutfitCard(null)} onSetActiveCard={setActiveOutfitCard} feedDials={feedDials} onCreatorOpen={setActiveCreator} /> : null}
+      {activeCreator ? <CreatorProfileOverlay card={activeCreator} onClose={() => setActiveCreator(null)} /> : null}
     </main>
   );
 }
@@ -1412,13 +1917,11 @@ const exploreHeroByCategory = {
 };
 
 const topBrands = [
-  { name: 'Prada', letter: 'P', category: 'All', style: { backgroundColor: '#0D0D0D', color: '#FFFFFF', fontFamily: 'serif' } },
-  { name: 'Nike', letter: 'N', category: 'Streetwear', style: { backgroundColor: '#F5F5F5', color: '#0D0D0D', border: '2px solid #EAEAEA', fontWeight: 900 } },
-  { name: 'Stüssy', letter: 'S', type: 'text', style: { backgroundColor: '#0D0D0D', color: '#FFFFFF', fontStyle: 'italic', fontFamily: 'serif' } },
-  { name: 'Balenciaga', letter: 'B', category: 'Archive', style: { backgroundColor: '#F5F5F5', color: '#0D0D0D', border: '2px solid #EAEAEA', fontWeight: 800 } },
-  { name: 'Carhartt', letter: 'C', category: 'Streetwear', style: { backgroundColor: '#B38645', color: '#FFFFFF', fontWeight: 900 } },
-  { name: 'Miu Miu', letter: 'M', category: 'Y2K', style: { backgroundColor: '#F3E4EB', color: '#0D0D0D', border: '2px solid #E7D6DE', fontWeight: 800 } },
-  { name: 'Acne', letter: 'A', category: 'Office', style: { backgroundColor: '#CDB38D', color: '#FFFFFF', fontWeight: 900 } }
+  { name: 'Nike', image: 'https://www.nike.com/favicon.ico', category: 'Streetwear', style: { backgroundColor: '#FFFFFF' } },
+  { name: 'Balenciaga', image: 'https://www.balenciaga.com/favicon.ico', category: 'Archive', style: { backgroundColor: '#FFFFFF' } },
+  { name: 'Carhartt', image: 'https://www.carhartt-wip.com/favicon.ico', category: 'Streetwear', style: { backgroundColor: '#FFFFFF' } },
+  { name: 'Miu Miu', image: 'https://www.miumiu.com/favicon.ico', category: 'Y2K', style: { backgroundColor: '#FFFFFF' } },
+  { name: 'Acne', letter: 'A', category: 'Office', style: { backgroundColor: '#FFFFFF', color: '#0D0D0D', fontWeight: 700, fontSize: '24px' } }
 ];
 
 const featuredCurators = [
@@ -1621,7 +2124,13 @@ function ExploreScreen({ activeScreen }) {
             <div className="horizontal-scroll-container" style={{ gap: avatar.gap }}>
               {filteredBrands.map((brand, idx) => (
                 <div key={idx} className="circle-item">
-                  <div className="circle-avatar" style={{ ...brand.style, width: avatar.size, height: avatar.size }}>{brand.letter}</div>
+                  <div className="circle-avatar" style={{ ...brand.style, width: avatar.size, height: avatar.size, borderRadius: '50%', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    {brand.image ? (
+                      <img src={brand.image} alt={brand.name} style={{ width: '70%', height: '70%', objectFit: 'contain' }} />
+                    ) : (
+                      <span style={{ fontSize: brand.style.fontSize, fontWeight: brand.style.fontWeight, fontStyle: brand.style.fontStyle }}>{brand.letter}</span>
+                    )}
+                  </div>
                   <div className="circle-name" style={{ fontSize: avatar.nameSize, width: avatar.size, marginTop: avatar.labelGap }}>{brand.name}</div>
                 </div>
               ))}
@@ -1670,6 +2179,63 @@ function App() {
   const [profileView, setProfileView] = useState('main');
   const screenHistoryRef = useRef(['home']);
 
+  useEffect(() => {
+    const handleFiles = (files, event) => {
+      const file = files[0];
+      if (file && file.type.startsWith('image/')) {
+        const url = URL.createObjectURL(file);
+        const target = event.target;
+        const imgTarget = target.closest('.discover-card-image, .discover-overlay-hero, .profile-large-avatar, .discover-author-avatar, .masonry-item, .trending-outfit-card, img, .discover-overlay-item-image');
+        
+        if (imgTarget) {
+          if (imgTarget.tagName === 'IMG') {
+            imgTarget.src = url;
+          } else {
+            const currentBg = imgTarget.style.backgroundImage || window.getComputedStyle(imgTarget).backgroundImage;
+            if (currentBg && currentBg.includes('linear-gradient')) {
+              const newBg = currentBg.replace(/url\(['"]?[^'"]+['"]?\)/g, `url(${url})`);
+              if (newBg !== currentBg) {
+                imgTarget.style.backgroundImage = newBg;
+                return;
+              }
+            }
+            imgTarget.style.backgroundImage = `url(${url})`;
+            imgTarget.style.backgroundSize = 'cover';
+          }
+        }
+      }
+    };
+
+    const handleDrop = (e) => {
+      e.preventDefault();
+      if (e.dataTransfer?.files?.length > 0) {
+        handleFiles(e.dataTransfer.files, e);
+      }
+    };
+    const handlePaste = (e) => {
+      if (e.clipboardData?.files?.length > 0) {
+        e.preventDefault();
+        // Since paste occurs globally, try to guess the hovered element using recent mouse coords, 
+        // or just apply to the active card. But document.elementFromPoint can be used if we tracked mouse.
+        // For simplicity, document.activeElement might just be body.
+        // Let's just use the current document's active or hovered element if possible, or fallback.
+        const hoveredElements = document.querySelectorAll(':hover');
+        const targetElement = hoveredElements.length ? hoveredElements[hoveredElements.length - 1] : e.target;
+        handleFiles(e.clipboardData.files, { target: targetElement });
+      }
+    };
+    const handleDragOver = (e) => e.preventDefault();
+
+    window.addEventListener('drop', handleDrop);
+    window.addEventListener('dragover', handleDragOver);
+    window.addEventListener('paste', handlePaste);
+    return () => {
+      window.removeEventListener('drop', handleDrop);
+      window.removeEventListener('dragover', handleDragOver);
+      window.removeEventListener('paste', handlePaste);
+    };
+  }, []);
+
   const syncAnnotations = (annotations) => {
     fetch(AGENTATION_SYNC_URL, {
       method: 'POST',
@@ -1707,7 +2273,7 @@ function App() {
 
           <ProfileScreen activeScreen={activeScreen} profileView={profileView} onProfileViewChange={setProfileView} />
 
-          {!(activeScreen === 'profile' && profileView === 'ai-enhancer') ? <AppBottomNav activeScreen={activeScreen} onScreenChange={handleScreenChange} /> : null}
+          {!(activeScreen === 'profile' && (profileView === 'ai-enhancer' || profileView === 'planner')) ? <AppBottomNav activeScreen={activeScreen} onScreenChange={handleScreenChange} /> : null}
         </div>
       </IOSDevice>
 

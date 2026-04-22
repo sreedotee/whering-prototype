@@ -8,17 +8,17 @@ export default function BriefChallenge() {
   return (
     <section id="brief" className="py-10 bg-white">
       <div className="container-standard">
-        <SectionHeader number="02" title="The Brief & Challenge" />
+        <SectionHeader number="02" title="The Challenge" />
 
         <motion.div {...fadeInUp} className="mb-8 max-w-3xl">
-          <p className="text-base font-medium text-[#6B6B6B] leading-[27.2px]">
-            The starting point was simple:{" "}
-            <em>"Create a mobile app that uses AI to generate outfit visualizations from clothing items."</em>
+          <p className="text-base font-medium text-[#5C5C5C] leading-[27.2px]">
+            The starting point was a question:{" "}
+            <em>"What does Whering do?"</em>
           </p>
-          <p className="text-base font-medium text-[#6B6B6B] leading-[27.2px] mt-4">
-            But the real challenge was strategic:{" "}
-            <strong className="text-[#1F1F1F]">
-              Where does this technology create the most value?
+          <p className="text-base font-medium text-[#5C5C5C] leading-[27.2px] mt-4">
+            That was the first thing I asked after five minutes of using the app. Not because the brand is unclear — the mission is sharp. But the product wasn't making it easy to answer.{" "}
+            <strong className="text-[#0A0A0A]">
+              The challenge was structural: a strong promise buried under competing actions.
             </strong>
           </p>
         </motion.div>
@@ -26,21 +26,21 @@ export default function BriefChallenge() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {
-              title: "The Question",
+              title: "The Observation",
               content:
-                "Virtual try-on technology exists—but for what purpose? Where does it solve real problems?",
+                "Nine actions compete on the first screen. No clear entry point. No obvious loop. A great mission — dress better, waste less — that the product makes hard to feel.",
               highlight: false,
             },
             {
               title: "My Approach",
               content:
-                "Research existing solutions → Identify use case gaps → Define strategic opportunity → Design for that context",
+                "Map the promise to behavior → Split casual vs power user needs → Use recurrence as navigation weight → Redesign around five clear destinations",
               highlight: true,
             },
             {
               title: "The Outcome",
               content:
-                "A shopping companion that helps users make confident purchase decisions across any retailer.",
+                "A restructured experience where each tab has a clear purpose, the core loop is faster to reach, and the daily habit has room to form.",
               highlight: false,
             },
           ].map((card, i) => (
@@ -51,20 +51,20 @@ export default function BriefChallenge() {
               transition={{ delay: i * 0.15, duration: 0.5 }}
               viewport={{ once: true }}
               className={`rounded-2xl overflow-clip py-6 px-8 ${
-                card.highlight ? "bg-[#3D2B4C] text-white" : ""
+                card.highlight ? "bg-primary text-white" : ""
               }`}
               style={card.highlight ? {} : { backgroundColor: '#00000008' }}
             >
               <h3
                 className={`heading mb-4 ${
-                  card.highlight ? "text-white" : "text-[#1F1F1F]"
+                  card.highlight ? "text-white" : "text-[#0A0A0A]"
                 }`}
               >
                 {card.title}
               </h3>
               <p
                 className={`leading-relaxed ${
-                  card.highlight ? "text-purple-200" : "text-[#6B6B6B]"
+                  card.highlight ? "text-white/70" : "text-[#5C5C5C]"
                 }`}
               >
                 {card.content}

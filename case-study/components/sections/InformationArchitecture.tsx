@@ -7,23 +7,23 @@ import { fadeInUp } from "@/styles/animations";
 const architectureColumns = [
   {
     title: "HOME",
-    children: ["Curated feed", "Followed creators", "Recent inspiration"],
+    children: ["Curated feed", "Follow creators", "Recent inspiration"],
   },
   {
     title: "EXPLORE",
     children: ["Search", "Creators", "Outfits", "Items"],
   },
   {
-    title: "STUDIO",
-    children: ["Create outfit", "Use saved items", "AI styling"],
+    title: "CANVAS",
+    children: ["Build outfit", "Use saved items", "Style combinations"],
   },
   {
     title: "INBOX",
     children: ["Feedback", "Likes", "Follows", "Messages"],
   },
   {
-    title: "WARDROBE",
-    children: ["Items", "Outfits", "Collections", "Stats"],
+    title: "PROFILE",
+    children: ["Items", "Outfits", "Collections", "Stats", "Calendar", "Schedule"],
   },
 ];
 

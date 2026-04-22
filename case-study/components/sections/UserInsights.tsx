@@ -29,18 +29,6 @@ const personas = [
     ],
     job: "Access deeper wardrobe intelligence without forcing that complexity onto every new user.",
   },
-  {
-    initial: "S",
-    name: "Social Explorer",
-    segment: "Finds taste through people",
-    description: "Discovers creators, outfits, and items through public taste signals.",
-    behaviors: [
-      "Follows creators for style context",
-      "Saves outfits or items for later use",
-      "Turns inspiration into personal styling behavior",
-    ],
-    job: "Move from creator inspiration to items, collections, and new outfits without hitting a dead end.",
-  },
 ];
 
 export default function UserInsights() {
@@ -57,7 +45,7 @@ export default function UserInsights() {
           not every valuable feature deserves equal visibility on day one.
         </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-16">
           {personas.map((p, i) => (
             <motion.div
               key={p.name}

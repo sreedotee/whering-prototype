@@ -2,20 +2,55 @@
 
 import dynamic from 'next/dynamic';
 import Hero from "@/components/Hero";
+import SessionSignal from "@/components/SessionSignal";
 import SectionTimeline from "@/components/SectionTimeline";
 import Footer from "@/components/Footer";
 
-// Lazy load heavy sections
-const Overview = dynamic(() => import("@/components/sections/Overview"), { loading: () => null });
-const AuditAndMethod = dynamic(() => import("@/components/sections/AuditAndMethod"), { loading: () => null });
-const CurrentStateProblems = dynamic(() => import("@/components/sections/CurrentStateProblems"), { loading: () => null });
-const CompetitiveInspiration = dynamic(() => import("@/components/sections/CompetitiveInspiration"), { loading: () => null });
-const InteractionClarityTerminology = dynamic(() => import("@/components/sections/InteractionClarityTerminology"), { loading: () => null });
-const PromiseBehaviorMatrix = dynamic(() => import("@/components/sections/PromiseBehaviorMatrix"), { loading: () => null });
-const RedesignDirection = dynamic(() => import("@/components/sections/RedesignDirection"), { loading: () => null });
-const ProductPrinciples = dynamic(() => import("@/components/sections/ProductPrinciples"), { loading: () => null });
-const ModeScreens = dynamic(() => import("@/components/sections/ModeScreens"), { loading: () => null });
-const Reflection = dynamic(() => import("@/components/sections/Reflection"), { loading: () => null });
+const load = (path: string) => dynamic(() => import(`@/components/sections/${path}`), { loading: () => null });
+
+// Context
+const Overview              = load("Overview");
+const BriefChallenge        = load("BriefChallenge");
+const MarketContext         = load("MarketContext");
+const UserPersonas          = load("UserPersonas");
+
+// Research
+const AuditAndMethod        = load("AuditAndMethod");
+const UserResearch          = load("UserResearch");
+const CurrentStateProblems  = load("CurrentStateProblems");
+const CompetitiveLandscape  = load("CompetitiveLandscape");
+const CompetitiveInspiration = load("CompetitiveInspiration");
+
+// Synthesis
+const UserInsights          = load("UserInsights");
+const JobsToBeDone          = load("JobsToBeDone");
+const StrategicOpportunity  = load("StrategicOpportunity");
+const CardSorting           = load("CardSorting");
+const InteractionClarityTerminology = load("InteractionClarityTerminology");
+
+// Framework
+const PromiseBehaviorMatrix = load("PromiseBehaviorMatrix");
+const ThreeModes            = load("ThreeModes");
+const ModeDecisions         = load("ModeDecisions");
+
+// Design
+const RedesignDirection     = load("RedesignDirection");
+const DesignLanguage        = load("DesignLanguage");
+const InformationArchitecture = load("InformationArchitecture");
+const ProductPrinciples     = load("ProductPrinciples");
+const ModeScreens           = dynamic(() => import("@/components/sections/ModeScreens"), { loading: () => null });
+
+// System & Validation
+const Iterations            = load("Iterations");
+const DesignSystem          = load("DesignSystem");
+const BrandPreservation     = load("BrandPreservation");
+const VideoAndPrototype     = load("VideoAndPrototype");
+const ProblemEvolution      = load("ProblemEvolution");
+const Validation            = load("Validation");
+const ImpactMetrics         = load("ImpactMetrics");
+const Monetization          = load("Monetization");
+const Constraints           = load("Constraints");
+const Reflection            = load("Reflection");
 
 export default function Home() {
   const mode1Screens = [
@@ -35,7 +70,7 @@ export default function Home() {
       scrollable: true,
     },
     {
-      title: "Studio",
+      title: "Canvas",
       caption: "Try-on canvas as the main creation surface",
       bg: "linear-gradient(135deg, #4a3560 0%, #6b3fa0 100%)",
       icon: "floppy-disk",
@@ -122,14 +157,30 @@ export default function Home() {
     <main className="bg-white min-h-screen lg:ml-[260px]">
       <SectionTimeline />
       <Hero />
+      <SessionSignal />
       <div className="flex flex-col">
+
+        {/* ── Context ── */}
         <Overview />
-        <AuditAndMethod />
-        <CurrentStateProblems />
+        <BriefChallenge />
         <CompetitiveInspiration />
+
+        {/* ── Research ── */}
+        <AuditAndMethod />
+
+        {/* ── Synthesis ── */}
+        <UserInsights />
+        <StrategicOpportunity />
         <InteractionClarityTerminology />
+
+        {/* ── Framework ── */}
         <PromiseBehaviorMatrix />
+        <ThreeModes />
+
+        {/* ── Design ── */}
         <RedesignDirection />
+        <DesignLanguage />
+        <InformationArchitecture />
         <ProductPrinciples />
 
         <div id="designs" />
@@ -138,7 +189,7 @@ export default function Home() {
             modeTitle: "Layer 1: NAVIGATION",
             subtitle: "Purpose-Driven Hubs",
             microlabel: "Action Hierarchy",
-            intro: "The navigation layer replaces 'random' feature clusters with five intent-based hubs. By mapping Dressing Intent to specific tabs (Explore, Search, Studio, Inbox, Profile), we reduce cognitive load and simplify the 'Consumption-to-Creation' loop.",
+            intro: "The navigation layer replaces competing feature clusters with five intent-based hubs. By mapping each tab to a clear purpose (Home, Explore, Canvas, Inbox, Profile), the first screen has fewer competing demands.",
             screens: mode1Screens,
             flowSteps: ["Audit CTAs", "Clarify tab purpose", "Cluster hub jobs", "Derive destinations"],
           }}
@@ -162,6 +213,12 @@ export default function Home() {
             screens: mode3Screens,
           }}
         />
+
+        {/* ── System & Validation ── */}
+        <BrandPreservation />
+        <Monetization />
+
+        {/* ── Closing ── */}
         <Reflection />
       </div>
       <Footer />

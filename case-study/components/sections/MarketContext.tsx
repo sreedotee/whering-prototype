@@ -21,7 +21,7 @@ const stats = [
 
 export default function MarketContext() {
   return (
-    <section className="py-10 bg-white">
+    <section id="market-context" className="py-10 bg-white">
       <div className="container-standard">
         <SectionHeader number="" title="Market Context" />
 

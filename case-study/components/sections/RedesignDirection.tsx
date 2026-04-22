@@ -116,30 +116,6 @@ export default function RedesignDirection() {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="rounded-2xl bg-surface border border-black/5 p-7 md:p-8"
-        >
-          <p className="card-microlabel mb-6">Journey shifts</p>
-          <div className="space-y-8">
-            {journeys.map((journey) => (
-              <div key={journey.title} className="border-b border-black/5 last:border-0 pb-7 last:pb-0">
-                <h3 className="card-heading !text-base mb-4">{journey.title}</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-[110px_1fr] gap-3 mb-3 items-start">
-                  <p className="card-microlabel pt-2">Before</p>
-                  <FlowLine items={journey.before} />
-                </div>
-                <div className="grid grid-cols-1 lg:grid-cols-[110px_1fr] gap-3 items-start">
-                  <p className="card-microlabel pt-2 !text-plum !opacity-100">After</p>
-                  <FlowLine items={journey.after} />
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

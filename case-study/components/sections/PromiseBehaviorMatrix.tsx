@@ -7,29 +7,29 @@ import { fadeInUp } from "@/styles/animations";
 
 const matrixData = {
   features: ["Digitizing", "AI Stylist", "Planner", "Stats (CPW)"],
-  pillars: ["Waste Reduction", "Style Score", "Shop Smarter", "Organization"],
+  pillars: ["Waste Reduction", "Style Better", "Shop Smarter", "Organization"],
   master: {
     "Digitizing": {
       "Waste Reduction": ["Prevents repeat buys", "Extends garment life", "Identifies unused items", "Discourages throw-away"],
-      "Style Score": ["Reveals color palettes", "Enables cross-matching", "Visualizes capsules", "Eliminates closet blindness"],
+      "Style Better": ["Reveals color palettes", "Enables cross-matching", "Visualizes capsules", "Eliminates closet blindness"],
       "Shop Smarter": ["Store compatibility", "Verifies item gaps", "Prevents impulse one-offs", "In-hand reference"],
       "Organization": ["Centralizes boxes", "Indexes rotations", "Tracks laundry/repair", "Searchable inventory"],
     },
     "AI Stylist": {
       "Waste Reduction": ["Rescues deadstock", "Kills 'nothing to wear'", "Promotes restyling", "Slows replacement cycle"],
-      "Style Score": ["Professional pairings", "Bold combo experiments", "Doubles perceived closet", "Daily style loops"],
+      "Style Better": ["Professional pairings", "Bold combo experiments", "Doubles perceived closet", "Daily style loops"],
       "Shop Smarter": ["Identifies missing basics", "Prevents non-stylable buys", "Links to wishlists", "Shows 'missing piece' use"],
       "Organization": ["Groups by 'Mood'", "Weather-based sorting", "Silhouette clustering", "Auto-tagging flow"],
     },
     "Planner": {
       "Waste Reduction": ["Social event panic-buys", "Travel rouse maximization", "Shopping avoidance", "Rotational wear checks"],
-      "Style Score": ["Thoughtful curation", "Situational styling", "Consistent branding", "Travel lookbooks"],
+      "Style Better": ["Thoughtful curation", "Situational styling", "Consistent branding", "Travel lookbooks"],
       "Shop Smarter": ["Pinpoints outfit gaps", "Informs planned trips", "Tracks event spending", "Versatility checks"],
       "Organization": ["Physical storage map", "Laundry cycle mgt", "Seasonal pack-away", "Packing list automation"],
     },
     "Stats (CPW)": {
       "Waste Reduction": ["Shames fast-fashion", "Highlights low-utility", "Usage-rotation rewards", "Eco-progress metrics"],
-      "Style Score": ["Most-worn signature", "Aesthetic validation", "Friction identification", "Silhouette frequency"],
+      "Style Better": ["Most-worn signature", "Aesthetic validation", "Friction identification", "Silhouette frequency"],
       "Shop Smarter": ["Investment ROI proof", "Budget allocation info", "Impulse death-math", "Brand loyalty data"],
       "Organization": ["Donation flagging", "Utilization rates", "Shelf-space hierarchy", "Clear-out automation"],
     },
@@ -37,25 +37,25 @@ const matrixData = {
   casual: {
     "Digitizing": {
       "Waste Reduction": ["Prevents repeat buys"],
-      "Style Score": ["Reveals color palettes", "Enables cross-matching"],
+      "Style Better": ["Reveals color palettes", "Enables cross-matching"],
       "Shop Smarter": ["Store compatibility"],
       "Organization": ["Searchable inventory"],
     },
     "AI Stylist": {
       "Waste Reduction": ["Rescues deadstock"],
-      "Style Score": ["Professional pairings", "Bold combo experiments", "Doubles perceived closet"],
+      "Style Better": ["Professional pairings", "Bold combo experiments", "Doubles perceived closet"],
       "Shop Smarter": ["Links to wishlists"],
       "Organization": ["Groups by 'Mood'", "Weather-based sorting"],
     },
     "Planner": {
       "Waste Reduction": ["Social event panic-buys"],
-      "Style Score": ["Thoughtful curation"],
+      "Style Better": ["Thoughtful curation"],
       "Shop Smarter": [],
       "Organization": [],
     },
     "Stats (CPW)": {
       "Waste Reduction": [],
-      "Style Score": [],
+      "Style Better": [],
       "Shop Smarter": [],
       "Organization": [],
     },
@@ -63,25 +63,25 @@ const matrixData = {
   power: {
     "Digitizing": {
       "Waste Reduction": ["Extends garment life", "Identifies unused items", "Discourages throw-away"],
-      "Style Score": ["Visualizes capsules", "Eliminates closet blindness"],
+      "Style Better": ["Visualizes capsules", "Eliminates closet blindness"],
       "Shop Smarter": ["Verifies item gaps", "In-hand reference"],
       "Organization": ["Centralizes boxes", "Indexes rotations", "Tracks laundry/repair"],
     },
     "AI Stylist": {
       "Waste Reduction": ["Promotes restyling", "Slows replacement cycle"],
-      "Style Score": ["Identifies missing basics", "Prevents non-stylable buys"],
+      "Style Better": ["Identifies missing basics", "Prevents non-stylable buys"],
       "Shop Smarter": [],
       "Organization": ["Silhouette clustering", "Auto-tagging flow"],
     },
     "Planner": {
       "Waste Reduction": ["Travel rouse maximization", "Shopping avoidance", "Rotational wear checks"],
-      "Style Score": ["Situational styling", "Consistent branding"],
+      "Style Better": ["Situational styling", "Consistent branding"],
       "Shop Smarter": ["Pinpoints outfit gaps", "Informs planned trips", "Tracks event spending", "Versatility checks"],
       "Organization": ["Physical storage map", "Laundry cycle mgt", "Seasonal pack-away", "Packing list automation"],
     },
     "Stats (CPW)": {
       "Waste Reduction": ["Shames fast-fashion", "Highlights low-utility", "Usage-rotation rewards", "Eco-progress metrics"],
-      "Style Score": ["Most-worn signature", "Aesthetic validation", "Friction identification", "Silhouette frequency"],
+      "Style Better": ["Most-worn signature", "Aesthetic validation", "Friction identification", "Silhouette frequency"],
       "Shop Smarter": ["Investment ROI proof", "Budget allocation info", "Impulse death-math"],
       "Organization": ["Utilization rates", "Shelf-space hierarchy", "Clear-out automation"],
     },

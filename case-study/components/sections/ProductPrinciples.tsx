@@ -6,7 +6,7 @@ import { fadeInUp } from "@/styles/animations";
 
 const principles = [
   {
-    title: "Use Try On As The Active Verb",
+    title: "Use Canvas As The Creation Surface",
     label: "Interaction language",
     body: "Try on feels immediate and embodied. It tells users they can experiment with an outfit now, while styling feels more passive and advisory.",
   },
@@ -28,7 +28,7 @@ const principles = [
   {
     title: "Keep Social Signals Secondary",
     label: "Action hierarchy",
-    body: "Likes, flags, and sends should not compete with the stronger product signals: save, try on, remix, collect, and plan.",
+    body: "Likes, flags, and sends should not compete with the stronger product signals: save, add to canvas, remix, collect, and plan.",
   },
 ];
 

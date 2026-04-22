@@ -34,7 +34,7 @@ const charmPoints = [
 const brandPrinciples = [
   {
     principle: "Play, Not Pressure",
-    description: "Canvas feels like Cosmos (dress-up game), not like a form. Drag, drop, experiment. No hidden buttons. No buried controls."
+    description: "Canvas feels like the dress-up games you played as a kid — drag, drop, experiment. No hidden buttons. No buried controls."
   },
   {
     principle: "Personal, Not Prescriptive",
@@ -61,40 +61,27 @@ export default function BrandPreservation() {
         />
 
         <motion.p {...fadeInUp} className="narrative-body mb-12 max-w-3xl">
-          Georgia's review captures why Whering works emotionally: it's nostalgic (Clueless, Polyvore vibes), it feels playful (dress-up game), and it's deeply personal (your wardrobe, your style). The redesign doesn't change any of that. It just makes sure the magic doesn't get lost in confusing CTAs and competing features.
+          Whering works emotionally because it's nostalgic (Clueless, Polyvore vibes), it feels playful, and it's deeply personal — your wardrobe, your style. The redesign doesn't change any of that. It just makes sure the magic doesn't get lost in confusing CTAs and competing features.
         </motion.p>
 
-        <div className="space-y-6 mb-12">
-          {charmPoints.map((point, index) => (
-            <motion.div
-              key={point.moment}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05, duration: 0.4 }}
-              viewport={{ once: true }}
-              className="rounded-2xl border border-black/8 overflow-hidden"
-            >
-              <div className="p-6 bg-gradient-to-r from-purple-50 to-transparent border-b border-black/8">
-                <p className="card-microlabel text-plum mb-2">The Moment</p>
-                <h3 className="text-lg font-semibold text-primary">{point.moment}</h3>
+        <motion.ul
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          viewport={{ once: true }}
+          className="space-y-6 mb-12 max-w-3xl"
+        >
+          {charmPoints.map((point) => (
+            <li key={point.moment} className="flex gap-4 items-start">
+              <span className="mt-2 w-2 h-2 rounded-full bg-plum flex-shrink-0" />
+              <div>
+                <p className="font-semibold text-primary mb-1">{point.moment}</p>
+                <p className="card-body text-primary/70">{point.redesigned}</p>
+                <p className="text-sm italic text-primary/40 mt-1">{point.feeling}</p>
               </div>
-              <div className="p-6 space-y-4">
-                <div>
-                  <p className="card-microlabel text-secondary mb-2">Current Experience</p>
-                  <p className="card-body text-primary/70">{point.current}</p>
-                </div>
-                <div className="bg-gradient-to-r from-success/5 to-transparent p-4 rounded-lg border border-success/20">
-                  <p className="card-microlabel text-success mb-2">Redesigned Experience</p>
-                  <p className="card-body text-primary">{point.redesigned}</p>
-                </div>
-                <div>
-                  <p className="card-microlabel text-plum mb-1">Feeling</p>
-                  <p className="text-sm italic text-primary/60">{point.feeling}</p>
-                </div>
-              </div>
-            </motion.div>
+            </li>
           ))}
-        </div>
+        </motion.ul>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -103,15 +90,18 @@ export default function BrandPreservation() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <h3 className="text-2xl font-semibold text-primary mb-8">Brand Principles in the Redesign</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <h3 className="text-2xl font-semibold text-primary mb-6">Brand Principles in the Redesign</h3>
+          <ul className="space-y-4">
             {brandPrinciples.map((item) => (
-              <div key={item.principle} className="rounded-2xl bg-gradient-to-br from-plum/5 to-transparent border border-plum/20 p-6">
-                <p className="font-bold text-primary mb-2">{item.principle}</p>
-                <p className="card-body text-primary/75">{item.description}</p>
-              </div>
+              <li key={item.principle} className="flex gap-4 items-start">
+                <span className="mt-1 w-2 h-2 rounded-full bg-plum flex-shrink-0" />
+                <div>
+                  <span className="font-semibold text-primary">{item.principle} — </span>
+                  <span className="card-body text-primary/75">{item.description}</span>
+                </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </motion.div>
 
         <motion.div

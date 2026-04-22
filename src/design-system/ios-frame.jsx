@@ -82,7 +82,7 @@ export function IOSGlassPill({ children, dark = false, style = {} }) {
 // ─────────────────────────────────────────────────────────────
 // Navigation bar — glass pills + large title
 // ─────────────────────────────────────────────────────────────
-export function IOSNavBar({ title = 'Title', dark = false, trailingIcon = true, onBack }) {
+export function IOSNavBar({ title = 'Title', dark = false, trailingIcon = true, onBack, titleSize = 32, trailingOffset = 0 }) {
   const muted = dark ? 'rgba(255,255,255,0.6)' : '#404040';
   const text = dark ? '#fff' : '#000';
   const pillIcon = (content, onClick) => (
@@ -111,27 +111,35 @@ export function IOSNavBar({ title = 'Title', dark = false, trailingIcon = true, 
         padding: '0 16px',
       }}>
         {/* back chevron */}
-        {pillIcon(
+        <button
+          type="button"
+          onClick={onBack}
+          style={{
+            background: 'none',
+            border: 'none',
+            padding: 0,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 0,
+            width: 'auto',
+            height: '24px',
+            lineHeight: '24px',
+          }}
+          aria-label="Go back"
+        >
           <svg width="12" height="20" viewBox="0 0 12 20" fill="none" style={{ marginLeft: -1 }}>
             <path d="M10 2L2 10l8 8" stroke={muted} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>,
-          onBack
-        )}
-        {/* trailing ellipsis */}
-        {trailingIcon && pillIcon(
-          <svg width="22" height="6" viewBox="0 0 22 6">
-            <circle cx="3" cy="3" r="2.5" fill={muted}/>
-            <circle cx="11" cy="3" r="2.5" fill={muted}/>
-            <circle cx="19" cy="3" r="2.5" fill={muted}/>
           </svg>
-        )}
+        </button>
       </div>
       {/* large title */}
       <div style={{
         padding: '0 16px',
-        fontFamily: '-apple-system, system-ui',
-        fontSize: 34, fontWeight: 700, lineHeight: '41px',
-        color: text, letterSpacing: 0.4,
+        fontFamily: 'Inter, ui-sans-serif, system-ui',
+        fontSize: titleSize, fontWeight: 700, lineHeight: `${Math.round(titleSize * 1.2)}px`,
+        color: text, letterSpacing: 0,
       }}>{title}</div>
     </div>
   );

@@ -4,366 +4,138 @@
 
 ---
 
-## Hero Section
+## About Me
 
-### Whering
-
-**Reframing a Digital Wardrobe**
-
-Whering already has a strong promise: help people dress better, reduce waste, shop smarter, and organize their wardrobe. I redesigned the product experience so that promise becomes easier to understand, easier to act on, and easier to repeat.
-
-**Project Details:**
-- **Role:** Product Designer
-- **Duration:** 3 days
-- **Scope:** Solo redesign study
+I'm Sri, a product designer based in India. I've spent the better half of the last year thinking about consumer fashion apps — how people discover, organise, and relate to the things they own. When I found Whering, I couldn't let it go.
 
 ---
 
-## 01. Overview
+## The Question That Started This
 
-### The Brief
+"What does Whering do?"
 
-> Redesign Whering's product experience so its promise feels clearer, lighter, and more connected.
+That was the first question I had after using it for five minutes. Not because the app is bad. The brand is beautiful, the mission is clear. But I wasn't sure how to answer it myself after five minutes of using it.
 
-### The Challenge
+When you land on the first screen, there are nine actions competing for your attention. Top bar, bottom bar, feed, buttons everywhere. And if I had to describe the app to a friend, I genuinely wouldn't know what to say first. Is it for creating outfits? Scheduling them? Shopping? Discovering people?
 
-The app has valuable features, but the hierarchy creates friction. The first screen has 9+ competing primary actions, similar concepts appear under different names, and discovery does not always connect cleanly to wardrobe action.
-
-### My Approach
-
-1. Audit Whering's promise and current app structure
-2. Map promises to the behaviors the product needs to enable
-3. Split the map into casual user and power user views
-4. Use recurrence as a navigation-weight heuristic
-5. Cluster related actions into clearer tabs and loops
-
-### The Outcome
-
-A cleaner product structure built around:
-
-**Clearer Hierarchy**
-- Reduce first-screen action overload and separate primary behavior from power-user tools
-
-**Unified Mental Model**
-- Consolidate moodboards, lookbooks, collections, and saved references into one flexible Collection model
-
-**Connected Discovery Loop**
-- Connect creators, outfits, items, collections, wardrobe, and styling into one reusable loop
-
-Final loop:
-
-`creator -> outfit -> item -> collection -> wardrobe -> new outfit`
+That indecision in how to describe it — you feel it inside the product too.
 
 ---
 
-## 02. Product Audit
+## The Diagnosis
 
-### What Whering Promises
+I went to the website. The way Whering describes itself points to four things: dressing better, reducing waste, shopping smarter, organising your wardrobe. Good intentions. Sharp mission.
 
-- Dress better
-- Reduce waste
-- Shop smarter
-- Organize wardrobe
+The problem is the app tries to serve all of them equally, all at once, to both casual users and power users on the same screen.
 
-### What I Found
-
-**9+ first-screen actions**
-
-The home experience exposed too many actions at the same level before the core loop was clear.
-
-**Duplicated mental models**
-
-Moodboard, lookbook, collection, and saved references all pointed toward a similar behavior: collecting fashion meaning for later use.
-
-**Broken discovery loop**
-
-Creators, outfits, items, wardrobe actions, collections, and styling had value individually, but did not always connect as one obvious loop.
+And here is where the sustainability angle matters most. Whering's mission — helping people waste less and love what they own — only works if people actually use the app every day. An app people churn from in week one has zero environmental impact. The best UX for a sustainability-first product is one that builds a daily habit. That became my north star for the redesign.
 
 ---
 
-## 03. Promise-to-Behavior Matrix
+## The Research
 
-I built a promise-to-behavior matrix to connect Whering's brand promise with the user behaviors the product needs to support.
+I mapped Whering's positioning to the behaviors the product needs to enable, then split that map into two views — casual users and power users.
 
-### Matrix Inputs
+**Casual users** need the product to feel immediately useful. They should understand where to start without needing to understand every wardrobe-management feature. They want to browse, get inspired, create an outfit, and feel good about what they own.
 
-**Core features**
-- Digitizing wardrobe
-- AI stylist
-- Planner
-- Stats and wardrobe intelligence
+**Power users** need deeper control — utilisation stats, cost-per-wear thinking, seasonal organisation, packing lists — without that complexity being forced onto everyone else.
 
-**Core promises**
-- Waste reduction
-- Style score
-- Shop smarter
-- Organization
-
-### Why It Helped
-
-The matrix made the redesign less subjective. Every major IA decision could be traced back to a behavior Whering needs to enable.
-
-For example:
-
-- Waste reduction needs repeat-buy prevention, unused item visibility, restyling, and utilization awareness
-- Style improvement needs color palettes, cross-matching, outfit creation, and daily style loops
-- Smarter shopping needs item gaps, wishlist links, and outfit compatibility
-- Organization needs searchable inventory, grouping, tagging, and maintenance flows
+The matrix told me what deserved tab-level visibility and what should live deeper. High recurrence across both user types meant a behavior needed a clear home in the navigation. Low recurrence meant it could wait.
 
 ---
 
-## 04. Casual vs Power User Views
+## The Inspiration
 
-The parent matrix was split into two smaller views:
+Before I started designing, I looked at two things.
 
-### Casual User View
+One was Cosmos. The way it handles community, organisation, and discovery — it feels like flipping through a magazine that knows your taste. Collections, moods, images that pull you in. You are not searching, things just find you.
 
-Casual users need the product to feel immediately useful. They should understand where to start without needing to understand every wardrobe-management feature.
+The other was something much older. The dress-up games I played as a kid. You had a character, a wardrobe, a blank canvas, and you just styled. No confusion about where to go or what to do. You just played.
 
-Primary needs:
-- Save and browse inspiration
-- Understand outfits and items
-- Get styling help
-- Organize enough to find things again
-
-### Power User View
-
-Power users need deeper control without forcing that complexity onto everyone else.
-
-Primary needs:
-- Wardrobe utilization
-- Seasonal organization
-- Cost-per-wear style thinking
-- Storage, laundry, donation, and repair tracking
-
-### Key Insight
-
-Not every valuable feature deserves equal visibility on day one. Some features should be tab-level. Others should be contextual.
+I wanted Whering to have both of those things. The flow of discovery and the simplicity of play.
 
 ---
 
-## 05. Navigation Weight
+## The Redesign
 
-I used recurrence across both matrices as a heuristic for navigation weight.
+I restructured around five tabs, each with one clear job.
 
-High recurrence meant a behavior appeared across multiple promises and across both user types. Those behaviors deserved stronger navigational presence.
+### Discover
 
-### Navigation Weight Signals
+Passive browsing. Six outfits per screen instead of one. You scroll, something catches your eye, you tap in — you can follow the creator, save the whole look, or pull individual items straight into your own wardrobe.
 
-**Digitizing / Wardrobe**
-- Highest recurrence
-- Needs tab-level visibility
+In the current design, one outfit per screen only works when the algorithm is hyper-personalised. For an app where the habit is still forming, density matters. Six outfits in one scroll gives people more chances to find something that connects.
 
-**AI Styling / Create**
-- Strong recurrence
-- Needs a clear creation hub
-
-**Marketplace / Shop**
-- Medium recurrence
-- Should connect through discovery and item details
-
-**Planner**
-- Lower recurrence for casual users
-- Better as a contextual or profile-side feature
-
-**Stats**
-- Strong for power users, weak for casual users
-- Should be hidden or delayed until there is enough wardrobe data
-
----
-
-## 06. Information Architecture
-
-The clustering led to a five-destination model:
-
-### Home
-
-Passive inspiration, followed creators, recent updates.
+This is the Cosmos-inspired flow — community and discovery feeding naturally into saving and styling.
 
 ### Explore
 
-Active search across creators, outfits, items, and collections.
+Active discovery. You are looking for something specific — a brand, a person, a style. Search with intent rather than scroll with hope. This keeps passive and active discovery separate so neither clutters the other.
 
 ### Studio
 
-The creation hub for styling, outfit generation, and saved item use.
+This is the dress-up game. One clear canvas, your wardrobe, create an outfit.
+
+In the current app there are multiple actions sitting beside each other with no clear hierarchy — it is not a familiar or intuitive interface. I simplified it down to one thing: pick your pieces, build your look. The interaction should feel like play, not form-filling.
 
 ### Inbox
 
-Social feedback, likes, follows, comments, and creator interactions.
+Social reinforcement. Saves, follows, interactions. The feedback loop that makes posting feel worth it and keeps people coming back. This is also what signals to the community that someone's wardrobe is worth following.
 
-### Wardrobe
+### Profile
 
-Items, outfits, collections, stats, and deeper organization tools.
-
-This structure reduces the need for 9+ first-screen actions because each action has a more natural home.
+Everything personal and private consolidated in one place. Stats, calendar settings, collections, wardrobe management. Power user features that matter but should not clutter the main experience for someone who just wants to get dressed.
 
 ---
 
-## 07. Collection as the Unified Model
+## The Calendar
 
-The original mental model felt fragmented:
+The calendar needed a separate fix. In the current app there are four actions sitting next to each other — three about creating an outfit, one about creating an event. They all compete and it is genuinely unclear what to do first.
 
-- Moodboard
-- Lookbook
-- Collection
-- Saved reference
-
-I consolidated these into one flexible model: **Collection**.
-
-The user can still name collections however they want:
-
-- Paris trip
-- Summer moodboard
-- Work capsule
-- Wishlist
-- Creator inspiration
-
-The product does not need separate screens for each meaning.
-
-### Why This Matters
-
-One stable product object can support multiple user intents. This makes the interface easier to learn and makes saved inspiration easier to reuse.
+Here is the thing: an event is just a container for outfits. It is not a separate action. So I moved event creation to a single button in the top right. Tap it, name it, done. Then you just add outfits to it. Fewer steps, clearer mental model.
 
 ---
 
-## 08. Discovery Loop
+## The Collection Model
 
-The discovery experience needed to do more than show static inspiration.
+The original app had too many names for the same behavior — moodboard, lookbook, collection, saved reference. These all express the same intent: collecting fashion meaning for later use.
 
-### Problem
-
-Fashion is personal. A single outfit per screen depends heavily on the recommendation being right. If the first few outfits miss, the user has to keep swiping with little reward.
-
-Also, static outfit images do not create a strong next action unless the items inside them can be opened, saved, collected, and restyled.
-
-### Redesign Direction
-
-Make discovery more modular and reusable:
-
-`creator -> outfit -> item -> collection -> wardrobe -> new outfit`
-
-### What Changes
-
-**Creators become taste anchors**
-- Users discover people through the outfits and items they curate
-
-**Outfits expose items**
-- A look becomes a set of reusable parts
-
-**Items connect to wardrobe**
-- Users can save, collect, compare, and style individual pieces
-
-**Collections feed creation**
-- Saved inspiration becomes usable context for new outfits
+I consolidated them into one flexible model: Collection. Users can still name collections however they want — Paris trip, summer moodboard, work capsule, wishlist, creator inspiration. The product does not need a separate screen for each meaning.
 
 ---
 
-## 09. Design Decisions
+## The Discovery Loop
 
-### 1. Replace action overload with job-based tabs
+Every inspiring object in the app should be reusable:
 
-The first screen should not carry the burden of every feature. Primary navigation should represent durable jobs, not every possible action.
+`creator → outfit → item → collection → wardrobe → new outfit`
 
-### 2. Move power tools deeper
-
-Stats, wardrobe maintenance, donation flags, and utilization tools are valuable, but they should appear when the user has enough wardrobe context.
-
-### 3. Use Collection as the parent model
-
-Moodboards, lookbooks, saved references, and collections all express collecting behavior. One flexible model reduces cognitive load.
-
-### 4. Make discovery actionable
-
-Discovery should lead into saving, wardrobe use, creator following, shopping intent, and outfit creation.
-
-### 5. Preserve the brand feeling
-
-The critique is about structure, not the brand. The redesign preserves Whering's softness and fashion charm while tightening the product logic.
+Creators become taste anchors. Outfits expose the items inside them. Items connect to the wardrobe. Collections feed back into new outfit creation. The loop closes. Discovery does not dead-end — it always points somewhere useful.
 
 ---
 
-## 10. Validation & Checks
+## What This Changes
 
-Because this was an independent redesign, I did not invent participant metrics. I validated the direction through product logic checks:
+**Activation** — New users understand where to start faster because each tab has one job.
 
-### Action Count Check
+**Retention** — The daily habit forms around discovery and styling, not feature exploration.
 
-Can the first screen reduce from 9+ competing actions into fewer, clearer destinations?
+**Sustainability impact** — An app people actually use daily extends the life of what they own. That is the mission.
 
-### Promise Coverage Check
-
-Does each product promise connect to behavior?
-
-### Navigation Weight Check
-
-Do repeated behaviors across casual and power-user views get higher IA priority?
-
-### Loop Continuity Check
-
-Can a user move from inspiration into a reusable wardrobe action?
-
-`creator -> outfit -> item -> collection -> wardrobe -> new outfit`
+**Creator ecosystem** — Users follow taste through people, not just items.
 
 ---
 
-## 11. Business Impact
+## Constraints
 
-This redesign is not just a cleanup exercise. A stronger loop can support:
+I did not have internal analytics, retention data, or user research from the Whering team. The work uses visible product evidence, action counts, heuristic reasoning, and loop walkthroughs. Everything here should be validated with real data before any decision is made.
 
-**Activation**
-- New users understand where to start faster
-
-**Retention**
-- Collections and wardrobe context give users a reason to return
-
-**Creator Discovery**
-- Users follow taste through creators, outfits, and items
-
-**Shopping Intent**
-- Item-level actions make inspiration more actionable
-
-**Wardrobe Value**
-- Discovery feeds back into what the user owns, saves, organizes, and styles
+The goal was also not to make Whering smaller or strip its identity. The brand is already warm, considered, and distinctive. The redesign keeps that while tightening the product logic underneath it.
 
 ---
 
-## 12. Constraints
+## Reflection
 
-### No Internal Analytics
+This is five days of work from the outside. The strongest redesigns do not just make screens cleaner — they make the product promise easier to understand, repeat, and feel.
 
-The work uses visible product evidence, action counts, heuristic reasoning, and loop walkthroughs.
-
-### Existing Product Depth
-
-The goal was not to make Whering smaller. It was to make the depth easier to understand.
-
-### Brand Equity
-
-Whering already has charm. The redesign should respect that instead of forcing a full visual reset.
-
-### Speculative Redesign
-
-The recommendations should be validated with real user data, save behavior, creator following, retention, and activation metrics.
-
----
-
-## 13. Reflection
-
-This project clarified how I think about consumer product design.
-
-The strongest redesigns do not just make screens cleaner. They make the product promise easier to understand, repeat, and feel.
-
-### Key Learnings
-
-- A product promise can become an IA tool when translated into behavior
-- Numbers make critique sharper than vague statements about clutter
-- Language is architecture
-- Discovery is stronger when every inspiring object becomes reusable
-
-### What I Would Validate Next
-
-- New-user comprehension of the five-tab structure
-- Save rate and creator follow rate in the redesigned discovery loop
-- Whether users understand Collection as the parent model
-- How power users respond to deeper stats and wardrobe-management placement
+Whering's promise is genuinely worth designing for. Getting people to fall back in love with what they already own is exactly the right problem. I just wanted to see if the product experience could feel as sharp as the vision behind it.

@@ -12,28 +12,25 @@ export default function Footer() {
       <div className="container-standard">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           <motion.div {...fadeInUp}>
-            <h2 className="narrative-section-heading !text-white !mb-2">Whering</h2>
+            <h2 className="narrative-section-heading !text-white !mb-2">Sreenandan</h2>
             <p className="narrative-body !text-white opacity-60 mb-6">
-              Reframing a Digital Wardrobe
+              Product Designer
             </p>
             <div className="flex flex-wrap gap-4 card-supporting !text-white opacity-40">
-              <span>3 days</span>
+              <span>Systems thinking</span>
               <span>/</span>
-              <span>Solo redesign study</span>
+              <span>Interaction design</span>
               <span>/</span>
-              <span>Promise-to-behavior matrix</span>
-              <span>/</span>
-              <span>Discovery loop</span>
+              <span>Product strategy</span>
             </div>
           </motion.div>
 
           <motion.div {...fadeInUp}>
-            <h3 className="card-microlabel !text-white !opacity-40 mb-6">Let&apos;s Connect</h3>
+            <h3 className="card-microlabel !text-white !opacity-40 mb-6">Get in touch</h3>
             <div className="space-y-4">
               {[
-                { icon: "email", label: "Email", href: "mailto:your@email.com" },
+                { icon: "email", label: "sreenidhi.dev@gmail.com", href: "mailto:sreenidhi.dev@gmail.com" },
                 { icon: "briefcase", label: "LinkedIn", href: "#" },
-                { icon: "bird", label: "Twitter", href: "#" },
                 { icon: "basketball", label: "Dribbble", href: "#" },
               ].map((link) => (
                 <a
@@ -55,9 +52,8 @@ export default function Footer() {
             <h3 className="card-microlabel !text-white !opacity-40 mb-6">More Work</h3>
             <div className="space-y-4">
               {[
-                { label: "Next Project ->", href: "#" },
+                { label: "Next Project →", href: "#" },
                 { label: "All Projects", href: "#" },
-                { label: "About Me", href: "#" },
               ].map((link) => (
                 <a
                   key={link.label}

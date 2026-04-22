@@ -24,7 +24,7 @@ const auditFindings = [
 
 const methodSteps = [
   "Mapped Whering's product promise to the user behaviors the interface needs to support.",
-  "Split the parent matrix into casual-user and power-user needs to separate activation from depth.",
+  "Split behaviors into casual-user and power-user views to separate what belongs on day one from what belongs deeper.",
   "Audited each flow for primary action clarity, object-model consistency, and hidden affordances.",
   "Clustered related actions into a cleaner navigation model and core interaction loop.",
 ];
@@ -36,13 +36,7 @@ export default function AuditAndMethod() {
         <SectionHeader number="02" title="Audit & Method" subtitle="From product promise to structure" />
 
         <motion.p {...fadeInUp} className="narrative-body mb-10 max-w-2xl">
-          After understanding what makes Whering emotionally strong, I used behavior mapping to
-          make the redesign accountable. The goal was to translate the product promise into
-          information architecture decisions: what deserves primary navigation, what belongs deeper,
-          and where progressive disclosure should protect the first-time experience.
-          I paid special attention to places where the interface changed intent without warning:
-          a creator profile leading to "style them," an outfit flow ending in "send to Maria,"
-          and a try-on canvas where add-item controls were visually buried.
+          I mapped the product promise to the behaviors the interface needed to support — then audited each flow for primary action clarity, object-model consistency, and hidden affordances.
         </motion.p>
 
         <motion.div

@@ -31,7 +31,7 @@ export default function Monetization() {
 
         <motion.p
           {...fadeInUp}
-          className="text-base font-medium text-[#6B6B6B] leading-[27.2px] mb-8 max-w-2xl"
+          className="text-base font-medium text-[#5C5C5C] leading-[27.2px] mb-8 max-w-2xl"
         >
           This redesign is not just a cleanup exercise. A stronger loop can help Whering turn
           inspiration into repeated behavior: browse, save, organize, style, and return.
@@ -42,14 +42,19 @@ export default function Monetization() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10"
+          className="mb-10"
         >
-          {impactAreas.map((area) => (
-            <div key={area.title} className="rounded-2xl bg-surface border border-black/5 p-7">
-              <p className="card-microlabel mb-3">{area.title}</p>
-              <p className="card-body !text-primary">{area.body}</p>
-            </div>
-          ))}
+          <ul className="space-y-4">
+            {impactAreas.map((area) => (
+              <li key={area.title} className="flex gap-4 items-start">
+                <span className="mt-1.5 w-2 h-2 rounded-full bg-primary flex-shrink-0" />
+                <div>
+                  <span className="font-semibold text-primary">{area.title} — </span>
+                  <span className="card-body text-primary/75">{area.body}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
         </motion.div>
 
         <motion.div
