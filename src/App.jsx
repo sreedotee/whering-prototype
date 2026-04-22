@@ -1138,7 +1138,7 @@ function ProfileMainView({
       return { ...card, isVisible };
     }),
   );
-  const masonryTopPad = activeTab === 'All' ? 20 : 16;
+  const masonryTopPad = topTab === 'All' ? 20 : 16;
 
   return (
     <>
