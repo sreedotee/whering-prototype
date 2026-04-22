@@ -17,7 +17,7 @@ const discoverCards = [
     column: 0,
     type: 'outfit',
     height: 286,
-    imageUrl: '/assets/images/discover-1.png',
+    imageUrl: '/assets/images/discover-16.png',
     imagePosition: 'center top',
     author: 'Sophie',
     authorAvatar: '/assets/images/avatar-Sophie.png',
@@ -308,14 +308,14 @@ const profileMasonryCards = [
       id: 'profile-item-jacket',
       type: 'item',
       height: 248,
-      imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/7D1HHH5RCG8XVAA12V19WTGQTE.jpg',
+      imageUrl: '/assets/images/discover-8.png',
       badgeTone: 'light',
     },
     {
       id: 'profile-outfit-gray',
       type: 'outfit',
       height: 186,
-      imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/23GBWP1NZP5PT3PPPHQ37MWSCC.jpg',
+      imageUrl: '/assets/images/discover-15.png',
       badgeTone: 'dark',
     },
   ],
@@ -324,14 +324,14 @@ const profileMasonryCards = [
       id: 'profile-item-placeholder',
       type: 'item',
       height: 186,
-      imageUrl: null,
+      imageUrl: '/assets/images/discover-16.png',
       badgeTone: 'light',
     },
     {
       id: 'profile-outfit-tee',
       type: 'outfit',
       height: 248,
-      imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/49WJKK4F9RKFK2377ZXAAQ0WTY.jpg',
+      imageUrl: '/assets/images/discover-17.png',
       badgeTone: 'dark',
     },
   ],
@@ -1927,19 +1927,19 @@ const topBrands = [
 ];
 
 const featuredCurators = [
-  { name: 'Elena R.', category: 'Streetwear', image: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0TK6E061QN92FS4WCMBFZ6T84Q.jpg' },
-  { name: 'Sam T.', category: 'All', image: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/464X8926HVCK2WWBTR75HE6K0D.jpg' },
-  { name: 'Marcus V.', category: 'Office', image: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/6AFQP7ZDH931DK59DMCZFB3033.jpg' },
-  { name: 'Sofia D.', category: 'Archive', image: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/3JW400Y7PDBHDZMA98TXK3BH13.jpg' },
-  { name: 'David L.', category: 'Streetwear', image: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/28AFFD2V1Q4A2G0TXPD524ZYHX.jpg' },
-  { name: 'Maya P.', category: 'Y2K', image: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0TK6E061QN92FS4WCMBFZ6T84Q.jpg' },
-  { name: 'Theo K.', category: 'Office', image: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/464X8926HVCK2WWBTR75HE6K0D.jpg' }
+  { name: 'Sophie', category: 'Streetwear', image: '/assets/images/avatar-Sophie.png' },
+  { name: 'Lina', category: 'All', image: '/assets/images/avatar-Lina.png' },
+  { name: 'Mia', category: 'Office', image: '/assets/images/avatar-Mia.png' },
+  { name: 'Jules', category: 'Archive', image: '/assets/images/avatar-Jules.png' },
+  { name: 'Noor', category: 'Streetwear', image: '/assets/images/avatar-Noor.png' },
+  { name: 'Leah', category: 'Y2K', image: '/assets/images/avatar-Leah.png' },
+  { name: 'Aya', category: 'Office', image: '/assets/images/avatar-Aya.png' }
 ];
 
 const trendingOutfits = [
-  { title: 'Street Style', category: 'Streetwear', bg: 'linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%), #888888' },
-  { title: 'Office Core', category: 'Office', image: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/63AKWZN3SG6NK7PV7HABKPGKBY.jpg' },
-  { title: 'Evening Wear', category: 'Y2K', image: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/3EM6C87RG55K3MCP8G3CD9V95Z.jpg' }
+  { title: 'Tech Wear', category: 'Streetwear', image: '/assets/images/discover-18.png' },
+  { title: 'Minimalist', category: 'Office', image: '/assets/images/discover-15.png' },
+  { title: 'Maximalist', category: 'Y2K', image: '/assets/images/discover-17.png' }
 ];
 
 const inboxItems = [
@@ -2101,7 +2101,7 @@ function ExploreScreen({ activeScreen }) {
           </div>
         </div>
 
-        <div className="explore-content" style={{ paddingInline: hero.padding, gap: section.gap }}>
+        <div className="explore-content" style={{ paddingInline: hero.padding, gap: section.gap, paddingTop: 6 }}>
           <div className="explore-hero" style={{ 
             backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 100%), url(${heroContent.image})`,
             height: hero.height,

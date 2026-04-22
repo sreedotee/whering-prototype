@@ -1746,7 +1746,7 @@ p, body {
 }
 
 .explore-top-search {
-    padding: 6px var(--explore-page-margin) 12px;
+    padding: 8px var(--explore-page-margin) 16px;
     position: sticky;
     top: var(--app-status-bar-height);
     z-index: 10;
