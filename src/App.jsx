@@ -1109,7 +1109,8 @@ function ProfileOutfitBreakdownView({ onBack, onSave }) {
 }
 
 function ProfileMainView({
-  activeTab,
+  topTab,
+  collectionTab,
   activeFilter,
   isFabOpen,
   profileHue,
@@ -1121,12 +1122,12 @@ function ProfileMainView({
   fabPosition,
 }) {
   const allProfileCards = profileMasonryCards.flat();
-  const boardProfileCards = allProfileCards.filter(c => c.type === 'outfit');
   const collectionTabs = ['Wishlists', 'Lookbooks', 'Moodboards'];
-  const activeCollectionCards = profileCollectionCards[activeTab] ?? [];
+  const activeCollectionTab = collectionTabs.includes(collectionTab) ? collectionTab : collectionTabs[0];
+  const activeCollectionCards = profileCollectionCards[activeCollectionTab] ?? [];
   const visibleColumns = profileMasonryCards.map((column) =>
     column.map((card) => {
-      const isVisible = activeTab === 'Collections'
+      const isVisible = topTab === 'All'
         ? card.type === 'outfit'
         : activeFilter === 'Items'
           ? card.type === 'item'
@@ -1189,14 +1190,22 @@ function ProfileMainView({
         </div>
 
         <div className="creator-subfilter-bar">
-          {[['All', allProfileCards.length], ...collectionTabs.map((label) => [label, activeCollectionCards.length])].map(([label, count]) => (
-            <button key={label} type="button" className={`creator-subfilter-btn ${activeTab === label ? 'active' : ''}`} onClick={() => { onTabChange(label); onFilterChange(null); }}>
-              {label} <span className="profile-tab-count">{count}</span>
+          {['All', 'Collections'].map((label) => (
+            <button
+              key={label}
+              type="button"
+              className={`creator-subfilter-btn ${topTab === label ? 'active' : ''}`}
+              onClick={() => {
+                onTabChange(label);
+                onFilterChange(null);
+              }}
+            >
+              {label} <span className="profile-tab-count">{label === 'All' ? allProfileCards.length : activeCollectionCards.length}</span>
             </button>
           ))}
         </div>
 
-        {activeTab === 'All' && (
+        {topTab === 'All' && (
           <div className="creator-pill-filters">
             {['Outfits', 'Items'].map(f => (
               <button key={f} type="button" className={`category-pill ${activeFilter === f ? 'active' : ''}`} style={{ padding: '8px 24px', minHeight: 0 }} onClick={() => onFilterChange(activeFilter === f ? null : f)}>{f}</button>
@@ -1204,7 +1213,23 @@ function ProfileMainView({
           </div>
         )}
 
-        {activeTab === 'All' ? (
+        {topTab === 'Collections' && (
+          <div className="creator-pill-filters creator-pill-filters--collections">
+            {collectionTabs.map((label) => (
+              <button
+                key={label}
+                type="button"
+                className={`category-pill ${activeCollectionTab === label ? 'active' : ''}`}
+                style={{ padding: '8px 20px', minHeight: 0 }}
+                onClick={() => onTabChange(label)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {topTab === 'All' ? (
           <div className="profile-masonry-grid" style={{ paddingTop: masonryTopPad }}>
             {visibleColumns.map((column, columnIndex) => (
               <div key={`profile-column-${columnIndex}`} className="masonry-col">
@@ -1261,6 +1286,7 @@ function ProfileMainView({
 
 function ProfileScreen({ activeScreen, profileView, onProfileViewChange }) {
   const [activeTab, setActiveTab] = useState('All');
+  const [collectionTab, setCollectionTab] = useState('Wishlists');
   const [activeFilter, setActiveFilter] = useState(null);
   const [isFabOpen, setIsFabOpen] = useState(false);
 
@@ -1294,12 +1320,20 @@ function ProfileScreen({ activeScreen, profileView, onProfileViewChange }) {
       {profileView === 'main' && (
         <>
           <ProfileMainView
-            activeTab={activeTab}
+            topTab={activeTab}
+            collectionTab={collectionTab}
             activeFilter={activeFilter}
             isFabOpen={isFabOpen}
             profileHue={profileHue}
             onTabChange={(tab) => {
-              setActiveTab(tab);
+              if (tab === 'Collections') {
+                setActiveTab('Collections');
+              } else if (['Wishlists', 'Lookbooks', 'Moodboards'].includes(tab)) {
+                setActiveTab('Collections');
+                setCollectionTab(tab);
+              } else {
+                setActiveTab(tab);
+              }
               setActiveFilter(null);
             }}
             onFilterChange={setActiveFilter}

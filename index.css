@@ -2925,11 +2925,18 @@ p, body {
 .profile-collection-stats {
     margin-top: 4px;
     display: flex;
-    flex-direction: column;
-    gap: 2px;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
     font-size: var(--fs-14);
     line-height: 1.2;
     color: #8E8E8E;
+}
+
+.profile-collection-stats span + span::before {
+    content: '•';
+    margin-right: 6px;
+    color: #B3B3B3;
 }
 
 .masonry-col {
