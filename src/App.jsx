@@ -337,6 +337,27 @@ const profileMasonryCards = [
   ],
 ];
 
+const profileCollectionCards = {
+  Wishlists: [
+    { id: 'wishlist-1', title: 'Curate', imageUrl: '/assets/images/discover-16.png', itemCount: 575, outfitCount: 14 },
+    { id: 'wishlist-2', title: 'Rec', imageUrl: '/assets/images/discover-17.png', itemCount: 9, outfitCount: 3 },
+    { id: 'wishlist-3', title: 'Saved Fits', imageUrl: '/assets/images/discover-18.png', itemCount: 42, outfitCount: 12 },
+    { id: 'wishlist-4', title: 'To Try', imageUrl: '/assets/images/discover-15.png', itemCount: 18, outfitCount: 6 },
+  ],
+  Lookbooks: [
+    { id: 'lookbook-1', title: 'Summer Archive', imageUrl: '/assets/images/discover-4.png', itemCount: 26, outfitCount: 11 },
+    { id: 'lookbook-2', title: 'City Layers', imageUrl: '/assets/images/discover-11.png', itemCount: 19, outfitCount: 8 },
+    { id: 'lookbook-3', title: 'Weekend Edit', imageUrl: '/assets/images/discover-7.png', itemCount: 33, outfitCount: 15 },
+    { id: 'lookbook-4', title: 'Denim Notes', imageUrl: '/assets/images/discover-8.png', itemCount: 12, outfitCount: 5 },
+  ],
+  Moodboards: [
+    { id: 'moodboard-1', title: 'Minimalist', imageUrl: '/assets/images/discover-15.png', itemCount: 21, outfitCount: 9 },
+    { id: 'moodboard-2', title: 'Maximalist', imageUrl: '/assets/images/discover-17.png', itemCount: 28, outfitCount: 13 },
+    { id: 'moodboard-3', title: 'Tech Wear', imageUrl: '/assets/images/discover-18.png', itemCount: 17, outfitCount: 7 },
+    { id: 'moodboard-4', title: 'Airport', imageUrl: '/assets/images/discover-6.png', itemCount: 14, outfitCount: 4 },
+  ],
+};
+
 const studioItems = [
   { id: 's1', category: 'Tops', url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/090GKJ4QA8ZEV32K3FX9JN08ZY.jpg' },
   { id: 's2', category: 'Outerwear', url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/3R9W71BZ7KA9WN09R6HNA6PTGH.jpg' },
@@ -1101,6 +1122,8 @@ function ProfileMainView({
 }) {
   const allProfileCards = profileMasonryCards.flat();
   const boardProfileCards = allProfileCards.filter(c => c.type === 'outfit');
+  const collectionTabs = ['Wishlists', 'Lookbooks', 'Moodboards'];
+  const activeCollectionCards = profileCollectionCards[activeTab] ?? [];
   const visibleColumns = profileMasonryCards.map((column) =>
     column.map((card) => {
       const isVisible = activeTab === 'Collections'
@@ -1114,7 +1137,7 @@ function ProfileMainView({
       return { ...card, isVisible };
     }),
   );
-  const masonryTopPad = activeTab === 'Collections' ? 20 : 0;
+  const masonryTopPad = activeTab === 'All' ? 20 : 16;
 
   return (
     <>
@@ -1166,7 +1189,7 @@ function ProfileMainView({
         </div>
 
         <div className="creator-subfilter-bar">
-          {[['All', allProfileCards.length], ['Collections', boardProfileCards.length]].map(([label, count]) => (
+          {[['All', allProfileCards.length], ...collectionTabs.map((label) => [label, activeCollectionCards.length])].map(([label, count]) => (
             <button key={label} type="button" className={`creator-subfilter-btn ${activeTab === label ? 'active' : ''}`} onClick={() => { onTabChange(label); onFilterChange(null); }}>
               {label} <span className="profile-tab-count">{count}</span>
             </button>
@@ -1181,24 +1204,45 @@ function ProfileMainView({
           </div>
         )}
 
-        <div className="profile-masonry-grid" style={{ paddingTop: masonryTopPad }}>
-          {visibleColumns.map((column, columnIndex) => (
-            <div key={`profile-column-${columnIndex}`} className="masonry-col">
-              {column.map((card) => (
-                <article
-                  key={card.id}
-                  className={`masonry-item profile-paper-card${card.imageUrl ? '' : ' profile-paper-card--placeholder'}${card.isVisible ? '' : ' is-filtered-out'}`}
-                  style={{
-                    height: `${card.height}px`,
-                    ...(card.imageUrl ? { backgroundImage: `url(${card.imageUrl})` } : {}),
-                  }}
-                  aria-hidden={card.isVisible ? 'false' : 'true'}
-                >
-                </article>
-              ))}
-            </div>
-          ))}
-        </div>
+        {activeTab === 'All' ? (
+          <div className="profile-masonry-grid" style={{ paddingTop: masonryTopPad }}>
+            {visibleColumns.map((column, columnIndex) => (
+              <div key={`profile-column-${columnIndex}`} className="masonry-col">
+                {column.map((card) => (
+                  <article
+                    key={card.id}
+                    className={`masonry-item profile-paper-card${card.imageUrl ? '' : ' profile-paper-card--placeholder'}${card.isVisible ? '' : ' is-filtered-out'}`}
+                    style={{
+                      height: `${card.height}px`,
+                      ...(card.imageUrl ? { backgroundImage: `url(${card.imageUrl})` } : {}),
+                    }}
+                    aria-hidden={card.isVisible ? 'false' : 'true'}
+                  >
+                  </article>
+                ))}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="profile-collections-grid" style={{ paddingTop: 8 }}>
+            {activeCollectionCards.map((collection) => (
+              <article key={collection.id} className="profile-collection-card">
+                <div
+                  className="profile-collection-image"
+                  style={{ backgroundImage: `url(${collection.imageUrl})` }}
+                  aria-hidden="true"
+                />
+                <div className="profile-collection-meta">
+                  <div className="profile-collection-title">{collection.title}</div>
+                  <div className="profile-collection-stats">
+                    <span>{collection.itemCount} items</span>
+                    <span>{collection.outfitCount} outfits</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </div>
 
       <button
