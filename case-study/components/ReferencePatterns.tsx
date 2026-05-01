@@ -158,13 +158,13 @@ export function ToDesktopFeatureGrid({ features }: { features: { title: string, 
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 mx-auto border-t border-l border-gray-200">
       {features.map((feat, idx) => (
-        <div key={idx} className="p-[32px] pr-[18px] flex gap-[12px] border-b border-r border-gray-200">
+        <div key={idx} className="p-[32px] flex gap-[12px] items-start border-b border-r border-gray-200">
           <div className="text-gray-500 w-[22px] h-[22px] shrink-0">
             {feat.icon}
           </div>
-          <div className="flex-1 -mt-1">
-            <span className="font-semibold text-gray-900 mr-2">{feat.title}</span>
-            <span className="text-gray-500 text-[15px] leading-[24px]">{feat.desc}</span>
+          <div className="flex-1 -mt-1 text-center">
+            <span className="font-semibold text-gray-900 block">{feat.title}</span>
+            <span className="text-gray-500 text-[15px] leading-[24px] block">{feat.desc}</span>
           </div>
         </div>
       ))}

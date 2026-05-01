@@ -38,7 +38,9 @@ export default async function SessionLogAdminPage({
   const { key } = await searchParams;
   const authorized = key === "whering-quiet";
   const entries = authorized ? await readLog() : [];
-  const outsideIndiaCount = entries.filter((entry) => entry.countryCode && entry.countryCode !== "IN").length;
+  const indiaEntries = entries.filter((entry) => entry.countryCode === "IN");
+  const outsideIndiaEntries = entries.filter((entry) => entry.countryCode && entry.countryCode !== "IN");
+  const unknownEntries = entries.filter((entry) => !entry.countryCode || entry.countryCode === "unknown");
 
   return (
     <main className="min-h-screen bg-[#0F0C14] text-white px-6 py-10 md:px-12">
@@ -69,7 +71,7 @@ export default async function SessionLogAdminPage({
                   <p className="card-microlabel !text-white/40 !opacity-100">Status</p>
                   <p className="card-heading !text-white">{entries.length} tracked opens</p>
                   <p className="text-sm text-white/50 mt-1">
-                    {outsideIndiaCount} outside India
+                    {outsideIndiaEntries.length} outside India, {indiaEntries.length} India, {unknownEntries.length} unknown
                   </p>
                 </div>
                 <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/60">
@@ -77,23 +79,87 @@ export default async function SessionLogAdminPage({
                 </span>
               </div>
 
-              <div className="space-y-3">
-                {entries.length === 0 ? (
-                  <p className="text-white/50">No outside-India opens have been recorded yet.</p>
-                ) : (
-                  entries.map((entry, index) => (
-                    <div
-                      key={`${entry.openedAt}-${index}`}
-                      className="flex flex-col gap-1 rounded-2xl border border-white/10 bg-black/20 px-4 py-3 md:flex-row md:items-center md:justify-between"
-                    >
-                      <div>
-                        <p className="font-medium text-white">{formatTimestamp(entry.openedAt)}</p>
-                        <p className="text-sm text-white/50">{entry.path}</p>
-                      </div>
-                      <p className="text-sm text-[#B894FF]">{entry.countryCode ?? "Unknown"}</p>
-                    </div>
-                  ))
-                )}
+              <div className="space-y-8">
+                <section>
+                  <div className="flex items-center justify-between mb-3">
+                    <h2 className="text-sm font-semibold tracking-[0.08em] uppercase text-[#B894FF]">
+                      Outside India
+                    </h2>
+                    <span className="text-xs text-white/50">{outsideIndiaEntries.length} entries</span>
+                  </div>
+                  <div className="space-y-3">
+                    {outsideIndiaEntries.length === 0 ? (
+                      <p className="text-white/50">No outside-India opens yet.</p>
+                    ) : (
+                      outsideIndiaEntries.map((entry, index) => (
+                        <div
+                          key={`outside-${entry.openedAt}-${index}`}
+                          className="flex flex-col gap-1 rounded-2xl border border-[#B894FF]/30 bg-[#B894FF]/10 px-4 py-3 md:flex-row md:items-center md:justify-between"
+                        >
+                          <div>
+                            <p className="font-medium text-white">{formatTimestamp(entry.openedAt)}</p>
+                            <p className="text-sm text-white/50">{entry.path}</p>
+                          </div>
+                          <p className="text-sm text-[#D7C1FF]">{entry.countryCode ?? "Unknown"}</p>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </section>
+
+                <section>
+                  <div className="flex items-center justify-between mb-3">
+                    <h2 className="text-sm font-semibold tracking-[0.08em] uppercase text-[#7DD3FC]">
+                      India
+                    </h2>
+                    <span className="text-xs text-white/50">{indiaEntries.length} entries</span>
+                  </div>
+                  <div className="space-y-3">
+                    {indiaEntries.length === 0 ? (
+                      <p className="text-white/50">No India opens yet.</p>
+                    ) : (
+                      indiaEntries.map((entry, index) => (
+                        <div
+                          key={`india-${entry.openedAt}-${index}`}
+                          className="flex flex-col gap-1 rounded-2xl border border-white/10 bg-black/20 px-4 py-3 md:flex-row md:items-center md:justify-between"
+                        >
+                          <div>
+                            <p className="font-medium text-white">{formatTimestamp(entry.openedAt)}</p>
+                            <p className="text-sm text-white/50">{entry.path}</p>
+                          </div>
+                          <p className="text-sm text-[#7DD3FC]">{entry.countryCode}</p>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </section>
+
+                <section>
+                  <div className="flex items-center justify-between mb-3">
+                    <h2 className="text-sm font-semibold tracking-[0.08em] uppercase text-white/60">
+                      Unknown
+                    </h2>
+                    <span className="text-xs text-white/50">{unknownEntries.length} entries</span>
+                  </div>
+                  <div className="space-y-3">
+                    {unknownEntries.length === 0 ? (
+                      <p className="text-white/50">No unknown-location opens yet.</p>
+                    ) : (
+                      unknownEntries.map((entry, index) => (
+                        <div
+                          key={`unknown-${entry.openedAt}-${index}`}
+                          className="flex flex-col gap-1 rounded-2xl border border-white/10 bg-black/20 px-4 py-3 md:flex-row md:items-center md:justify-between"
+                        >
+                          <div>
+                            <p className="font-medium text-white">{formatTimestamp(entry.openedAt)}</p>
+                            <p className="text-sm text-white/50">{entry.path}</p>
+                          </div>
+                          <p className="text-sm text-white/60">Unknown</p>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </section>
               </div>
             </div>
           </>

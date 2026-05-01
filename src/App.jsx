@@ -22,6 +22,7 @@ const discoverCards = [
     author: 'Sophie',
     authorAvatar: '/assets/images/avatar-Sophie.png',
     context: "in Summer '26",
+    giftable: true,
     count: '1.2k',
   },
   {
@@ -359,20 +360,134 @@ const profileCollectionCards = {
 };
 
 const studioItems = [
-  { id: 's1', category: 'Tops', url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/090GKJ4QA8ZEV32K3FX9JN08ZY.jpg' },
-  { id: 's2', category: 'Outerwear', url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/3R9W71BZ7KA9WN09R6HNA6PTGH.jpg' },
-  { id: 's3', category: 'Tops', url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/5DGAVH8PFY2FR0BPGF9K8VDTS8.jpg' },
-  { id: 's4', category: 'Footwear', url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/6T0PMEQDJ18KBJ4BEG6EF0JK4Z.jpg' },
-  { id: 's5', category: 'Bottoms', url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/7QWK2RNATR35Q4ZQ2XCA1Z1C96.jpg' },
-  { id: 's6', category: 'Accessories', url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0P4Q226RN1C07JXQCWVCDDKY17.jpg' },
+  { id: 's1', category: 'Tops', zone: 'top', name: 'Yellow Hoodie', ownership: 'owned', wantToBuy: false, url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/090GKJ4QA8ZEV32K3FX9JN08ZY.jpg' },
+  { id: 's2', category: 'Outerwear', zone: 'outerwear', name: 'Grey Jacket', ownership: 'owned', wantToBuy: false, url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/3R9W71BZ7KA9WN09R6HNA6PTGH.jpg' },
+  { id: 's3', category: 'Tops', zone: 'top', name: 'Graphic Tee', ownership: 'notOwned', wantToBuy: true, url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/5DGAVH8PFY2FR0BPGF9K8VDTS8.jpg' },
+  { id: 's4', category: 'Footwear', zone: 'footwear', name: 'White Sneakers', ownership: 'owned', wantToBuy: false, url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/6T0PMEQDJ18KBJ4BEG6EF0JK4Z.jpg' },
+  { id: 's5', category: 'Bottoms', zone: 'bottom', name: 'Soft Trousers', ownership: 'owned', wantToBuy: false, url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/7QWK2RNATR35Q4ZQ2XCA1Z1C96.jpg' },
+  { id: 's6', category: 'Accessories', zone: 'accessory', name: 'Street Tote', ownership: 'notOwned', wantToBuy: true, url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0P4Q226RN1C07JXQCWVCDDKY17.jpg' },
 ];
 
+const BODY_ZONE_BY_CATEGORY = {
+  Tops: 'top',
+  Bottoms: 'bottom',
+  Outerwear: 'outerwear',
+  Footwear: 'footwear',
+  Accessories: 'accessory',
+};
+
+const DEFAULT_COLLECTION_IDS = {
+  wardrobe: 'collection-wardrobe',
+  wishlist: 'collection-wishlist',
+  moodboard: 'collection-moodboard',
+  savedFits: 'collection-saved-fits',
+};
+
+function itemFromStudio(item) {
+  return {
+    id: `item-${item.id}`,
+    name: item.name,
+    category: item.category,
+    zone: item.zone || BODY_ZONE_BY_CATEGORY[item.category],
+    ownership: item.ownership || 'owned',
+    wantToBuy: Boolean(item.wantToBuy),
+    imageUrl: item.url,
+  };
+}
+
+function itemFromDiscoverDetail(item, index = 0) {
+  const zones = ['top', 'bottom', 'footwear', 'outerwear', 'accessory'];
+  return {
+    id: `item-discovered-${item.id}`,
+    name: item.name,
+    category: item.brand,
+    zone: zones[index % zones.length],
+    ownership: 'notOwned',
+    wantToBuy: true,
+    imageUrl: item.imageUrl,
+  };
+}
+
+function outfitFromDiscoverCard(card, detail = discoverOutfitDetails.default) {
+  const items = detail.items.map(itemFromDiscoverDetail);
+  return {
+    id: `outfit-${card.id}`,
+    label: detail.title || card.context,
+    image: card.imageUrl,
+    imageUrl: card.imageUrl,
+    items,
+    provenance: 'discovered',
+    visibility: 'private',
+    saved: true,
+  };
+}
+
+function makeInitialConceptState() {
+  const items = studioItems.map(itemFromStudio);
+  const starterOutfits = SELECTABLE_OUTFITS.map((outfit, index) => ({
+    ...outfit,
+    imageUrl: outfit.image,
+    items: items.slice(index % 2, (index % 2) + 3),
+    provenance: index === 3 ? 'selfie' : 'composed',
+    visibility: 'private',
+    saved: true,
+  }));
+
+  return {
+    items,
+    outfits: starterOutfits,
+    collections: [
+      {
+        id: DEFAULT_COLLECTION_IDS.wardrobe,
+        title: 'Wardrobe',
+        visibility: 'private',
+        wishlist: false,
+        contents: items.filter((item) => item.ownership === 'owned').map((item) => ({ type: 'item', id: item.id })),
+      },
+      {
+        id: DEFAULT_COLLECTION_IDS.wishlist,
+        title: 'Wishlist',
+        visibility: 'public',
+        wishlist: true,
+        contents: items.filter((item) => item.ownership === 'notOwned').map((item) => ({ type: 'item', id: item.id })),
+      },
+      {
+        id: DEFAULT_COLLECTION_IDS.moodboard,
+        title: 'Moodboard',
+        visibility: 'private',
+        wishlist: false,
+        contents: [],
+      },
+      {
+        id: DEFAULT_COLLECTION_IDS.savedFits,
+        title: 'Saved Fits',
+        visibility: 'private',
+        wishlist: false,
+        contents: starterOutfits.map((outfit) => ({ type: 'outfit', id: outfit.id })),
+      },
+    ],
+  };
+}
+
+function addUniqueContent(collection, entry) {
+  const exists = collection.contents.some((item) => item.type === entry.type && item.id === entry.id);
+  return exists ? collection : { ...collection, contents: [...collection.contents, entry] };
+}
 
 
-function StudioScreen({ activeScreen }) {
+function StudioScreen({ activeScreen, onConfirmOutfit }) {
   const [activeCategory, setActiveCategory] = useState('Tops');
   const [selectedItems, setSelectedItems] = useState({});
+  const [pinnedItems, setPinnedItems] = useState({});
+  const [activeCollageItem, setActiveCollageItem] = useState(null);
+  const [collageOrder, setCollageOrder] = useState([]);
+  const [collagePositions, setCollagePositions] = useState({});
+  const [isGenerated, setIsGenerated] = useState(false);
+  const [saveState, setSaveState] = useState('idle');
   const visibleItems = studioItems.filter((item) => item.category === activeCategory);
+  const selectedStudioItems = ['Tops', 'Bottoms', 'Outerwear', 'Footwear', 'Accessories']
+    .map((category) => studioItems.find((item) => item.id === selectedItems[category]))
+    .filter(Boolean);
   const checkmarkOffset = { right: 4, bottom: 4 };
 
   const handleItemSelect = (item) => {
@@ -380,27 +495,138 @@ function StudioScreen({ activeScreen }) {
       ...current,
       [item.category]: item.id,
     }));
+    setIsGenerated(false);
+    setSaveState('idle');
+  };
+
+  const handlePinCategory = () => {
+    const selected = selectedItems[activeCategory];
+    if (!selected) return;
+    setPinnedItems((current) => ({
+      ...current,
+      [activeCategory]: current[activeCategory] === selected ? null : selected,
+    }));
+  };
+
+  const handleRandomise = () => {
+    const nextSelected = {};
+    ['Tops', 'Bottoms', 'Outerwear', 'Footwear', 'Accessories'].forEach((category) => {
+      if (pinnedItems[category]) {
+        nextSelected[category] = pinnedItems[category];
+        return;
+      }
+      const options = studioItems.filter(item => item.category === category);
+      if (options.length > 0) {
+        nextSelected[category] = options[Math.floor(Math.random() * options.length)].id;
+      }
+    });
+    setSelectedItems(nextSelected);
+    setIsGenerated(false);
+    setCollageOrder([]);
+    setCollagePositions({});
+    setSaveState('idle');
+  };
+
+  const handleGenerate = () => {
+    setIsGenerated(true);
+    setActiveCollageItem(selectedStudioItems[0]?.id ?? null);
+    setCollageOrder(selectedStudioItems.map(item => item.id));
+    setCollagePositions((current) => selectedStudioItems.reduce((next, item) => ({
+      ...next,
+      [item.id]: current[item.id] ?? { x: 0, y: 0 },
+    }), {}));
+  };
+
+  const handleNudge = (dx, dy) => {
+    if (!activeCollageItem) return;
+    setCollagePositions((current) => {
+      const existing = current[activeCollageItem] ?? { x: 0, y: 0 };
+      return {
+        ...current,
+        [activeCollageItem]: {
+          x: Math.max(-28, Math.min(28, existing.x + dx)),
+          y: Math.max(-28, Math.min(28, existing.y + dy)),
+        },
+      };
+    });
+  };
+
+  const handleLayer = (direction) => {
+    if (!activeCollageItem) return;
+    setCollageOrder((current) => {
+      const order = current.length ? [...current] : selectedStudioItems.map(item => item.id);
+      const index = order.indexOf(activeCollageItem);
+      if (index === -1) return order;
+      const nextIndex = Math.max(0, Math.min(order.length - 1, index + direction));
+      const [item] = order.splice(index, 1);
+      order.splice(nextIndex, 0, item);
+      return order;
+    });
   };
 
   const handleCreateOutfit = () => {
-    const chosen = Object.values(selectedItems);
-    if (chosen.length === 0) return;
+    if (selectedStudioItems.length === 0) return;
+    if (!isGenerated) {
+      handleGenerate();
+      return;
+    }
+
+    onConfirmOutfit?.(selectedStudioItems.map(itemFromStudio), { positions: collagePositions, order: collageOrder });
+    setSaveState('saved');
+    window.setTimeout(() => setSaveState('idle'), 1200);
   };
 
   return (
-    <main id="studio-screen" className={`screen hue-cyan${activeScreen === 'studio' ? ' active' : ''}`} data-tab="studio">
+    <main id="studio-screen" className={`screen hue-cyan${activeScreen === 'style' ? ' active' : ''}`} data-tab="style">
         <div className="studio-container">
             <header className="studio-header">
                 <button className="studio-history-btn" style={{ display: 'flex', alignItems: 'center', background: 'none', border: 'none', padding: 4, cursor: 'pointer' }}>
                     <Icon d={ICONS.history} size={24} stroke={1.8} />
                 </button>
+                <div className="studio-header-actions">
+                  <button type="button" className="studio-header-action" onClick={handlePinCategory} aria-pressed={pinnedItems[activeCategory] === selectedItems[activeCategory]} aria-label={`Pin ${activeCategory}`}>
+                    <Icon d={ICONS.pin} size={20} stroke={2} />
+                  </button>
+                  <button type="button" className="studio-header-action" onClick={handleRandomise} aria-label="Randomise unpinned slots">
+                    <Icon d={ICONS.shuffle} size={20} stroke={2} />
+                  </button>
+                </div>
             </header>
 
             <div className="studio-canvas">
-                <div className="studio-canvas-placeholder">
-                    Tap items below to build your outfit
-                </div>
+                {selectedStudioItems.length === 0 ? (
+                  <div className="studio-canvas-placeholder">
+                      Tap items below to build your outfit
+                  </div>
+                ) : (
+                  <div className={`studio-collage${isGenerated ? ' is-generated' : ''}`} aria-live="polite">
+                    {selectedStudioItems.map((item, index) => (
+                      <div
+                        key={item.id}
+                        className={`studio-collage-item${activeCollageItem === item.id ? ' is-active' : ''}`}
+                        onClick={() => setActiveCollageItem(item.id)}
+                        style={{
+                          backgroundImage: `url(${item.url})`,
+                          zIndex: (collageOrder.indexOf(item.id) + 1) || index + 1,
+                          '--collage-x': `${collagePositions[item.id]?.x ?? 0}px`,
+                          '--collage-y': `${collagePositions[item.id]?.y ?? 0}px`,
+                        }}
+                      />
+                    ))}
+                  </div>
+                )}
             </div>
+
+            {isGenerated && selectedStudioItems.length > 0 && (
+              <div className="studio-arrange-bar" aria-label="Arrange selected item">
+                <button type="button" onClick={() => handleNudge(-8, 0)} aria-label="Move left"><Icon d={ICONS.chev_l} size={16} stroke={2.4} /></button>
+                <button type="button" onClick={() => handleNudge(8, 0)} aria-label="Move right"><Icon d={ICONS.chev_r} size={16} stroke={2.4} /></button>
+                <button type="button" onClick={() => handleNudge(0, -8)} aria-label="Move up"><Icon d={ICONS.chev_d} size={16} stroke={2.4} /></button>
+                <button type="button" onClick={() => handleNudge(0, 8)} aria-label="Move down"><Icon d={ICONS.chev_d} size={16} stroke={2.4} /></button>
+                <button type="button" onClick={() => handleLayer(-1)} aria-label="Send backward"><Icon d={ICONS.arrow_r} size={16} stroke={2.4} /></button>
+                <button type="button" onClick={() => handleLayer(1)} aria-label="Bring forward"><Icon d={ICONS.arrow_r} size={16} stroke={2.4} /></button>
+              </div>
+            )}
 
             <div className="studio-categories-bar">
                 {['Tops', 'Bottoms', 'Outerwear', 'Footwear', 'Accessories'].map(cat => (
@@ -456,11 +682,25 @@ function StudioScreen({ activeScreen }) {
             </div>
 
             <div className="studio-footer-actions">
-                <button className="studio-create-btn shadow-lg" onClick={handleCreateOutfit}>
-                    Create outfit
+                <button className="studio-create-btn shadow-lg" onClick={handleCreateOutfit} disabled={selectedStudioItems.length === 0}>
+                    {saveState === 'saved' ? 'Saved to Profile' : isGenerated ? 'Save outfit' : 'Generate outfit'}
                 </button>
             </div>
         </div>
+    </main>
+  );
+}
+
+function PlannerScreen({ activeScreen, outfits, plannerState, onPlannerStateChange, onAssignOutfit, onDeleteEvent }) {
+  return (
+    <main id="planner-screen" className={`screen hue-cyan${activeScreen === 'planner' ? ' active' : ''}`} data-tab="planner">
+      <ProfilePlannerView
+        outfits={outfits}
+        plannerState={plannerState}
+        onPlannerStateChange={onPlannerStateChange}
+        onAssignOutfit={onAssignOutfit}
+        onDeleteEvent={onDeleteEvent}
+      />
     </main>
   );
 }
@@ -558,7 +798,7 @@ const SELECTABLE_OUTFITS = [
   { id: 'so-8', label: 'Maximalist', image: '/assets/images/discover-17.png' },
 ];
 
-function OutfitPickerSheet({ onClose, onSelect }) {
+function OutfitPickerSheet({ onClose, onSelect, outfits = SELECTABLE_OUTFITS }) {
   return (
     <div className="planner-modal-backdrop" onClick={onClose}>
       <div className="planner-modal" onClick={e => e.stopPropagation()}>
@@ -569,10 +809,11 @@ function OutfitPickerSheet({ onClose, onSelect }) {
           </button>
         </div>
         <div className="planner-outfit-grid">
-          {SELECTABLE_OUTFITS.map(o => (
+          {outfits.map(o => (
             <button key={o.id} type="button" className="planner-outfit-option" onClick={() => { onSelect(o); onClose(); }}>
               <div className="planner-outfit-option-img" style={{ backgroundImage: `url(${o.image})` }} />
               <span className="planner-outfit-option-label">{o.label}</span>
+              {o.items?.some(item => item.ownership === 'notOwned') && <span className="planner-outfit-option-label">wishlist items</span>}
             </button>
           ))}
         </div>
@@ -672,7 +913,7 @@ function EventCreateScreen({ onClose, onSave }) {
   );
 }
 
-function EventCard({ event, onAddOutfit }) {
+function EventCard({ event, onAddOutfit, onDelete }) {
   return (
     <div className="planner-event-card">
       <div className="planner-event-meta">
@@ -682,6 +923,9 @@ function EventCard({ event, onAddOutfit }) {
           {event.time && <span className="planner-event-tag">{event.time}</span>}
         </div>
       </div>
+      <button type="button" className="planner-event-delete" onClick={() => onDelete(event.id)} aria-label={`Delete ${event.name}`}>
+        <Icon d={ICONS.close} size={16} stroke={2.4} />
+      </button>
 
       <div className="planner-event-outfits">
         {event.outfits.map(o => (
@@ -737,37 +981,65 @@ function MonthGridOverlay({ selectedDay, onSelectDay, onClose }) {
   );
 }
 
-function ProfilePlannerView({ onBack }) {
-  const { fabRight, fabBottom } = useDialKit('Planner FAB', { fabRight: 24, fabBottom: 40 });
+function ProfilePlannerView({ onBack, outfits = SELECTABLE_OUTFITS, plannerState, onPlannerStateChange, onAssignOutfit, onDeleteEvent }) {
+  const { fabRight, fabBottom } = useDialKit('Planner FAB', { fabRight: 24, fabBottom: 118 });
   const [selectedDay, setSelectedDay] = useState(1);
-  const [eventsByDay, setEventsByDay] = useState({});
+  const [localEventsByDay, setLocalEventsByDay] = useState({});
   const [showEventCreate, setShowEventCreate] = useState(false);
   const [showMonthGrid, setShowMonthGrid] = useState(false);
   const [outfitTargetId, setOutfitTargetId] = useState(null);
   const [showStandalonePicker, setShowStandalonePicker] = useState(false);
-  const [standaloneByDay, setStandaloneByDay] = useState({});
+  const [localStandaloneByDay, setLocalStandaloneByDay] = useState({});
   const touchStartX = useRef(null);
 
+  const eventsByDay = plannerState?.eventsByDay ?? localEventsByDay;
+  const standaloneByDay = plannerState?.standaloneByDay ?? localStandaloneByDay;
   const dayEvents = eventsByDay[selectedDay] || [];
   const isToday = selectedDay === 1;
   const currentDay = plannerDays[selectedDay];
   const dayLabel = isToday ? 'Today' : `${currentDay?.day}`;
   const dateLabel = `Apr ${currentDay?.date}, 2026`;
 
+  function updatePlanner(updater) {
+    if (plannerState && onPlannerStateChange) {
+      onPlannerStateChange(updater);
+    } else {
+      const nextStandalone = updater({ eventsByDay: localEventsByDay, standaloneByDay: localStandaloneByDay });
+      setLocalEventsByDay(nextStandalone.eventsByDay);
+      setLocalStandaloneByDay(nextStandalone.standaloneByDay);
+    }
+  }
+
   function handleSaveEvent(evt) {
-    setEventsByDay(prev => ({ ...prev, [selectedDay]: [...(prev[selectedDay] || []), evt] }));
+    updatePlanner(prev => ({ ...prev, eventsByDay: { ...prev.eventsByDay, [selectedDay]: [...(prev.eventsByDay[selectedDay] || []), evt] } }));
   }
 
   function handleAddOutfit(eventId) { setOutfitTargetId(eventId); }
 
   function handleSelectOutfit(outfit) {
-    setEventsByDay(prev => ({
+    updatePlanner(prev => ({
       ...prev,
-      [selectedDay]: (prev[selectedDay] || []).map(e =>
-        e.id === outfitTargetId ? { ...e, outfits: [...e.outfits, { ...outfit, id: Date.now() }] } : e
-      ),
+      eventsByDay: {
+        ...prev.eventsByDay,
+        [selectedDay]: (prev.eventsByDay[selectedDay] || []).map(e =>
+          e.id === outfitTargetId ? { ...e, outfits: [...e.outfits, { ...outfit, id: `${outfit.id}-${Date.now()}` }] } : e
+        ),
+      },
     }));
+    onAssignOutfit?.(outfit, selectedDay, outfitTargetId);
     setOutfitTargetId(null);
+  }
+
+  function handleDeleteEvent(eventId) {
+    const event = (eventsByDay[selectedDay] || []).find(e => e.id === eventId);
+    updatePlanner(prev => ({
+      ...prev,
+      eventsByDay: {
+        ...prev.eventsByDay,
+        [selectedDay]: (prev.eventsByDay[selectedDay] || []).filter(e => e.id !== eventId),
+      },
+    }));
+    onDeleteEvent?.(event, selectedDay);
   }
 
   function handleTouchStart(e) { touchStartX.current = e.touches[0].clientX; }
@@ -783,14 +1055,18 @@ function ProfilePlannerView({ onBack }) {
 
   return (
     <div className="profile-planner-view">
-      {outfitTargetId && <OutfitPickerSheet onClose={() => setOutfitTargetId(null)} onSelect={o => handleSelectOutfit(o)} />}
+      {outfitTargetId && <OutfitPickerSheet outfits={outfits} onClose={() => setOutfitTargetId(null)} onSelect={o => handleSelectOutfit(o)} />}
       {showMonthGrid && <MonthGridOverlay selectedDay={selectedDay} onSelectDay={setSelectedDay} onClose={() => setShowMonthGrid(false)} />}
 
       {/* Compact header */}
       <header className="planner-header">
-        <button type="button" className="profile-back-button profile-back-button--ghost" onClick={onBack}>
-          <Icon d={ICONS.chev_l} size={24} stroke={2.5} />
-        </button>
+        {onBack ? (
+          <button type="button" className="profile-back-button profile-back-button--ghost" onClick={onBack}>
+            <Icon d={ICONS.chev_l} size={24} stroke={2.5} />
+          </button>
+        ) : (
+          <div className="profile-back-button profile-back-button--ghost" aria-hidden="true" />
+        )}
         <div className="planner-day-center">
           <span className="planner-day-name">{dayLabel}</span>
           <span className="planner-day-full-date">{dateLabel} · 65°F Sunny</span>
@@ -800,6 +1076,7 @@ function ProfilePlannerView({ onBack }) {
             <Calendar size={24} strokeWidth={1.8} />
             <span className="planner-cal-icon-num">{currentDay?.date}</span>
           </span>
+          <Icon d={ICONS.chev_d} size={14} stroke={2.4} />
         </button>
       </header>
 
@@ -813,9 +1090,11 @@ function ProfilePlannerView({ onBack }) {
             <OutfitPickerSheet
               onClose={() => setShowStandalonePicker(false)}
               onSelect={o => {
-                setStandaloneByDay(prev => ({ ...prev, [selectedDay]: [...(prev[selectedDay] || []), { ...o, id: Date.now() }] }));
+                updatePlanner(prev => ({ ...prev, standaloneByDay: { ...prev.standaloneByDay, [selectedDay]: [...(prev.standaloneByDay[selectedDay] || []), { ...o, id: `${o.id}-${Date.now()}` }] } }));
+                onAssignOutfit?.(o, selectedDay);
                 setShowStandalonePicker(false);
               }}
+              outfits={outfits}
             />
           )}
           <div className="planner-content-header">
@@ -828,7 +1107,7 @@ function ProfilePlannerView({ onBack }) {
             {dayEvents.length > 0 && (
               <div className="planner-events-list">
                 {dayEvents.map(evt => (
-                  <EventCard key={evt.id} event={evt} onAddOutfit={handleAddOutfit} />
+                  <EventCard key={evt.id} event={evt} onAddOutfit={handleAddOutfit} onDelete={handleDeleteEvent} />
                 ))}
               </div>
             )}
@@ -871,12 +1150,13 @@ function ProfilePlannerView({ onBack }) {
   );
 }
 
-function ProfileStatsView({ onBack }) {
+function ProfileStatsView({ onBack, stats }) {
   const [activeTab, setActiveTab] = useState('overview');
   const [expandedSections, setExpandedSections] = useState({});
   const { navTitleSize } = useDialKit('Profile Stats', {
     navTitleSize: [24, 20, 40],
   });
+  const metric = stats ?? {};
 
   const toggleSection = (section) => {
     setExpandedSections((prev) => ({
@@ -900,6 +1180,25 @@ function ProfileStatsView({ onBack }) {
             {tab === 'overview' ? 'Overview' : 'Unpacked'}
           </button>
         ))}
+      </div>
+
+      <div className="stats-derived-strip">
+        <div>
+          <span>{metric.totalItems ?? 0}</span>
+          <small>Items</small>
+        </div>
+        <div>
+          <span>{metric.totalOutfits ?? 0}</span>
+          <small>Outfits</small>
+        </div>
+        <div>
+          <span>{metric.wardrobeUsage ?? 0}%</span>
+          <small>Usage</small>
+        </div>
+        <div>
+          <span>{metric.unusedItems ?? 0}</span>
+          <small>Unused</small>
+        </div>
       </div>
 
       {activeTab === 'overview' && (
@@ -1114,18 +1413,55 @@ function ProfileMainView({
   activeFilter,
   isFabOpen,
   profileHue,
+  conceptItems = [],
+  conceptOutfits = [],
+  conceptCollections = [],
+  stats,
+  onToggleOutfitVisibility,
   onTabChange,
   onFilterChange,
-  onCalendarOpen,
   onStatsOpen,
   onFabToggle,
   fabPosition,
 }) {
-  const allProfileCards = profileMasonryCards.flat();
+  const dynamicCards = [
+    ...conceptItems.map((item, index) => ({
+      id: item.id,
+      type: 'item',
+      height: index % 2 === 0 ? 248 : 186,
+      imageUrl: item.imageUrl,
+    })),
+    ...conceptOutfits.map((outfit, index) => ({
+      id: outfit.id,
+      type: 'outfit',
+      height: index % 2 === 0 ? 186 : 248,
+      imageUrl: outfit.image || outfit.imageUrl,
+      visibility: outfit.visibility,
+    })),
+  ];
+  const allProfileCards = dynamicCards.length > 0 ? dynamicCards : profileMasonryCards.flat();
+  const profileColumns = [
+    allProfileCards.filter((_, index) => index % 2 === 0),
+    allProfileCards.filter((_, index) => index % 2 === 1),
+  ];
   const collectionTabs = ['Wishlists', 'Lookbooks', 'Moodboards'];
   const activeCollectionTab = collectionTabs.includes(collectionTab) ? collectionTab : collectionTabs[0];
-  const activeCollectionCards = profileCollectionCards[activeCollectionTab] ?? [];
-  const visibleColumns = profileMasonryCards.map((column) =>
+  const dynamicCollections = conceptCollections.map((collection) => {
+    const firstOutfit = collection.contents.map(entry => conceptOutfits.find(outfit => entry.type === 'outfit' && outfit.id === entry.id)).find(Boolean);
+    const firstItem = collection.contents.map(entry => conceptItems.find(item => entry.type === 'item' && item.id === entry.id)).find(Boolean);
+    return {
+      id: collection.id,
+      title: collection.title,
+      imageUrl: firstOutfit?.image || firstOutfit?.imageUrl || firstItem?.imageUrl || '/assets/images/discover-16.png',
+      itemCount: collection.contents.filter(entry => entry.type === 'item').length,
+      outfitCount: collection.contents.filter(entry => entry.type === 'outfit').length,
+      wishlist: collection.wishlist,
+    };
+  });
+  const activeCollectionCards = topTab === 'Collections' && dynamicCollections.length > 0
+    ? dynamicCollections
+    : (profileCollectionCards[activeCollectionTab] ?? []);
+  const visibleColumns = profileColumns.map((column) =>
     column.map((card) => {
       const isVisible = topTab === 'All'
         ? card.type === 'outfit'
@@ -1148,9 +1484,6 @@ function ProfileMainView({
             <ShareIcon dark />
           </button>
           <div className="right-group">
-            <button type="button" className="icon-action-btn shadow-sm" onClick={onCalendarOpen} aria-label="Open planner">
-              <Icon d={ICONS.calendar} size={24} stroke={2.5} />
-            </button>
             <button type="button" className="icon-action-btn shadow-sm" onClick={onStatsOpen} aria-label="Open stats">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M18 20V10" /><path d="M12 20V4" /><path d="M6 20v-6" /></svg>
             </button>
@@ -1168,7 +1501,7 @@ function ProfileMainView({
         </div>
 
         <section className="profile-bio-section" aria-label="Profile summary">
-          <p className="profile-bio">curating looks, layers, and everyday style</p>
+          <p className="profile-bio">curating {stats?.totalOutfits ?? conceptOutfits.length} looks from {stats?.totalItems ?? conceptItems.length} items</p>
           <div className="profile-social-proof">
             <div className="profile-follower-stack" aria-hidden="true">
               <span />
@@ -1243,6 +1576,19 @@ function ProfileMainView({
                     }}
                     aria-hidden={card.isVisible ? 'false' : 'true'}
                   >
+                    {card.type === 'outfit' && card.isVisible && (
+                      <button
+                        type="button"
+                        className={`profile-card-visibility ${card.visibility === 'public' ? 'is-public' : ''}`}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          onToggleOutfitVisibility?.(card.id);
+                        }}
+                        aria-label={card.visibility === 'public' ? 'Make outfit private' : 'Share outfit to Discover'}
+                      >
+                        <Icon d={card.visibility === 'public' ? ICONS.globe : ICONS.share} size={15} stroke={2.2} />
+                      </button>
+                    )}
                   </article>
                 ))}
               </div>
@@ -1262,6 +1608,7 @@ function ProfileMainView({
                   <div className="profile-collection-stats">
                     <span>{collection.itemCount} items</span>
                     <span>{collection.outfitCount} outfits</span>
+                    {collection.wishlist && <span className="profile-gift-chip"><Icon d={ICONS.gift || ICONS.bag} size={12} stroke={2} /> Giftable</span>}
                   </div>
                 </div>
               </article>
@@ -1284,7 +1631,7 @@ function ProfileMainView({
   );
 }
 
-function ProfileScreen({ activeScreen, profileView, onProfileViewChange }) {
+function ProfileScreen({ activeScreen, profileView, onProfileViewChange, conceptItems = [], conceptOutfits = [], conceptCollections = [], stats, onToggleOutfitVisibility }) {
   const [activeTab, setActiveTab] = useState('All');
   const [collectionTab, setCollectionTab] = useState('Wishlists');
   const [activeFilter, setActiveFilter] = useState(null);
@@ -1325,6 +1672,11 @@ function ProfileScreen({ activeScreen, profileView, onProfileViewChange }) {
             activeFilter={activeFilter}
             isFabOpen={isFabOpen}
             profileHue={profileHue}
+            conceptItems={conceptItems}
+            conceptOutfits={conceptOutfits}
+            conceptCollections={conceptCollections}
+            stats={stats}
+            onToggleOutfitVisibility={onToggleOutfitVisibility}
             onTabChange={(tab) => {
               if (tab === 'Collections') {
                 setActiveTab('Collections');
@@ -1337,7 +1689,6 @@ function ProfileScreen({ activeScreen, profileView, onProfileViewChange }) {
               setActiveFilter(null);
             }}
             onFilterChange={setActiveFilter}
-            onCalendarOpen={() => onProfileViewChange('planner')}
             onStatsOpen={() => onProfileViewChange('stats')}
             onFabToggle={() => setIsFabOpen((open) => !open)}
             fabPosition={fabPosition}
@@ -1351,7 +1702,7 @@ function ProfileScreen({ activeScreen, profileView, onProfileViewChange }) {
       )}
 
       {profileView === 'planner' && <ProfilePlannerView onBack={() => onProfileViewChange('main')} />}
-      {profileView === 'stats' && <ProfileStatsView onBack={() => onProfileViewChange('main')} />}
+      {profileView === 'stats' && <ProfileStatsView onBack={() => onProfileViewChange('main')} stats={stats} />}
       {profileView === 'ai-enhancer' && (
         <ProfileAiEnhancerView
           onBack={() => onProfileViewChange('main')}
@@ -1376,8 +1727,8 @@ const AGENTATION_SYNC_URL = 'http://localhost:4747/annotations';
 const screens = [
   { id: 'home', label: 'Discover' },
   { id: 'explore', label: 'Search' },
-  { id: 'studio', label: 'Create' },
-  { id: 'inbox', label: 'Notifications' },
+  { id: 'style', label: 'Style' },
+  { id: 'planner', label: 'Planner' },
   { id: 'profile', label: 'Profile' },
 ];
 
@@ -1386,8 +1737,8 @@ function AppBottomNav({ activeScreen, onScreenChange }) {
   const navIcons = [
     { key: 'home', label: 'Discover', icon: ICONS.globe },
     { key: 'explore', label: 'Search', icon: ICONS.search },
-    { key: 'studio', label: 'Create', icon: ICONS.sparkle },
-    { key: 'inbox', label: 'Notifications', icon: ICONS.bell },
+    { key: 'style', label: 'Style', icon: ICONS.hanger },
+    { key: 'planner', label: 'Planner', icon: ICONS.calendar },
     { key: 'profile', label: 'Profile', icon: ICONS.user },
   ];
 
@@ -1396,7 +1747,7 @@ function AppBottomNav({ activeScreen, onScreenChange }) {
       {navIcons.map(({ key, label, icon }) => (
         <button
           key={key}
-          className={`discover-nav-button${activeScreen === key ? ' discover-nav-active' : ''}`}
+          className={`discover-nav-button discover-nav-button--${key}${activeScreen === key ? ' discover-nav-active' : ''}`}
           type="button"
           aria-label={label}
           onClick={() => onScreenChange(key)}
@@ -1576,9 +1927,11 @@ function DiscoverCard({ card, onOpen, dials }) {
   );
 }
 
-function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials, onCreatorOpen }) {
+function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials, onCreatorOpen, onCollectionOpen, collections = [], onSaveOutfit, onSaveItem }) {
   const [footerOpacity, setFooterOpacity] = useState(1);
   const [lastScrollTop, setLastScrollTop] = useState(0);
+  const [saveTarget, setSaveTarget] = useState(null);
+  const [saveMessage, setSaveMessage] = useState('');
   const cardRef = useRef(null);
   const detail = discoverOutfitDetails[card.id] ?? discoverOutfitDetails.default;
   const { overlayRadius, authorGap, authorPad, itemsGap, itemRadius, authorAvatarSize, itemsTitleGap, itemCardGap, itemCardWidth, heroHeight, bodyPad, footerPadTop, footerPadBottom, sectionsGap, followBtn, ctaBtn, itemSaveIcon, text, moreItemsGap, shareIconSize } = useDialKit('Discover Overlay', {
@@ -1631,6 +1984,22 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials, onCr
     },
   });
 
+  const saveCollections = collections.length > 0
+    ? collections
+    : [{ id: DEFAULT_COLLECTION_IDS.savedFits, title: 'Saved Fits' }];
+
+  function handleSaveToCollection(collection) {
+    if (saveTarget?.type === 'item') {
+      onSaveItem?.(saveTarget.item, collection.id);
+      setSaveMessage(`Saved to ${collection.title}`);
+    } else {
+      onSaveOutfit?.(card, detail, collection.id);
+      setSaveMessage(`Outfit saved to ${collection.title}`);
+    }
+    setSaveTarget(null);
+    window.setTimeout(() => setSaveMessage(''), 1400);
+  }
+
   useEffect(() => {
     const cardElement = cardRef.current;
     if (cardElement) {
@@ -1669,6 +2038,26 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials, onCr
   return (
     <div className="discover-overlay">
       <div className="discover-overlay-card" ref={cardRef}>
+        {saveTarget && (
+          <div className="planner-modal-backdrop" onClick={() => setSaveTarget(null)}>
+            <div className="planner-modal" onClick={e => e.stopPropagation()}>
+              <div className="planner-modal-header">
+                <span className="planner-modal-title">Save to collection</span>
+                <button type="button" className="planner-modal-close" onClick={() => setSaveTarget(null)}>
+                  <Icon d={ICONS.close} size={20} stroke={2} />
+                </button>
+              </div>
+              <div className="collection-save-list">
+                {saveCollections.map(collection => (
+                  <button key={collection.id} type="button" className="collection-save-row" onClick={() => handleSaveToCollection(collection)}>
+                    <span>{collection.title}</span>
+                    {collection.wishlist && <span>Wishlist</span>}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
         <div
             className="discover-overlay-hero"
             style={{
@@ -1690,11 +2079,32 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials, onCr
 
         <div className="discover-overlay-body" style={{ paddingTop: 16, paddingLeft: 16, paddingRight: 16, gap: sectionsGap }}>
           <div className="discover-overlay-author-row" style={{ gap: authorGap, marginBottom: authorPad, alignItems: 'flex-start' }}>
-            <div className="discover-author" style={{ cursor: 'pointer' }} onClick={() => onCreatorOpen && onCreatorOpen(card)}>
-              <div className="discover-author-avatar" style={{ width: authorAvatarSize, height: authorAvatarSize, flexShrink: 0, ...(card.authorAvatar ? { backgroundImage: `url(${card.authorAvatar})` } : {}) }} />
+            <div className="discover-author">
+              <button
+                type="button"
+                className="discover-author-avatar discover-author-avatar-btn"
+                style={{ width: authorAvatarSize, height: authorAvatarSize, flexShrink: 0, ...(card.authorAvatar ? { backgroundImage: `url(${card.authorAvatar})` } : {}) }}
+                onClick={() => onCreatorOpen && onCreatorOpen(card)}
+                aria-label={`Open ${card.author}'s profile`}
+              />
               <div className="discover-author-text" style={{ gap: text.authorTextGap }}>
-                <div className="discover-author-name" style={{ fontSize: text.authorName, lineHeight: text.authorNameLineHeight }}>{card.author}</div>
-                <div className="discover-author-context" style={{ fontSize: text.authorContext, lineHeight: text.authorContextLineHeight }}>{card.context}</div>
+                <button
+                  type="button"
+                  className="discover-author-name discover-author-name-btn"
+                  style={{ fontSize: text.authorName, lineHeight: text.authorNameLineHeight }}
+                  onClick={() => onCreatorOpen && onCreatorOpen(card)}
+                >
+                  {card.author}
+                </button>
+                <button
+                  type="button"
+                  className="discover-author-context discover-author-context-btn"
+                  style={{ fontSize: text.authorContext, lineHeight: text.authorContextLineHeight }}
+                  onClick={() => onCollectionOpen && onCollectionOpen(card)}
+                >
+                  <span>{card.context}</span>
+                  {card.giftable && <Icon d={ICONS.gift} size={14} stroke={2} />}
+                </button>
               </div>
             </div>
             <button type="button" className="btn btn--sm" style={{ background: '#1DB5FF', color: '#fff', flexShrink: 0 }}>Follow</button>
@@ -1709,7 +2119,7 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials, onCr
                   {detail.items.map((item) => (
                     <div key={item.id} className="discover-overlay-item-card" style={{ gap: itemCardGap, width: itemCardWidth, minWidth: itemCardWidth }}>
                         <div className="discover-overlay-item-image" style={{ backgroundImage: `linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.12) 100%), url(${item.imageUrl})`, backgroundSize: 'auto, cover', borderRadius: itemRadius }}>
-                        <button type="button" className="discover-overlay-item-plus" aria-label={`Save ${item.name}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', bottom: itemSaveIcon.bottom, right: itemSaveIcon.right }}>
+                        <button type="button" className="discover-overlay-item-plus" aria-label={`Save ${item.name}`} onClick={() => setSaveTarget({ type: 'item', item })} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', bottom: itemSaveIcon.bottom, right: itemSaveIcon.right }}>
                           <Icon d={ICONS.bookmark} size={20} stroke={2} />
                         </button>
                       </div>
@@ -1764,9 +2174,9 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials, onCr
               </div>
             )}
           </div>
-          <button type="button" className="discover-overlay-cta" style={{ fontSize: ctaBtn.fontSize, borderRadius: ctaBtn.radius }}>
+          <button type="button" className="discover-overlay-cta" onClick={() => setSaveTarget({ type: 'outfit' })} style={{ fontSize: ctaBtn.fontSize, borderRadius: ctaBtn.radius }}>
             <Icon d={ICONS.bookmark} size={24} stroke={2} />
-            {card.type === 'outfit' ? 'Save outfit' : 'save item'}
+            {saveMessage || (card.type === 'outfit' ? 'Save outfit' : 'save item')}
           </button>
         </div>
       </div>
@@ -1875,13 +2285,112 @@ function CreatorProfileOverlay({ card, onClose }) {
   );
 }
 
-function DiscoverScreen({ activeDiscoverTab, onDiscoverTabChange, activeScreen }) {
+function CreatorCollectionOverlay({ card, onClose, onCreatorOpen }) {
+  const collectionCards = discoverCards.filter(c => c.author === card.author && c.context === card.context);
+  const authorCards = discoverCards.filter(c => c.author === card.author);
+  const fillerCards = discoverCards.filter(c => c.author !== card.author);
+  const visibleCards = [...collectionCards, ...authorCards, ...fillerCards]
+    .filter((c, index, cards) => cards.findIndex(item => item.id === c.id) === index)
+    .slice(0, 14);
+  const leftCol = visibleCards.filter((_, i) => i % 2 === 0);
+  const rightCol = visibleCards.filter((_, i) => i % 2 === 1);
+  const collectionTitle = card.context.replace(/^in\s+/i, '').replace(/^item\s+inspo$/i, 'curate');
+  const elementCount = Math.max(visibleCards.length * 43, 598);
+
+  return (
+    <div className="discover-overlay collection-overlay" style={{ zIndex: 210 }}>
+      <div className="discover-overlay-card collection-overlay-card">
+        <div className="collection-screen">
+          <header className="collection-top-actions">
+            <button type="button" className="collection-icon-btn" onClick={onClose} aria-label="Back">
+              <Icon d={ICONS.chev_l} size={20} stroke={2.5} />
+            </button>
+            <div className="collection-top-actions-right">
+              <button type="button" className="collection-icon-btn" aria-label="Search collection">
+                <Icon d={ICONS.search} size={20} stroke={2.4} />
+              </button>
+              <button type="button" className="collection-icon-btn" aria-label="More">
+                <Icon d={ICONS.dots} size={20} stroke={2.6} />
+              </button>
+            </div>
+          </header>
+
+          <section className="collection-hero">
+            <h1 className="collection-title">
+              <span>{collectionTitle}</span>
+              {card.giftable && <Icon d={ICONS.gift} size={18} stroke={2.1} />}
+            </h1>
+            <button type="button" className="collection-meta" onClick={() => onCreatorOpen && onCreatorOpen(card)}>
+              @{card.author.toLowerCase().replace(/\s/g, '')} · {elementCount} elements
+            </button>
+            <div className="collection-collaborators">
+              <button
+                type="button"
+                className="collection-avatar"
+                onClick={() => onCreatorOpen && onCreatorOpen(card)}
+                aria-label={`Open ${card.author}'s profile`}
+              >
+                {card.authorAvatar ? <img src={card.authorAvatar} alt="" /> : null}
+              </button>
+            </div>
+          </section>
+
+          <div className="collection-masonry-grid">
+            <div className="collection-masonry-col">
+              {leftCol.map((c, index) => (
+                <article
+                  key={c.id}
+                  className="collection-masonry-item"
+                  style={{
+                    height: index % 3 === 0 ? 270 : index % 3 === 1 ? 224 : 306,
+                    backgroundImage: `url(${c.imageUrl})`,
+                    backgroundPosition: c.imagePosition,
+                  }}
+                />
+              ))}
+            </div>
+            <div className="collection-masonry-col">
+              {rightCol.map((c, index) => (
+                <article
+                  key={c.id}
+                  className="collection-masonry-item"
+                  style={{
+                    height: index % 3 === 0 ? 392 : index % 3 === 1 ? 236 : 290,
+                    backgroundImage: `url(${c.imageUrl})`,
+                    backgroundPosition: c.imagePosition,
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DiscoverScreen({ activeDiscoverTab, onDiscoverTabChange, activeScreen, collections = [], publicOutfits = [], onSaveOutfit, onSaveItem }) {
   const [activeOutfitCard, setActiveOutfitCard] = useState(null);
   const [activeCreator, setActiveCreator] = useState(null);
+  const [activeCollection, setActiveCollection] = useState(null);
   const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
   const tabsRef = useRef(null);
-  const leftColumnCards = discoverCards.filter((card) => card.column === 0);
-  const rightColumnCards = discoverCards.filter((card) => card.column === 1);
+  const publicCards = publicOutfits.map((outfit, index) => ({
+    id: outfit.id,
+    column: index % 2,
+    type: 'outfit',
+    height: index % 2 === 0 ? 256 : 296,
+    imageUrl: outfit.image || outfit.imageUrl,
+    imagePosition: 'center',
+    author: 'sree',
+    authorAvatar: '/assets/images/avatar-Sophie.png',
+    context: 'shared from wardrobe',
+    count: 'new',
+  }));
+  const feedCards = [...publicCards, ...discoverCards];
+  const leftColumnCards = feedCards.filter((card) => card.column === 0);
+  const rightColumnCards = feedCards.filter((card) => card.column === 1);
   const { tabsTopOffset } = useDialKit('Discover Tabs', {
     tabsTopOffset: [-6, -24, 24],
   });
@@ -1918,6 +2427,8 @@ function DiscoverScreen({ activeDiscoverTab, onDiscoverTabChange, activeScreen }
   useEffect(() => {
     if (activeScreen !== 'home') {
       setActiveOutfitCard(null);
+      setActiveCreator(null);
+      setActiveCollection(null);
     }
   }, [activeScreen]);
 
@@ -1961,8 +2472,30 @@ function DiscoverScreen({ activeDiscoverTab, onDiscoverTabChange, activeScreen }
       </div>
       </div>
 
-      {activeOutfitCard ? <DiscoverOutfitOverlay card={activeOutfitCard} onClose={() => setActiveOutfitCard(null)} onSetActiveCard={setActiveOutfitCard} feedDials={feedDials} onCreatorOpen={setActiveCreator} /> : null}
+      {activeOutfitCard ? (
+        <DiscoverOutfitOverlay
+          card={activeOutfitCard}
+          onClose={() => setActiveOutfitCard(null)}
+          onSetActiveCard={setActiveOutfitCard}
+          feedDials={feedDials}
+          onCreatorOpen={setActiveCreator}
+          onCollectionOpen={setActiveCollection}
+          collections={collections}
+          onSaveOutfit={onSaveOutfit}
+          onSaveItem={onSaveItem}
+        />
+      ) : null}
       {activeCreator ? <CreatorProfileOverlay card={activeCreator} onClose={() => setActiveCreator(null)} /> : null}
+      {activeCollection ? (
+        <CreatorCollectionOverlay
+          card={activeCollection}
+          onClose={() => setActiveCollection(null)}
+          onCreatorOpen={(creatorCard) => {
+            setActiveCollection(null);
+            setActiveCreator(creatorCard);
+          }}
+        />
+      ) : null}
     </main>
   );
 }
@@ -2073,7 +2606,7 @@ const inboxTabContent = {
   ]
 };
 
-function InboxScreen({ activeScreen }) {
+function InboxScreen({ activeScreen, onClose }) {
   const [activeTab, setActiveTab] = useState('All');
   // const { knob } = useDialKit();
 
@@ -2090,7 +2623,14 @@ function InboxScreen({ activeScreen }) {
     <main id="inbox-screen" className={`screen hue-cyan${activeScreen === 'inbox' ? ' active' : ''}`} data-tab="inbox">
       <div className="inbox-container">
         <header className="inbox-header">
-          <h1 className="inbox-title">Activity</h1>
+          <div className="inbox-title-row">
+            {onClose && (
+              <button type="button" className="inbox-close-btn" onClick={onClose} aria-label="Close notifications">
+                <Icon d={ICONS.chev_l} size={24} stroke={2.5} />
+              </button>
+            )}
+            <h1 className="inbox-title">Activity</h1>
+          </div>
           <div className="inbox-tabs">
             {['All', 'Saves', 'Follows'].map(tab => (
               <button key={tab} className={`inbox-tab-chip ${activeTab === tab ? 'active' : ''}`} onClick={() => setActiveTab(tab)}>
@@ -2143,9 +2683,9 @@ function InboxScreen({ activeScreen }) {
   );
 }
 
-
-function ExploreScreen({ activeScreen }) {
+function ExploreScreen({ activeScreen, conceptItems = [], conceptOutfits = [], conceptCollections = [] }) {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [query, setQuery] = useState('');
   const heroContent = exploreHeroByCategory[activeCategory] ?? exploreHeroByCategory.All;
   const search = { height: 40, fontSize: 14, padding: 16 };
   const hero = { height: 160, titleSize: 16, tagSize: 10.4, padding: 16 };
@@ -2163,6 +2703,23 @@ function ExploreScreen({ activeScreen }) {
     ? trendingOutfits
     : trendingOutfits.filter((outfit) => outfit.category === activeCategory);
   const filteredOutfits = filteredOutfitsBase.length > 0 ? filteredOutfitsBase : trendingOutfits;
+  const searchResults = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return [];
+    const itemResults = conceptItems
+      .filter(item => [item.name, item.category, item.zone, item.ownership].some(value => String(value || '').toLowerCase().includes(q)))
+      .map(item => ({ id: item.id, type: 'Item', title: item.name, subtitle: `${item.category} · ${item.ownership}`, image: item.imageUrl }));
+    const outfitResults = conceptOutfits
+      .filter(outfit => [outfit.label, outfit.provenance, outfit.visibility].some(value => String(value || '').toLowerCase().includes(q)))
+      .map(outfit => ({ id: outfit.id, type: 'Outfit', title: outfit.label, subtitle: `${outfit.provenance} · ${outfit.visibility}`, image: outfit.image || outfit.imageUrl }));
+    const collectionResults = conceptCollections
+      .filter(collection => [collection.title, collection.visibility, collection.wishlist ? 'wishlist giftable' : ''].some(value => String(value || '').toLowerCase().includes(q)))
+      .map(collection => ({ id: collection.id, type: 'Collection', title: collection.title, subtitle: `${collection.contents.length} elements${collection.wishlist ? ' · giftable' : ''}`, image: null }));
+    const profileResults = featuredCurators
+      .filter(curator => curator.name.toLowerCase().includes(q))
+      .map(curator => ({ id: `profile-${curator.name}`, type: 'Profile', title: curator.name, subtitle: 'Curator', image: curator.image }));
+    return [...itemResults, ...outfitResults, ...collectionResults, ...profileResults].slice(0, 12);
+  }, [query, conceptItems, conceptOutfits, conceptCollections]);
 
   return (
     <main id="explore-screen" className={`screen hue-cyan${activeScreen === 'explore' ? ' active' : ''}`} data-tab="explore">
@@ -2174,12 +2731,42 @@ function ExploreScreen({ activeScreen }) {
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <span className="search-input-placeholder" style={{ fontSize: search.fontSize }}>Search styles, creators, brands...</span>
+            <input
+              className="search-query-input"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search styles, creators, brands..."
+              style={{ fontSize: search.fontSize }}
+            />
 
           </div>
         </div>
 
         <div className="explore-content" style={{ paddingInline: hero.padding, gap: section.gap, paddingTop: 6 }}>
+          {query.trim() && (
+            <section className="explore-section">
+              <div className="explore-section-header">
+                <div className="explore-section-title" style={{ fontSize: section.titleSize }}>Results</div>
+                <div className="explore-section-action" style={{ fontSize: section.actionSize }}>{searchResults.length}</div>
+              </div>
+              <div className="search-results-list">
+                {searchResults.length > 0 ? searchResults.map(result => (
+                  <article key={`${result.type}-${result.id}`} className="search-result-row">
+                    <div className="search-result-thumb" style={result.image ? { backgroundImage: `url(${result.image})` } : {}} />
+                    <div>
+                      <span>{result.title}</span>
+                      <small>{result.type} · {result.subtitle}</small>
+                    </div>
+                  </article>
+                )) : (
+                  <div className="search-empty-state">No results yet.</div>
+                )}
+              </div>
+            </section>
+          )}
+
+          {!query.trim() && (
+          <>
           <div className="explore-hero" style={{ 
             backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 100%), url(${heroContent.image})`,
             height: hero.height,
@@ -2245,6 +2832,8 @@ function ExploreScreen({ activeScreen }) {
               ))}
             </div>
           </div>
+          </>
+          )}
         </div>
       </div>
     </main>
@@ -2257,6 +2846,10 @@ function App() {
   const [isFabOpen, setIsFabOpen] = useState(false);
   const [globalDial, setGlobalDial] = useState({ radius: 20, gutter: 16, appScale: 1 });
   const [profileView, setProfileView] = useState('main');
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [conceptState, setConceptState] = useState(makeInitialConceptState);
+  const [plannerState, setPlannerState] = useState({ eventsByDay: {}, standaloneByDay: {}, assignments: [] });
+  const [systemNotice, setSystemNotice] = useState('');
   const screenHistoryRef = useRef(['home']);
 
   useEffect(() => {
@@ -2329,9 +2922,163 @@ function App() {
     [activeScreen],
   );
 
+  const plannerOutfits = useMemo(() => (
+    conceptState.outfits.map((outfit) => ({
+      ...outfit,
+      image: outfit.image || outfit.imageUrl,
+      label: outfit.label || 'Saved outfit',
+    }))
+  ), [conceptState.outfits]);
+
+  const profileStats = useMemo(() => {
+    const scheduledOutfitIds = new Set([
+      ...Object.values(plannerState.standaloneByDay).flat().map(outfit => String(outfit.id).split('-').slice(0, -1).join('-') || outfit.id),
+      ...Object.values(plannerState.eventsByDay).flat().flatMap(event => event.outfits || []).map(outfit => String(outfit.id).split('-').slice(0, -1).join('-') || outfit.id),
+    ]);
+    const itemWearCounts = conceptState.items.map((item) => {
+      const wears = conceptState.outfits.filter(outfit => scheduledOutfitIds.has(outfit.id) && outfit.items?.some(i => i.id === item.id)).length;
+      return { ...item, wears };
+    });
+    const ownedCount = conceptState.items.filter(item => item.ownership === 'owned').length;
+    const wishlistCount = conceptState.items.filter(item => item.ownership === 'notOwned' || item.wantToBuy).length;
+    const totalItems = conceptState.items.length || 1;
+    const wornOutfits = conceptState.outfits.filter(outfit => scheduledOutfitIds.has(outfit.id)).length;
+    const unusedItems = conceptState.items.filter(item => !conceptState.outfits.some(outfit => outfit.items?.some(i => i.id === item.id))).length;
+
+    return {
+      totalItems: conceptState.items.length,
+      totalOutfits: conceptState.outfits.length,
+      totalCollections: conceptState.collections.length,
+      wardrobeValue: ownedCount * 1200,
+      wardrobeUsage: Math.round(((totalItems - unusedItems) / totalItems) * 100),
+      outfitWearPercent: conceptState.outfits.length ? Math.round((wornOutfits / conceptState.outfits.length) * 100) : 0,
+      wornOutfits,
+      ownedPercent: Math.round((ownedCount / totalItems) * 100),
+      wishlistPercent: Math.round((wishlistCount / totalItems) * 100),
+      unusedItems,
+      mostWornItem: [...itemWearCounts].sort((a, b) => b.wears - a.wears)[0],
+      leastWornItem: [...itemWearCounts].sort((a, b) => a.wears - b.wears)[0],
+    };
+  }, [conceptState, plannerState]);
+
+  function showNotice(message) {
+    setSystemNotice(message);
+    window.setTimeout(() => setSystemNotice(''), 2200);
+  }
+
+  function upsertItems(items) {
+    setConceptState(prev => ({
+      ...prev,
+      items: [
+        ...prev.items,
+        ...items.filter(item => !prev.items.some(existing => existing.id === item.id)),
+      ],
+    }));
+  }
+
+  function saveOutfitToCollection(outfit, collectionId = DEFAULT_COLLECTION_IDS.savedFits) {
+    setConceptState(prev => {
+      const nextOutfits = prev.outfits.some(existing => existing.id === outfit.id)
+        ? prev.outfits.map(existing => existing.id === outfit.id ? { ...existing, ...outfit, saved: true } : existing)
+        : [...prev.outfits, { ...outfit, saved: true }];
+      const nextItems = [
+        ...prev.items,
+        ...(outfit.items || []).filter(item => !prev.items.some(existing => existing.id === item.id)),
+      ];
+      const nextCollections = prev.collections.map(collection =>
+        collection.id === collectionId
+          ? addUniqueContent(collection, { type: 'outfit', id: outfit.id })
+          : collection
+      );
+      return { ...prev, items: nextItems, outfits: nextOutfits, collections: nextCollections };
+    });
+  }
+
+  function saveItemToCollection(item, collectionId = DEFAULT_COLLECTION_IDS.wishlist) {
+    const nextItem = item.imageUrl ? item : itemFromDiscoverDetail(item);
+    setConceptState(prev => ({
+      ...prev,
+      items: prev.items.some(existing => existing.id === nextItem.id) ? prev.items : [...prev.items, nextItem],
+      collections: prev.collections.map(collection =>
+        collection.id === collectionId
+          ? addUniqueContent(collection, { type: 'item', id: nextItem.id })
+          : collection
+      ),
+    }));
+  }
+
+  function handleStyleConfirm(items) {
+    const outfit = {
+      id: `outfit-composed-${Date.now()}`,
+      label: 'Composed outfit',
+      image: items[0]?.imageUrl || items[0]?.url || '/assets/images/discover-16.png',
+      imageUrl: items[0]?.imageUrl || items[0]?.url || '/assets/images/discover-16.png',
+      items,
+      provenance: 'composed',
+      visibility: 'private',
+      saved: true,
+    };
+    upsertItems(items);
+    saveOutfitToCollection(outfit, DEFAULT_COLLECTION_IDS.savedFits);
+    showNotice('Outfit saved to Profile');
+  }
+
+  function handleDiscoverSaveOutfit(card, detail, collectionId) {
+    const outfit = outfitFromDiscoverCard(card, detail);
+    saveOutfitToCollection(outfit, collectionId);
+    showNotice('Saved. Unowned items are available in Style.');
+  }
+
+  function handleDiscoverSaveItem(item, collectionId) {
+    saveItemToCollection(itemFromDiscoverDetail(item), collectionId);
+    showNotice('Item saved to collection.');
+  }
+
+  function handlePlannerAssign(outfit, dayIndex, eventId) {
+    const unowned = (outfit.items || []).filter(item => item.ownership === 'notOwned' || item.wantToBuy);
+    setPlannerState(prev => ({
+      ...prev,
+      assignments: [...prev.assignments, { outfitId: outfit.id, dayIndex, eventId: eventId ?? null }],
+    }));
+    if (unowned.length > 0) {
+      setConceptState(prev => ({
+        ...prev,
+        collections: prev.collections.map(collection =>
+          collection.id === DEFAULT_COLLECTION_IDS.wishlist
+            ? unowned.reduce((next, item) => addUniqueContent(next, { type: 'item', id: item.id }), collection)
+            : collection
+        ),
+      }));
+      showNotice(`${unowned.length} unowned item${unowned.length > 1 ? 's' : ''} added to Wishlist.`);
+    }
+  }
+
+  function handleDeletePlannerEvent(event, dayIndex) {
+    if (!event) return;
+    setPlannerState(prev => ({
+      ...prev,
+      assignments: prev.assignments.filter(assignment => !(assignment.dayIndex === dayIndex && assignment.eventId === event.id)),
+    }));
+    showNotice('Event removed. Outfits stayed in your collections.');
+  }
+
+  function handleToggleOutfitVisibility(outfitId) {
+    let nextVisibility = 'private';
+    setConceptState(prev => ({
+      ...prev,
+      outfits: prev.outfits.map(outfit => {
+        if (outfit.id !== outfitId) return outfit;
+        nextVisibility = outfit.visibility === 'public' ? 'private' : 'public';
+        return { ...outfit, visibility: nextVisibility };
+      }),
+    }));
+    showNotice(nextVisibility === 'public' ? 'Outfit shared to Discover.' : 'Outfit removed from Discover.');
+  }
+
   const handleScreenChange = (nextScreen) => {
     if (nextScreen === activeScreen) return;
     screenHistoryRef.current.push(nextScreen);
+    setIsNotificationsOpen(false);
     setActiveScreen(nextScreen);
   };
 
@@ -2343,17 +3090,46 @@ function App() {
             activeDiscoverTab={activeDiscoverTab}
             onDiscoverTabChange={setActiveDiscoverTab}
             activeScreen={activeScreen}
+            collections={conceptState.collections}
+            publicOutfits={conceptState.outfits.filter(outfit => outfit.visibility === 'public')}
+            onSaveOutfit={handleDiscoverSaveOutfit}
+            onSaveItem={handleDiscoverSaveItem}
           />
 
-          <ExploreScreen activeScreen={activeScreen} />
+          <ExploreScreen
+            activeScreen={activeScreen}
+            conceptItems={conceptState.items}
+            conceptOutfits={conceptState.outfits}
+            conceptCollections={conceptState.collections}
+          />
 
-          <StudioScreen activeScreen={activeScreen} />
+          <StudioScreen activeScreen={activeScreen} onConfirmOutfit={handleStyleConfirm} />
 
-          <InboxScreen activeScreen={activeScreen} />
+          <PlannerScreen
+            activeScreen={activeScreen}
+            outfits={plannerOutfits}
+            plannerState={plannerState}
+            onPlannerStateChange={setPlannerState}
+            onAssignOutfit={handlePlannerAssign}
+            onDeleteEvent={handleDeletePlannerEvent}
+          />
 
-          <ProfileScreen activeScreen={activeScreen} profileView={profileView} onProfileViewChange={setProfileView} />
+          <ProfileScreen
+            activeScreen={activeScreen}
+            profileView={profileView}
+            onProfileViewChange={setProfileView}
+            conceptItems={conceptState.items}
+            conceptOutfits={conceptState.outfits}
+            conceptCollections={conceptState.collections}
+            stats={profileStats}
+            onToggleOutfitVisibility={handleToggleOutfitVisibility}
+          />
 
-          {!(activeScreen === 'profile' && (profileView === 'ai-enhancer' || profileView === 'planner')) ? <AppBottomNav activeScreen={activeScreen} onScreenChange={handleScreenChange} /> : null}
+          <InboxScreen activeScreen={isNotificationsOpen ? 'inbox' : 'none'} onClose={() => setIsNotificationsOpen(false)} />
+
+          {systemNotice && <div className="system-notice">{systemNotice}</div>}
+
+          {!(isNotificationsOpen || (activeScreen === 'profile' && profileView === 'ai-enhancer')) ? <AppBottomNav activeScreen={activeScreen} onScreenChange={handleScreenChange} /> : null}
         </div>
       </IOSDevice>
 

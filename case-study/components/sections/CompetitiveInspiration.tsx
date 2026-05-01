@@ -39,7 +39,7 @@ export default function CompetitiveInspiration() {
         <SectionHeader
           number="04"
           title="Reference Patterns"
-          subtitle="What mature apps do that Whering can learn from"
+          subtitle="Patterns worth borrowing for Whering"
         />
 
         <div className="divide-y divide-black/8">

@@ -29,8 +29,7 @@ export default function MarketContext() {
           {...fadeInUp}
           className="text-base font-medium text-[#6B6B6B] leading-[27.2px] mb-8 max-w-2xl"
         >
-          Before choosing a direction, three signals kept repeating across the market and the research:
-          shoppers browse broadly, save inconsistently, and hesitate at the point of purchase.
+          Three signals kept repeating: shoppers browse broadly, save inconsistently, and hesitate at purchase.
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">

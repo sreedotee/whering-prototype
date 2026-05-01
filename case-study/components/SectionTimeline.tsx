@@ -12,14 +12,14 @@ interface Section {
 
 const SECTIONS: Section[] = [
   { id: "overview",              label: "Overview",          number: "01" },
-  { id: "brief",                 label: "Brief",             number: "02", nested: true },
+  { id: "brief",                 label: "Brief",             number: "02" },
   { id: "research",              label: "Research",          number: "03" },
-  { id: "current-state",         label: "Problems",          number: "04", nested: true },
+  { id: "current-state",         label: "Problems",          number: "04" },
   { id: "user-insights",         label: "Synthesis",         number: "05" },
   { id: "matrix",                label: "Framework",         number: "06" },
   { id: "solution",              label: "Design",            number: "07" },
   { id: "designs",               label: "Screens",           number: "08" },
-  { id: "iterations",            label: "System",            number: "09", nested: true },
+  { id: "iterations",            label: "System",            number: "09" },
   { id: "reflection",            label: "Reflection",        number: "10" },
 ];
 
@@ -216,8 +216,7 @@ export default function SectionTimeline() {
         {SECTIONS.map((section, i) => {
           const isCompleted = i < activeIndex;
           const isCurrent  = i === activeIndex;
-          const isNested   = !!section.nested;
-          const dotSize    = isNested ? 9 : 13;
+          const dotSize    = 13;
 
           // Vertical line coloring
           const topColor    = i <= activeIndex ? accent : track;
@@ -270,7 +269,7 @@ export default function SectionTimeline() {
                 className={`relative w-full flex items-start gap-0 text-left transition-colors duration-150
                   hover:bg-[#F7F5F8]
                   ${isCurrent ? "bg-[#F4F1F6]" : ""}
-                  ${isNested ? "pl-8 pr-4 py-[9px]" : "pl-6 pr-4 py-[11px]"}`}
+                  pl-6 pr-4 py-[11px]`}
               >
                 {/* Text */}
                 <div className="flex-1 min-w-0 mr-3">
@@ -282,7 +281,7 @@ export default function SectionTimeline() {
                   </p>
                   <p
                     className={`leading-[1.3] tracking-[-0.005em] ${
-                      isNested ? "text-[12px]" : "text-[13px]"
+                      "text-[13px]"
                     } ${isCurrent ? "font-semibold" : "font-medium"}`}
                     style={{ color: nameColor, transition: "color 0.25s" }}
                   >

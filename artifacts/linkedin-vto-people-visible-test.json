@@ -1,0 +1,5 @@
+﻿{
+  "AIUTA AI Fashion Creative": {
+    "error": "AuthenticationError: LinkedIn requires interactive re-authentication. Run with --login and complete the account selection/sign-in flow."
+  }
+}

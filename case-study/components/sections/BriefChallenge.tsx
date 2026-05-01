@@ -12,13 +12,12 @@ export default function BriefChallenge() {
 
         <motion.div {...fadeInUp} className="mb-8 max-w-3xl">
           <p className="text-base font-medium text-[#5C5C5C] leading-[27.2px]">
-            The starting point was a question:{" "}
-            <em>"What does Whering do?"</em>
+            The starting point was simple: <em>"What does Whering do?"</em>
           </p>
           <p className="text-base font-medium text-[#5C5C5C] leading-[27.2px] mt-4">
-            That was the first thing I asked after five minutes of using the app. Not because the brand is unclear — the mission is sharp. But the product wasn't making it easy to answer.{" "}
+            The mission is sharp, but the product didn&apos;t make it easy to answer.{" "}
             <strong className="text-[#0A0A0A]">
-              The challenge was structural: a strong promise buried under competing actions.
+              The problem was structural: a strong promise buried under competing actions.
             </strong>
           </p>
         </motion.div>
@@ -27,20 +26,17 @@ export default function BriefChallenge() {
           {[
             {
               title: "The Observation",
-              content:
-                "Nine actions compete on the first screen. No clear entry point. No obvious loop. A great mission — dress better, waste less — that the product makes hard to feel.",
+              content: "Nine actions compete on the first screen. No clear entry point. No obvious loop.",
               highlight: false,
             },
             {
               title: "My Approach",
-              content:
-                "Map the promise to behavior → Split casual vs power user needs → Use recurrence as navigation weight → Redesign around five clear destinations",
+              content: "Map the promise to behavior, split casual vs power-user needs, and redesign around five destinations.",
               highlight: true,
             },
             {
               title: "The Outcome",
-              content:
-                "A restructured experience where each tab has a clear purpose, the core loop is faster to reach, and the daily habit has room to form.",
+              content: "Each tab gets a clear purpose, and the core loop is easier to reach.",
               highlight: false,
             },
           ].map((card, i) => (
@@ -53,7 +49,7 @@ export default function BriefChallenge() {
               className={`rounded-2xl overflow-clip py-6 px-8 ${
                 card.highlight ? "bg-primary text-white" : ""
               }`}
-              style={card.highlight ? {} : { backgroundColor: '#00000008' }}
+              style={card.highlight ? {} : { backgroundColor: "#00000008" }}
             >
               <h3
                 className={`heading mb-4 ${

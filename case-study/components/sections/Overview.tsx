@@ -5,23 +5,23 @@ import SectionHeader from "../SectionHeader";
 import { fadeInUp } from "@/styles/animations";
 
 const strengths = [
-  "It makes sustainability feel personal, not preachy.",
-  "It turns wardrobe planning into something creative and nostalgic.",
-  "It solves a real daily feeling: a full wardrobe and still nothing to wear.",
+  "Sustainability feels personal.",
+  "Wardrobe planning feels creative.",
+  "It solves the 'full closet, nothing to wear' problem.",
 ];
 
 const focusAreas = [
   {
     title: "Clearer feature hierarchy",
-    desc: "Reduce competing primary actions across Discover, Calendar, Studio, and Profile so each screen has one obvious job.",
+    desc: "Reduce competing actions so each screen has one job.",
   },
   {
     title: "Cleaner object model",
-    desc: "Treat wishlist, moodboards, lookbooks, and saved references as Collection types instead of unrelated destinations.",
+    desc: "Treat saved concepts as one Collection model.",
   },
   {
     title: "Canvas-first creation loop",
-    desc: "Make the playful try-on canvas the center of remixing instead of hiding add-item, save, and plan actions behind multiple flows.",
+    desc: "Put the canvas at the center of remixing.",
   },
 ];
 
@@ -35,9 +35,8 @@ export default function Overview() {
           <motion.div {...fadeInUp}>
             <h3 className="narrative-para-heading">Why Whering Works</h3>
             <p className="narrative-body mb-5 max-w-3xl">
-              Whering has a rare emotional starting point: it helps people fall back in love with
-              the clothes they already own. It is sustainable, but it also feels playful,
-              nostalgic, and personal.
+              Whering helps people fall back in love with what they already own. It feels
+              sustainable, playful, nostalgic, and personal.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {strengths.map((item) => (
@@ -51,18 +50,16 @@ export default function Overview() {
           <motion.div {...fadeInUp}>
             <h3 className="narrative-para-heading">Where I Focused</h3>
             <p className="narrative-body max-w-3xl">
-              The idea is strong. The focus was on the moments where that promise gets lost:
-              crowded information architecture, competing calls to action, conceptual duplication across saved objects,
-              and a creation loop that doesn't always turn inspiration into wardrobe action.
+              The idea is strong. I focused on where the promise gets lost: crowded IA, competing
+              actions, duplicate saved objects, and a loop that doesn&apos;t always lead to action.
             </p>
           </motion.div>
 
           <motion.div {...fadeInUp}>
             <h3 className="narrative-para-heading">The Redesign Hypothesis</h3>
             <p className="narrative-body mb-4">
-              Whering&apos;s next leap is not more features. It is making inspiration reusable:
-              discover an outfit, remix it with your wardrobe, save it into a collection, and plan
-              when to wear it.
+              Whering&apos;s next leap is making inspiration reusable: discover, remix, save, and
+              plan.
             </p>
             <p className="narrative-body-bold mb-5">
               creator -&gt; outfit -&gt; item -&gt; canvas -&gt; collection -&gt; calendar

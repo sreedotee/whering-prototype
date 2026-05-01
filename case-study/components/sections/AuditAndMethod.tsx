@@ -74,6 +74,21 @@ export default function AuditAndMethod() {
             ))}
           </div>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="mt-10"
+        >
+          <SectionHeader number="03" title="Audit Findings" subtitle="Callouts from the existing product" tight />
+          <img
+            src="/assets/images/5-competing-actions-crop.png"
+            alt="Annotated product evidence"
+            className="w-full rounded-[22px] object-contain"
+          />
+        </motion.div>
       </div>
     </section>
   );

@@ -74,9 +74,7 @@ export default function UserPersonas() {
           {...fadeInUp}
           className="text-base font-medium text-[#6B6B6B] leading-[27.2px] mb-8 max-w-2xl"
         >
-          Based on research interviews and card sorting, I identified three
-          distinct user types. Atelia is designed primarily for Sarah, but serves
-          all three personas.
+          Research and card sorting surfaced three user types. Sarah is the primary user.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -180,9 +178,7 @@ export default function UserPersonas() {
           viewport={{ once: true }}
           className="mt-8 pt-6 border-t border-[#E8E5E6] text-sm leading-relaxed text-[#6B6B6B]"
         >
-          All three personas share the same underlying tension: they are making purchase decisions
-          without enough visual confidence. Sarah is the clearest primary user, while Maya validates
-          occasion-based organization and Jade points toward experimentation and future sharing behavior.
+          All three personas need more visual confidence before buying.
         </motion.p>
       </div>
     </section>

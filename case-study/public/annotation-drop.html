@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Annotation Drop Lab</title>
+    <style>
+      :root {
+        --bg: #f6f5f2;
+        --panel: #ffffff;
+        --text: #1f1f1f;
+        --muted: #6b6b6b;
+        --line: rgba(0, 0, 0, 0.08);
+        --chip: #f3f2ee;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+      }
+      .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 20px;
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 20px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+      }
+      h1, h2 { margin: 0; }
+      h1 { font-size: 34px; letter-spacing: -0.04em; }
+      h2 { font-size: 24px; letter-spacing: -0.03em; }
+      p { color: var(--muted); line-height: 1.6; }
+      .drop {
+        margin-top: 16px;
+        min-height: 72vh;
+        border: 2px dashed rgba(0,0,0,0.12);
+        border-radius: 24px;
+        background: #fafaf8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+      .drop.dragover { background: #f3f2ee; }
+      .drop img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+      .btn {
+        display: inline-block;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: #1f1f1f;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+        border: 0;
+      }
+      textarea {
+        width: 100%;
+        min-height: 280px;
+        border-radius: 20px;
+        border: 1px solid rgba(0,0,0,0.1);
+        padding: 14px;
+        font: inherit;
+        resize: vertical;
+        outline: none;
+        background: #fafaf8;
+      }
+      .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+      .chip {
+        background: var(--chip);
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: 999px;
+        padding: 10px 14px;
+        font-size: 14px;
+      }
+      .small { font-size: 12px; color: #7d767a; }
+      .top { margin-bottom: 16px; }
+      .file { margin-top: 12px; font-size: 12px; color: #7d767a; }
+      @media (max-width: 900px) {
+        .wrap { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <section class="panel">
+        <div class="top">
+          <div class="small">Annotation Lab</div>
+          <h1>Drop a screenshot here</h1>
+          <p>Use this page to preview an image and write short critique notes.</p>
+        </div>
+        <label class="drop" id="dropZone" for="fileInput">
+          <input id="fileInput" type="file" accept="image/*" hidden />
+          <div id="placeholder">
+            <button class="btn" type="button">Choose image</button>
+            <p>Click or drop a screenshot into the page.</p>
+          </div>
+          <img id="preview" alt="preview" style="display:none;" />
+        </label>
+        <div class="file" id="fileName"></div>
+      </section>
+
+      <aside class="panel">
+        <div class="top">
+          <div class="small">Notes</div>
+          <h2>Quick annotation copy</h2>
+          <p>Keep one note per line.</p>
+        </div>
+        <textarea id="notes">5 competing actions
+No hierarchy
+Search lacks context
+Too many primary actions</textarea>
+        <div class="chips" id="chips"></div>
+      </aside>
+    </div>
+
+    <script>
+      const input = document.getElementById("fileInput");
+      const preview = document.getElementById("preview");
+      const placeholder = document.getElementById("placeholder");
+      const fileName = document.getElementById("fileName");
+      const dropZone = document.getElementById("dropZone");
+      const notes = document.getElementById("notes");
+      const chips = document.getElementById("chips");
+      let objectUrl = null;
+
+      function renderNotes() {
+        chips.innerHTML = "";
+        notes.value
+          .split("\n")
+          .map((x) => x.trim())
+          .filter(Boolean)
+          .forEach((note) => {
+            const div = document.createElement("div");
+            div.className = "chip";
+            div.textContent = note;
+            chips.appendChild(div);
+          });
+      }
+
+      function loadFile(file) {
+        if (!file) return;
+        fileName.textContent = "Loaded file: " + file.name;
+        if (objectUrl) URL.revokeObjectURL(objectUrl);
+        objectUrl = URL.createObjectURL(file);
+        preview.src = objectUrl;
+        preview.style.display = "block";
+        placeholder.style.display = "none";
+      }
+
+      input.addEventListener("change", () => loadFile(input.files && input.files[0]));
+      notes.addEventListener("input", renderNotes);
+      renderNotes();
+
+      ["dragenter", "dragover"].forEach((evt) => {
+        dropZone.addEventListener(evt, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropZone.classList.add("dragover");
+        });
+      });
+      ["dragleave", "drop"].forEach((evt) => {
+        dropZone.addEventListener(evt, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropZone.classList.remove("dragover");
+        });
+      });
+      dropZone.addEventListener("drop", (e) => {
+        const file = e.dataTransfer.files && e.dataTransfer.files[0];
+        loadFile(file);
+      });
+    </script>
+  </body>
+</html>

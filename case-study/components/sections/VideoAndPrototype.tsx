@@ -154,10 +154,12 @@ export default function VideoAndPrototype() {
               </div>
 
               <a
-                href="#"
+                href="https://whering-prototype-theta.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block w-full py-4 text-center bg-primary text-white rounded-2xl card-heading !text-inherit !text-sm hover:translate-y-[-2px] transition-all shadow-md shadow-black/10"
               >
-                Open in Figma -&gt;
+                Open Prototype -&gt;
               </a>
             </motion.div>
           </div>

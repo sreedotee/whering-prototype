@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Annotator from "./components/Annotator";
-import FontChecker from "./components/FontChecker";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -35,8 +33,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
         {children}
-        <Annotator />
-        <FontChecker />
       </body>
     </html>
   );

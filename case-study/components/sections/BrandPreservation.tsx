@@ -109,7 +109,7 @@ export default function BrandPreservation() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="rounded-2xl bg-gradient-to-r from-plum to-purple-900 text-white p-8 md:p-10"
+          className="rounded-2xl bg-gradient-to-r from-[#7CCBFF] to-[#2D6FEA] text-white p-8 md:p-10"
         >
           <p className="card-microlabel !text-white/50 mb-4">The Bottom Line</p>
           <p className="text-lg font-medium mb-4">

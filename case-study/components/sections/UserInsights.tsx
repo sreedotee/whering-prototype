@@ -42,7 +42,7 @@ export default function UserInsights() {
           className="narrative-body mb-10 max-w-2xl"
         >
           Splitting the matrix into casual and power-user views made the navigation problem clearer:
-          not every valuable feature deserves equal visibility on day one.
+          not every valuable feature should be visible on day one.
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-16">

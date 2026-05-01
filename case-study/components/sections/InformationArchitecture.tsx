@@ -19,7 +19,7 @@ const architectureColumns = [
   },
   {
     title: "INBOX",
-    children: ["Feedback", "Likes", "Follows", "Messages"],
+    children: ["Feedback", "Likes", "Follows"],
   },
   {
     title: "PROFILE",

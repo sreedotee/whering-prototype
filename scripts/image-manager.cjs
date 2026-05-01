@@ -706,7 +706,29 @@ async function uploadFile(slotId, file, slotEl) {
   setStatus('Saving ' + slotId + '...', 'busy');
 
   try {
-    const resized = await resizeImageFile(file, getImageTarget(slotId));
+    const resized = await resizeImageFile(file, {
+      width: slotId.startsWith('avatar-') ? 512
+        : slotId.startsWith('discover-') ? 960
+        : slotId.startsWith('pg') ? 720
+        : slotId.startsWith('profile-') ? 720
+        : slotId.startsWith('detail-') ? 640
+        : /^s\\d/.test(slotId) ? 640
+        : 960,
+      height: slotId.startsWith('avatar-') ? 512
+        : slotId.startsWith('discover-') ? 1200
+        : slotId.startsWith('pg') ? 900
+        : slotId.startsWith('profile-') ? 900
+        : slotId.startsWith('detail-') ? 800
+        : /^s\\d/.test(slotId) ? 640
+        : 1200,
+      quality: slotId.startsWith('avatar-') ? 0.92
+        : slotId.startsWith('discover-') ? 0.9
+        : slotId.startsWith('pg') ? 0.9
+        : slotId.startsWith('profile-') ? 0.9
+        : slotId.startsWith('detail-') ? 0.9
+        : /^s\\d/.test(slotId) ? 0.92
+        : 0.9,
+    });
     const base64 = await toBase64(resized);
     const res = await fetch('/upload', {
       method: 'POST',
