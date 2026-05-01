@@ -30,8 +30,8 @@ const discoverCards = [
     column: 1,
     type: 'item',
     height: 196,
-    imageUrl: '/assets/images/discover-2.png',
-    imagePosition: '50% 22%',
+    imageUrl: '/assets/images/discover-2.jpg',
+    imagePosition: 'center',
     author: 'Lina',
     authorAvatar: '/assets/images/avatar-Lina.png',
     context: 'item inspo',
@@ -44,8 +44,8 @@ const discoverCards = [
     column: 0,
     type: 'item',
     height: 172,
-    imageUrl: '/assets/images/discover-3.png',
-    imagePosition: '55% 14%',
+    imageUrl: '/assets/images/discover-3.jpg',
+    imagePosition: 'center',
     author: 'Mia',
     authorAvatar: '/assets/images/avatar-Mia.png',
     context: 'item inspo',
@@ -70,8 +70,8 @@ const discoverCards = [
     column: 1,
     type: 'item',
     height: 164,
-    imageUrl: '/assets/images/discover-5.png',
-    imagePosition: '60% 8%',
+    imageUrl: '/assets/images/discover-5.jpg',
+    imagePosition: 'center',
     author: 'Noor',
     authorAvatar: '/assets/images/avatar-Noor.png',
     context: 'item inspo',
@@ -120,8 +120,8 @@ const discoverCards = [
     column: 1,
     type: 'item',
     height: 188,
-    imageUrl: '/assets/images/discover-9.png',
-    imagePosition: '50% 12%',
+    imageUrl: '/assets/images/discover-9.jpg',
+    imagePosition: 'center',
     author: 'Aya',
     authorAvatar: '/assets/images/avatar-Aya.png',
     context: 'item inspo',
@@ -134,8 +134,8 @@ const discoverCards = [
     column: 0,
     type: 'item',
     height: 206,
-    imageUrl: '/assets/images/discover-10.png',
-    imagePosition: '50% 12%',
+    imageUrl: '/assets/images/discover-10.jpg',
+    imagePosition: 'center',
     author: 'Leah',
     authorAvatar: '/assets/images/avatar-Leah.png',
     context: 'item inspo',
@@ -160,8 +160,8 @@ const discoverCards = [
     column: 0,
     type: 'item',
     height: 182,
-    imageUrl: '/assets/images/discover-12.png',
-    imagePosition: '52% 14%',
+    imageUrl: '/assets/images/discover-12.jpg',
+    imagePosition: 'center',
     author: 'Jules',
     authorAvatar: '/assets/images/avatar-Jules.png',
     context: 'item inspo',
@@ -253,19 +253,19 @@ const discoverOutfitDetails = {
         id: 'detail-item-1',
         brand: 'Stussy',
         name: 'Yellow Hoodie',
-        imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/090GKJ4QA8ZEV32K3FX9JN08ZY.jpg',
+        imageUrl: '/assets/images/detail-item-1.jpg',
       },
       {
         id: 'detail-item-2',
         brand: 'Stussy',
         name: 'Yellow Pants',
-        imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/5F80RX5MY4RP33FT6SVAXJSVDE.jpg',
+        imageUrl: '/assets/images/detail-item-2.jpg',
       },
       {
         id: 'detail-item-3',
         brand: 'Nike',
         name: 'Air Force 1 Low',
-        imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/7W1X36JM3KBAYG8NZEP7W1QGN5.jpg',
+        imageUrl: '/assets/images/detail-item-3.jpg',
       },
     ],
   },
@@ -278,29 +278,29 @@ const discoverOutfitDetails = {
         id: 'detail-item-1',
         brand: 'Stussy',
         name: 'Yellow Hoodie',
-        imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/090GKJ4QA8ZEV32K3FX9JN08ZY.jpg',
+        imageUrl: '/assets/images/detail-item-1.jpg',
       },
       {
         id: 'detail-item-2',
         brand: 'Stussy',
         name: 'Yellow Pants',
-        imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/5F80RX5MY4RP33FT6SVAXJSVDE.jpg',
+        imageUrl: '/assets/images/detail-item-2.jpg',
       },
       {
         id: 'detail-item-3',
         brand: 'Nike',
         name: 'Air Force 1 Low',
-        imageUrl: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/7W1X36JM3KBAYG8NZEP7W1QGN5.jpg',
+        imageUrl: '/assets/images/detail-item-3.jpg',
       },
     ],
   },
 };
 
 const profileGridImages = [
-    { id: 'pg1', url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/7QRG0MDTVR6PD6ZQ0SKT1Z1KCJ.jpg', height: 260 },
-    { id: 'pg2', url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/07JKEK4CWG967CZF35K9XVGCAP.jpg', height: 210 },
-    { id: 'pg3', url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/71AR1PGS8T6ZPFJKKVC0ES4BT4.jpg', height: 210 },
-    { id: 'pg4', url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/665YP1TGMBQ3MGX5VMRNN1785H.jpg', height: 260 },
+    { id: 'pg1', url: '/assets/images/pg1.jpg', height: 260 },
+    { id: 'pg2', url: '/assets/images/pg2.jpg', height: 210 },
+    { id: 'pg3', url: '/assets/images/pg3.jpg', height: 210 },
+    { id: 'pg4', url: '/assets/images/pg4.jpg', height: 260 },
 ];
 
 const profileMasonryCards = [
@@ -309,14 +309,14 @@ const profileMasonryCards = [
       id: 'profile-item-jacket',
       type: 'item',
       height: 248,
-      imageUrl: '/assets/images/discover-8.png',
+      imageUrl: '/assets/images/profile-item-jacket.jpg',
       badgeTone: 'light',
     },
     {
       id: 'profile-outfit-gray',
       type: 'outfit',
       height: 186,
-      imageUrl: '/assets/images/discover-15.png',
+      imageUrl: '/assets/images/profile-outfit-gray.jpg',
       badgeTone: 'dark',
     },
   ],
@@ -325,14 +325,14 @@ const profileMasonryCards = [
       id: 'profile-item-placeholder',
       type: 'item',
       height: 186,
-      imageUrl: '/assets/images/discover-16.png',
+      imageUrl: '/assets/images/profile-item-placeholder.jpg',
       badgeTone: 'light',
     },
     {
       id: 'profile-outfit-tee',
       type: 'outfit',
       height: 248,
-      imageUrl: '/assets/images/discover-17.png',
+      imageUrl: '/assets/images/profile-outfit-tee.jpg',
       badgeTone: 'dark',
     },
   ],
@@ -360,12 +360,12 @@ const profileCollectionCards = {
 };
 
 const studioItems = [
-  { id: 's1', category: 'Tops', zone: 'top', name: 'Yellow Hoodie', ownership: 'owned', wantToBuy: false, url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/090GKJ4QA8ZEV32K3FX9JN08ZY.jpg' },
-  { id: 's2', category: 'Outerwear', zone: 'outerwear', name: 'Grey Jacket', ownership: 'owned', wantToBuy: false, url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/3R9W71BZ7KA9WN09R6HNA6PTGH.jpg' },
-  { id: 's3', category: 'Tops', zone: 'top', name: 'Graphic Tee', ownership: 'notOwned', wantToBuy: true, url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/5DGAVH8PFY2FR0BPGF9K8VDTS8.jpg' },
-  { id: 's4', category: 'Footwear', zone: 'footwear', name: 'White Sneakers', ownership: 'owned', wantToBuy: false, url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/6T0PMEQDJ18KBJ4BEG6EF0JK4Z.jpg' },
-  { id: 's5', category: 'Bottoms', zone: 'bottom', name: 'Soft Trousers', ownership: 'owned', wantToBuy: false, url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/7QWK2RNATR35Q4ZQ2XCA1Z1C96.jpg' },
-  { id: 's6', category: 'Accessories', zone: 'accessory', name: 'Street Tote', ownership: 'notOwned', wantToBuy: true, url: 'https://app.paper.design/file-assets/01KPAP3TXNQJ89SHJ3P0WDMA3F/0P4Q226RN1C07JXQCWVCDDKY17.jpg' },
+  { id: 's1', category: 'Tops', zone: 'top', name: 'Yellow Hoodie', ownership: 'owned', wantToBuy: false, url: '/assets/images/s1.jpg' },
+  { id: 's2', category: 'Outerwear', zone: 'outerwear', name: 'Grey Jacket', ownership: 'owned', wantToBuy: false, url: '/assets/images/s2.jpg' },
+  { id: 's3', category: 'Tops', zone: 'top', name: 'Graphic Tee', ownership: 'notOwned', wantToBuy: true, url: '/assets/images/s3.jpg' },
+  { id: 's4', category: 'Footwear', zone: 'footwear', name: 'White Sneakers', ownership: 'owned', wantToBuy: false, url: '/assets/images/s4.jpg' },
+  { id: 's5', category: 'Bottoms', zone: 'bottom', name: 'Soft Trousers', ownership: 'owned', wantToBuy: false, url: '/assets/images/s5.jpg' },
+  { id: 's6', category: 'Accessories', zone: 'accessory', name: 'Street Tote', ownership: 'notOwned', wantToBuy: true, url: '/assets/images/s6.jpg' },
 ];
 
 const BODY_ZONE_BY_CATEGORY = {
@@ -1874,7 +1874,7 @@ function DiscoverCard({ card, onOpen, dials }) {
             '--discover-card-height': `${card.height}px`,
           }}
         >
-          {card.type === 'outfit' ? (
+          {card.imageUrl ? (
             <>
               <img
                 className="discover-card-image"
@@ -1889,7 +1889,7 @@ function DiscoverCard({ card, onOpen, dials }) {
                   objectPosition: card.imagePosition,
                 }}
               />
-              <div className="discover-card-image-tint" aria-hidden="true" />
+              {card.type === 'outfit' ? <div className="discover-card-image-tint" aria-hidden="true" /> : null}
             </>
           ) : null}
           {!isBottom && (
@@ -2064,6 +2064,8 @@ function DiscoverOutfitOverlay({ card, onClose, onSetActiveCard, feedDials, onCr
               backgroundImage: `linear-gradient(to bottom, transparent 55%, rgba(0,0,0,0.15) 100%), url(${card.imageUrl})`,
               backgroundPosition: `center, ${card.imagePosition}`,
               backgroundSize: 'auto, cover',
+              backgroundRepeat: 'no-repeat, no-repeat',
+              backgroundColor: 'transparent',
               height: heroHeight,
               position: 'relative',
               flexShrink: 0,
@@ -2370,12 +2372,13 @@ function CreatorCollectionOverlay({ card, onClose, onCreatorOpen }) {
   );
 }
 
-function DiscoverScreen({ activeDiscoverTab, onDiscoverTabChange, activeScreen, collections = [], publicOutfits = [], onSaveOutfit, onSaveItem }) {
+function DiscoverScreen({ activeDiscoverTab, onDiscoverTabChange, activeScreen, collections = [], publicOutfits = [], onSaveOutfit, onSaveItem, onOpenStyle, onOpenNotifications }) {
   const [activeOutfitCard, setActiveOutfitCard] = useState(null);
   const [activeCreator, setActiveCreator] = useState(null);
   const [activeCollection, setActiveCollection] = useState(null);
   const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
   const tabsRef = useRef(null);
+  const DISCOVER_CARD_SCALE = 1.42;
   const publicCards = publicOutfits.map((outfit, index) => ({
     id: outfit.id,
     column: index % 2,
@@ -2388,7 +2391,10 @@ function DiscoverScreen({ activeDiscoverTab, onDiscoverTabChange, activeScreen, 
     context: 'shared from wardrobe',
     count: 'new',
   }));
-  const feedCards = [...publicCards, ...discoverCards];
+  const feedCards = [...publicCards, ...discoverCards].map((card) => ({
+    ...card,
+    height: Math.round(card.height * DISCOVER_CARD_SCALE),
+  }));
   const leftColumnCards = feedCards.filter((card) => card.column === 0);
   const rightColumnCards = feedCards.filter((card) => card.column === 1);
   const { tabsTopOffset } = useDialKit('Discover Tabs', {
@@ -2435,6 +2441,11 @@ function DiscoverScreen({ activeDiscoverTab, onDiscoverTabChange, activeScreen, 
   return (
     <main id="home-screen" className={`screen hue-cyan${activeScreen === 'home' ? ' active' : ''}`} data-tab="home" aria-label="Discover feed">
       <div className="discover-top-nav" style={{ top: `calc(var(--app-status-bar-height) + ${tabsTopOffset}px)` }}>
+        <div className="discover-top-actions">
+          <button type="button" className="discover-icon-btn" aria-label="Create outfit" onClick={onOpenStyle}>
+            <Icon d={ICONS.plus} size={18} stroke={2.2} />
+          </button>
+        </div>
         <div className="discover-tabs" ref={tabsRef} role="tablist" aria-label="Discover tabs">
           <div className="discover-tabs-slider" style={{ width: `${sliderStyle.width}px`, left: `${sliderStyle.left}px` }} />
           <button className={`discover-tab${activeDiscoverTab === 'featured' ? ' is-active' : ''}`} type="button" onClick={() => onDiscoverTabChange('featured')}>
@@ -2442,6 +2453,11 @@ function DiscoverScreen({ activeDiscoverTab, onDiscoverTabChange, activeScreen, 
           </button>
           <button className={`discover-tab${activeDiscoverTab === 'following' ? ' is-active' : ''}`} type="button" onClick={() => onDiscoverTabChange('following')}>
             Following
+          </button>
+        </div>
+        <div className="discover-top-actions discover-top-actions--right">
+          <button type="button" className="discover-icon-btn" aria-label="Open notifications" onClick={onOpenNotifications}>
+            <Icon d={ICONS.bell} size={18} stroke={2.2} />
           </button>
         </div>
       </div>
@@ -2549,7 +2565,7 @@ const featuredCurators = [
 
 const trendingOutfits = [
   { title: 'Tech Wear', category: 'Streetwear', image: '/assets/images/discover-18.png' },
-  { title: 'Minimalist', category: 'Office', image: '/assets/images/discover-15.png' },
+  { title: 'Minimalist', category: 'Office', image: '/assets/images/discover-14.png' },
   { title: 'Maximalist', category: 'Y2K', image: '/assets/images/discover-17.png' }
 ];
 
@@ -3094,6 +3110,8 @@ function App() {
             publicOutfits={conceptState.outfits.filter(outfit => outfit.visibility === 'public')}
             onSaveOutfit={handleDiscoverSaveOutfit}
             onSaveItem={handleDiscoverSaveItem}
+            onOpenStyle={() => handleScreenChange('studio')}
+            onOpenNotifications={() => setIsNotificationsOpen(true)}
           />
 
           <ExploreScreen

@@ -407,17 +407,141 @@ function getHTML() {
   }
   #export-btn:hover { border-color: #444; background: #1d1d1d; }
   h1 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
-  .subtitle { font-size: 13px; color: #666; margin-bottom: 40px; }
-  .section { margin-bottom: 48px; }
-  .section-title {
+  .subtitle { font-size: 13px; color: #666; margin-bottom: 24px; }
+  .intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .intro-card {
+    border: 1px solid #1f1f1f;
+    background: #141414;
+    border-radius: 18px;
+    padding: 16px 18px;
+  }
+  .intro-kicker {
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #555;
+    color: #7c9cff;
+    margin-bottom: 8px;
+  }
+  .intro-card h2 {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  .intro-card p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #8a8a8a;
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .legend-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border-radius: 999px;
+    border: 1px solid #262626;
+    background: #171717;
+    padding: 7px 10px;
+    font-size: 12px;
+    color: #bdbdbd;
+  }
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .legend-dot.item { background: #f5d565; }
+  .legend-dot.outfit { background: #8fb8ff; }
+  .legend-dot.empty { background: #737373; }
+  .legend-dot.filled { background: #4ade80; }
+  .section { margin-bottom: 48px; }
+  .section.featured {
+    padding: 18px;
+    border-radius: 20px;
+    border: 1px solid #1f2d44;
+    background: linear-gradient(180deg, rgba(22, 35, 57, 0.78), rgba(15, 15, 15, 0.98));
+  }
+  .section-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
     margin-bottom: 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #1e1e1e;
+  }
+  .section-copy {
+    min-width: 0;
+  }
+  .section-kicker {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7c9cff;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #ececec;
+    margin-bottom: 4px;
+  }
+  .section-meta {
+    font-size: 12px;
+    line-height: 1.45;
+    color: #767676;
+    max-width: 720px;
+  }
+  .section-count {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    border: 1px solid #2b2b2b;
+    background: #171717;
+    padding: 7px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #9c9c9c;
+  }
+  .slot-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 11px;
+    color: #7a7a7a;
+  }
+  .slot-type-chip {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 4px 8px;
+    border: 1px solid #262626;
+    background: #171717;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .slot-type-chip.item { color: #86bfff; }
+  .slot-type-chip.outfit { color: #b5a2ff; }
+  .slot-state-text {
+    font-size: 11px;
+    color: #8d8d8d;
   }
   .grid {
     display: grid;
@@ -425,6 +549,10 @@ function getHTML() {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   }
   .grid.avatars { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+  .slot-card {
+    display: flex;
+    flex-direction: column;
+  }
   .slot {
     position: relative;
     border-radius: 12px;
@@ -514,8 +642,14 @@ function getHTML() {
     color: #aaa;
     z-index: 1;
   }
-  .slot-badge.outfit { color: #a78bfa; }
+  .slot-badge.outfit { color: #8fb8ff; }
   .slot-badge.item { color: #60a5fa; }
+  .slot-badge.example { color: #8fb8ff; }
+  .slot-badge.empty {
+    left: 6px;
+    right: auto;
+    color: #f5d565;
+  }
   .spinner {
     position: absolute;
     inset: 0; border-radius: inherit;
@@ -537,6 +671,12 @@ function getHTML() {
     font-size: 11px; color: #444; margin-top: 10px;
     text-align: center;
   }
+  @media (max-width: 860px) {
+    body { padding-left: 16px; padding-right: 16px; }
+    #status-bar { padding: 0 16px; }
+    .intro { grid-template-columns: 1fr; gap: 12px; }
+    .section-head { flex-direction: column; gap: 10px; }
+  }
 </style>
 </head>
 <body>
@@ -545,6 +685,23 @@ function getHTML() {
 
 <h1>Whering — Image Manager</h1>
 <p class="subtitle">Drop an image onto any slot, click to pick a file, or hover a slot then Ctrl+V to paste.</p>
+
+<div class="intro">
+  <div class="intro-card">
+    <div class="intro-kicker">Best Place To Start</div>
+    <h2>Item slots are broken out separately</h2>
+    <p>Use the dedicated item section first. Those slots map to the Discover cards tagged as items, so you can drop the item images there directly and ignore the rest.</p>
+  </div>
+  <div class="intro-card">
+    <div class="intro-kicker">Legend</div>
+    <div class="legend">
+      <div class="legend-chip"><span class="legend-dot item"></span>Item image slot</div>
+      <div class="legend-chip"><span class="legend-dot outfit"></span>Outfit/example card</div>
+      <div class="legend-chip"><span class="legend-dot empty"></span>Needs image</div>
+      <div class="legend-chip"><span class="legend-dot filled"></span>Already filled</div>
+    </div>
+  </div>
+</div>
 
 <div id="sections"></div>
 
@@ -569,11 +726,16 @@ function imgSrc(url, bust) {
 }
 
 function makeSlot(slotId, label, badge, isAvatar, isWide) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'slot-card';
+
   const div = document.createElement('div');
   div.className = 'slot' + (isAvatar ? ' avatar-slot' : '') + (isWide ? ' wide' : '');
   div.dataset.slotId = slotId;
+  wrapper.appendChild(div);
 
   const url = imgSrc(currentImages[slotId]);
+  const isDiscoverSlot = slotId.startsWith('discover-');
 
   // Image element (visible when loaded)
   const img = document.createElement('img');
@@ -603,11 +765,18 @@ function makeSlot(slotId, label, badge, isAvatar, isWide) {
   spinner.className = 'spinner';
   div.appendChild(spinner);
 
-  if (badge) {
+  if (badge && !isDiscoverSlot) {
     const b = document.createElement('div');
     b.className = \`slot-badge \${badge}\`;
     b.textContent = badge;
     div.appendChild(b);
+  }
+
+  if (!url) {
+    const missing = document.createElement('div');
+    missing.className = 'slot-badge empty';
+    missing.textContent = 'empty';
+    div.appendChild(missing);
   }
 
   var lbl = document.createElement('div');
@@ -632,21 +801,89 @@ function makeSlot(slotId, label, badge, isAvatar, isWide) {
     input.click();
   });
 
-  return div;
+  if (isDiscoverSlot) {
+    const meta = document.createElement('div');
+    meta.className = 'slot-meta-row';
+
+    const typeChip = document.createElement('div');
+    typeChip.className = 'slot-type-chip ' + (badge || 'item');
+    typeChip.textContent = badge || 'item';
+    meta.appendChild(typeChip);
+
+    const state = document.createElement('div');
+    state.className = 'slot-state-text';
+    state.textContent = url ? 'filled' : 'empty';
+    meta.appendChild(state);
+
+    wrapper.appendChild(meta);
+  }
+
+  return wrapper;
 }
 
-function makeSection(title, slots, isAvatar, isWide) {
+function makeSection(options) {
+  const {
+    title,
+    description = '',
+    slots = [],
+    isAvatar = false,
+    isWide = false,
+    kicker = '',
+    featured = false,
+    prioritizeMissing = false,
+  } = options;
+
   const section = document.createElement('div');
-  section.className = 'section';
+  section.className = 'section' + (featured ? ' featured' : '');
+
+  const head = document.createElement('div');
+  head.className = 'section-head';
+
+  const copy = document.createElement('div');
+  copy.className = 'section-copy';
+
+  if (kicker) {
+    const eyebrow = document.createElement('div');
+    eyebrow.className = 'section-kicker';
+    eyebrow.textContent = kicker;
+    copy.appendChild(eyebrow);
+  }
 
   const h = document.createElement('div');
   h.className = 'section-title';
   h.textContent = title;
-  section.appendChild(h);
+  copy.appendChild(h);
+
+  if (description) {
+    const meta = document.createElement('div');
+    meta.className = 'section-meta';
+    meta.textContent = description;
+    copy.appendChild(meta);
+  }
+
+  head.appendChild(copy);
+
+  const count = document.createElement('div');
+  count.className = 'section-count';
+  count.textContent = slots.length + ' slots';
+  head.appendChild(count);
+
+  section.appendChild(head);
 
   const grid = document.createElement('div');
   grid.className = 'grid' + (isAvatar ? ' avatars' : '');
-  for (const s of slots) {
+
+  const displaySlots = [...slots];
+  if (prioritizeMissing) {
+    displaySlots.sort((a, b) => {
+      const aFilled = Boolean(currentImages[a.id]);
+      const bFilled = Boolean(currentImages[b.id]);
+      if (aFilled !== bFilled) return aFilled ? 1 : -1;
+      return a.label.localeCompare(b.label);
+    });
+  }
+
+  for (const s of displaySlots) {
     grid.appendChild(makeSlot(s.id, s.label, s.badge || null, isAvatar, isWide));
   }
   section.appendChild(grid);
@@ -657,43 +894,81 @@ function render() {
   const container = document.getElementById('sections');
   container.innerHTML = '';
 
-  // Discover card images
-  container.appendChild(makeSection(
-    'Discover Card Images',
-    DATA.discoverCards.map(c => ({ id: c.id, label: c.label, badge: c.type }))
-  ));
+  const discoverItemSlots = DATA.discoverCards
+    .filter((c) => c.type === 'item')
+    .map((c) => ({
+      id: c.id,
+      label: c.label,
+      badge: 'item',
+    }));
 
-  // Author avatars
-  container.appendChild(makeSection(
-    'Author Avatars',
-    DATA.uniqueAuthors.map(a => ({ id: \`avatar-\${a}\`, label: a })),
-    true
-  ));
+  const discoverOutfitSlots = DATA.discoverCards
+    .filter((c) => c.type === 'outfit')
+    .map((c) => ({
+      id: c.id,
+      label: c.label,
+      badge: 'outfit',
+    }));
 
-  // Profile grid
-  container.appendChild(makeSection(
-    'Profile Grid',
-    DATA.profileGrid,
-    false, true
-  ));
+  container.appendChild(makeSection({
+    kicker: 'Main Feed',
+    title: 'Item Image Slots',
+    description: 'Drop your item images here. These slots map to the Discover cards that are logically tagged as items.',
+    slots: discoverItemSlots,
+    featured: true,
+    prioritizeMissing: true,
+  }));
 
-  // Profile wardrobe
-  container.appendChild(makeSection(
-    'Profile Wardrobe',
-    DATA.profileMasonry
-  ));
+  container.appendChild(makeSection({
+    kicker: 'Main Feed',
+    title: 'Outfit / Example Cards',
+    description: 'These are the Discover cards currently being used as outfit examples. You can leave these alone unless you want to replace one.',
+    slots: discoverOutfitSlots,
+    featured: true,
+    prioritizeMissing: true,
+  }));
 
-  // Outfit detail items
-  container.appendChild(makeSection(
-    'Outfit Detail Items',
-    DATA.outfitDetailItems
-  ));
+  container.appendChild(makeSection({
+    kicker: 'People',
+    title: 'Author Avatars',
+    description: 'Profile photos used across Discover cards and overlays.',
+    slots: DATA.uniqueAuthors.map(a => ({ id: \`avatar-\${a}\`, label: a })),
+    isAvatar: true,
+    prioritizeMissing: true,
+  }));
 
-  // Studio items
-  container.appendChild(makeSection(
-    'Studio Items',
-    DATA.studioItems
-  ));
+  container.appendChild(makeSection({
+    kicker: 'Profile',
+    title: 'Profile Grid',
+    description: 'Top-level profile gallery cards.',
+    slots: DATA.profileGrid,
+    isWide: true,
+    prioritizeMissing: true,
+  }));
+
+  container.appendChild(makeSection({
+    kicker: 'Profile',
+    title: 'Profile Wardrobe',
+    description: 'Wardrobe and outfit images used on your profile surfaces.',
+    slots: DATA.profileMasonry,
+    prioritizeMissing: true,
+  }));
+
+  container.appendChild(makeSection({
+    kicker: 'Overlay',
+    title: 'Outfit Detail Items',
+    description: 'The item tiles inside the expanded outfit detail view.',
+    slots: DATA.outfitDetailItems,
+    prioritizeMissing: true,
+  }));
+
+  container.appendChild(makeSection({
+    kicker: 'Style',
+    title: 'Studio Items',
+    description: 'Slots used in the Style/Studio composition flow.',
+    slots: DATA.studioItems,
+    prioritizeMissing: true,
+  }));
 }
 
 // ─── Upload ──────────────────────────────────────────────────────────────
