@@ -1,15 +1,10 @@
 import { Suspense, lazy, useEffect, useMemo, useRef, useState } from 'react';
 import { CalendarPlus, Calendar } from 'lucide-react';
-import { loadAnnotations } from 'agentation';
 import { DialRoot, useDialKit } from 'dialkit';
 import 'dialkit/styles.css';
 import { initSwipeBack } from '../ux-foundation/mechanics.js';
 import { IOSDevice, IOSNavBar, IOSGlassPill } from './design-system/ios-frame.jsx';
 import { Icon, ICONS } from './design-system/icons.jsx';
-
-const Agentation = lazy(() =>
-  import('agentation').then((module) => ({ default: module.Agentation })),
-);
 
 const discoverCards = [
   {
@@ -1294,8 +1289,6 @@ function ProfileScreen({ activeScreen, profileView, onProfileViewChange }) {
 
 const SHOW_DISCOVER_FOLLOW_CHIP = false;
 const SHOW_DISCOVER_SECONDARY_ACTION = false;
-const AGENTATION_SYNC_URL = 'http://localhost:4747/annotations';
-
 const screens = [
   { id: 'home', label: 'Discover' },
   { id: 'explore', label: 'Search' },
@@ -2236,14 +2229,6 @@ function App() {
     };
   }, []);
 
-  const syncAnnotations = (annotations) => {
-    fetch(AGENTATION_SYNC_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(annotations),
-    }).catch(() => {});
-  };
-
   const activeScreenMeta = useMemo(
     () => screens.find((screen) => screen.id === activeScreen) ?? screens[0],
     [activeScreen],
@@ -2277,18 +2262,7 @@ function App() {
         </div>
       </IOSDevice>
 
-      <div id="agentation-root">
-        <Suspense fallback={null}>
-          <Agentation
-            webhookUrl={AGENTATION_SYNC_URL}
-            onAnnotationAdd={() => syncAnnotations(loadAnnotations(window.location.pathname))}
-            onAnnotationUpdate={() => syncAnnotations(loadAnnotations(window.location.pathname))}
-            onAnnotationDelete={() => syncAnnotations(loadAnnotations(window.location.pathname))}
-            onAnnotationsClear={() => syncAnnotations([])}
-          />
-        </Suspense>
-      </div>
-      <DialRoot position="bottom-left" defaultOpen={false} />
+<DialRoot position="bottom-left" defaultOpen={false} />
       <DialKitDragFix />
     </>
   );
