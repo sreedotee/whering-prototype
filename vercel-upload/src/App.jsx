@@ -1913,7 +1913,7 @@ const topBrands = [
   { name: 'Nike', image: 'https://www.nike.com/favicon.ico', category: 'Streetwear', style: { backgroundColor: '#FFFFFF' } },
   { name: 'Balenciaga', image: 'https://www.balenciaga.com/favicon.ico', category: 'Archive', style: { backgroundColor: '#FFFFFF' } },
   { name: 'Carhartt', image: 'https://www.carhartt-wip.com/favicon.ico', category: 'Streetwear', style: { backgroundColor: '#FFFFFF' } },
-  { name: 'Miu Miu', image: 'https://www.miumiu.com/favicon.ico', category: 'Y2K', style: { backgroundColor: '#FFFFFF' } },
+  { name: 'Miu Miu', letter: 'MM', category: 'Y2K', style: { backgroundColor: '#FFFFFF', color: '#0D0D0D', fontWeight: 700, fontSize: '13px' } },
   { name: 'Acne', letter: 'A', category: 'Office', style: { backgroundColor: '#FFFFFF', color: '#0D0D0D', fontWeight: 700, fontSize: '24px' } }
 ];
 
