@@ -1,3 +1,6 @@
+/* Hide dev-only overlay tools */
+[class*="dialkit"], [data-dialkit], #dialkit-root { display: none !important; }
+
 /* Whering Design System — Tokens v2 */
 
 :root {
