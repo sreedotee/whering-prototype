@@ -1,7 +1,8 @@
 import { Suspense, lazy, useEffect, useMemo, useRef, useState } from 'react';
 import { CalendarPlus, Calendar } from 'lucide-react';
-import { DialRoot, useDialKit } from 'dialkit';
-import 'dialkit/styles.css';
+// dialkit removed — stub returns default values from each knob definition
+const useDialKit = (_name, defaults = {}) =>
+  Object.fromEntries(Object.entries(defaults).map(([k, v]) => [k, Array.isArray(v) ? v[0] : v]));
 import { initSwipeBack } from '../ux-foundation/mechanics.js';
 import { IOSDevice, IOSNavBar, IOSGlassPill } from './design-system/ios-frame.jsx';
 import { Icon, ICONS } from './design-system/icons.jsx';
@@ -1220,9 +1221,7 @@ function ProfileScreen({ activeScreen, profileView, onProfileViewChange }) {
     profileColor: '#1DB5FF',
   });
 
-  console.log('DialKit profileColor:', dialValues.profileColor);
-
-  const colorMap = {
+const colorMap = {
     '#1db5ff': 'cyan',
     '#9bc926': 'lime',
     '#8a6be0': 'violet',
@@ -2262,8 +2261,6 @@ function App() {
         </div>
       </IOSDevice>
 
-<DialRoot position="bottom-left" defaultOpen={false} />
-      <DialKitDragFix />
     </>
   );
 }
